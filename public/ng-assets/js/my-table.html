@@ -1,0 +1,167 @@
+<style type="text/css">
+	@media print {
+		.no-print {
+			visibility: none;
+		}
+
+		.always-print {
+			display: block !important;
+		}
+	}
+</style>
+<div class="row" style="margin-bottom:10px">
+	<!-- PAGINATION DROPDOWN STARTS -->
+	<div class="col-md-1" style="padding-right:0px">
+		<select ng-if="tableDataFinal.paginationDropDown" ng-model="filter.limit" ng-change="getallData(true)" class="form-control input-sm">
+			<option ng-model="filter.limit" ng-repeat="(key, value) in tableDataFinal.paginationDropDownValues" value="{{value}}">{{key}}</option>
+		</select>
+	</div>
+	<!-- PAGINATION DROPDOWN ENDS -->
+
+	<div style="padding-top:5px;padding-left: 3px;" class="col-md-1">
+		of {{dataCount}}
+	</div>
+	<div style="padding-left:5px;padding-right:0px" class="col-md-5 text-center">
+		<ul style="margin:0px" ng-if="tableDataFinal.pagination" class="pagination">
+			<li><a href="#" ng-if="!prevDisabled" ng-click="changePaginationFirst(selectedPagination)">&laquo;&laquo;</a></li>
+			<li><a href="#" ng-if="!prevDisabled" ng-click="changePaginationPrevious(selectedPagination)">&laquo;</a></li>
+			<li ng-repeat="(key, value) in pagination track by $index" ng-class="{'active': value === selectedPagination}">
+				<a href="" ng-click="changePagination(value-1)">{{value}}</a>
+			</li>
+			<li><a href="#" ng-if="!nextDisabled" ng-click="changePaginationNext(selectedPagination)">&raquo;</a></li>
+			<li><a href="#" ng-if="!nextDisabled" ng-click="changePaginationLast(selectedPagination)">&raquo;&raquo;</a></li>
+		</ul>
+	</div>
+
+	<!-- COLUMN SELECT -->
+	<div class="col-md-3" ng-init="showColumnList = false;">
+		<div class="row">
+			<div style="padding:0px" class="col-md-4">
+				<button ng-click="exportData()" class="btn btn-sm btn-default"><i class="fa fa-cloud-download"></i></button>
+				<button ng-click="print()" class="btn btn-sm btn-default"><i class="fa fa-print"></i></button>
+			</div>
+			<div class="col-md-8">
+				<button type="button" style="width:100%" class="btn btn-sm btn-default" ng-click="showColumnList = !showColumnList">
+					<strong class="pull-left"><i class="glyphicon glyphicon-list"></i> Columns </strong>
+					<i ng-if="!showColumnList" class="fa fa-caret-down pull-right"></i>
+					<i ng-if="showColumnList" class="fa fa-caret-up pull-right"></i>
+				</button>
+				<div style="width:340px;position:absolute;z-index:9999" ng-if="showColumnList">
+					<ol>
+						<li ng-repeat="(key,value) in tableDataFinal.columns">
+							<a style="margin-left:-30px;padding-left: 30px" ng-click="tableDataFinal.columns[key].visible = !tableDataFinal.columns[key].visible"
+							 class="list-group-item">
+								{{value.alias}}
+								<i ng-if="value.visible" class="glyphicon glyphicon-ok pull-right"></i>
+								<i ng-if="!value.visible" class="glyphicon glyphicon-remove pull-right"></i>
+							</a>
+						</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- COLUMN SELECT ENDS-->
+
+	<!-- GLOBAL SEARCH STARTS -->
+	<div class="col-md-2">
+		<input ng-if="tableDataFinal.globalSearch" ng-model="filter.globalSearch" ng-change="getallData(true)" class="form-control input-sm"
+		 placeholder="Search all columns">
+	</div>
+	<!-- GLOBAL SEARCH ENDS -->
+</div>
+<div class="table-scrollable">
+	<table class="always-print" ng-class="[tableDataFinal.tableClass]">
+		<thead sticky-table-header active="tableDataFinal.stickyHeader">
+			<!-- COLUMN HEAD AND SORTING STARTS -->
+			<tr>
+				<th ng-if="tableDataFinal.showSerialNumber">SN</th>
+				<th class="text-left" ng-repeat="(key, value) in tableDataFinal.columns" width="{{value.thWidth}}" ng-if="value.visible"
+				 style="{{value.thStyle}}" ng-click="value.sortable && sortBy(value.key)"><span ng-bind-html="value.alias | trusted"></span><i
+					 class="pull-right" style="font-size:25px" ng-class="[{'fa fa-angle-down':filter.orderType=='desc'}, {'fa fa-angle-up':filter.orderType=='asc'} ,{'hide': filter.orderBy != value.key}]"></i>
+				</th>
+			</tr>
+			<!-- COLUMN HEAD AND SORTING ENDS -->
+
+			<!-- COLUMNWISE FILTER AND SEARCHING STARTS -->
+			<tr>
+				<th ng-if="tableDataFinal.showSerialNumber">SN</th>
+
+				<th style="vertical-align:top" ng-repeat="(key, value) in tableDataFinal.columns" ng-if="value.visible">
+					<!-- COLUMN SEARCH STARTS -->
+					<div ng-if="value.searchable && value.rangeSearch==false && value.columnType!='select'">
+						<input type="{{value.columnType}}" ng-change="getallData(true)" ng-model="filter.columns[value.key][0].filterValue"
+						 class="form-control input-sm">
+						<select ng-if="value.searchComparisons!='*'" ng-model="filter.columns[value.key][0].filterType" class="form-control input-sm">
+							<option ng-repeat="(k, v) in value.searchComparisons" value="{{v.selectValue}}">
+								{{v.selectAlias}}
+							</option>
+						</select>
+						<select ng-show="value.showComparison" ng-if="value.searchComparisons=='*'" ng-change="getallData(true)" ng-model="filter.columns[value.key][0].filterType"
+						 class="form-control input-sm">
+							<option value=">">Bigger than</option>
+							<option value="<">Less than</option>
+							<option value="=">Equal to</option>
+							<option value="like">Text search</option>
+						</select>
+					</div>
+					<!-- COLUMN SEARCH ENDS -->
+
+					<!-- RANGE SEARCH STARTS -->
+					<div ng-if="value.searchable && value.rangeSearch!=false && value.columnType!='select'">
+						<input type="{{value.columnType}}" ng-change="getallData(true)" class="form-control input-sm" ng-model="filter.columns[value.key][0].filterValue"
+						 placeholder="Bigger than">
+						<input style="margin-top:3px" ng-change="getallData(true)" type="{{value.columnType}}" ng-model="filter.columns[value.key][1].filterValue"
+						 class="form-control input-sm" placeholder="Less than">
+					</div>
+
+					<div ng-if="value.searchable && value.rangeSearch==false && value.columnType=='select'">
+						<select class="form-control input-sm" ng-change="getallData(true)" ng-model="filter.columns[value.key][0].filterValue">
+							<option value="">Select a Value</option>
+							<option ng-repeat="(k,v) in value.selectOptions" value="{{v.value}}">{{v.alias}}</option>
+						</select>
+					</div>
+					<!-- RANGE SEARCH ENDS -->
+				</th>
+			</tr>
+			<!-- COLUMNWISE FILTER AND SEARCHING ENDS -->
+		</thead>
+		<tbody>
+			<!-- LOADER DIV STARTS -->
+			<tr ng-if="tableDataFinal.loading">
+				<td colspan="{{tableDataFinal.columns.length}}">
+					<div style="width:100%;height:200px">
+						<i style="margin-left:47%;margin-top:100px;font-size:50px" class="fa fa-circle-o-notch fa-spin"></i>
+					</div>
+				</td>
+			</tr>
+			<!-- LOADER DIV ENDS -->
+
+			<!-- IN CASE THE OF EMPTY DATA RETURN -->
+			<tr ng-if="!tableDataFinal.loading && allData.length==0">
+				<td class="text-center" colspan="{{tableDataFinal.columns.length}}">
+					<h3>No Data Found</h3>
+				</td>
+			</tr>
+			<!-- IN CASE THE OF EMPTY DATA RETURN ENDS-->
+
+			<!-- TABLE DATA ROW STARTS -->
+			<tr ng-if="!tableDataFinal.loading" ng-repeat="(key, value) in allData track by $index">
+				<td style="vertical-align:middle" ng-if="tableDataFinal.showSerialNumber">{{filter.limit*(selectedPagination-1)+key*1+1*1}}</td>
+				<td style="vertical-align:middle" ng-repeat="(k, v) in tableDataFinal.columns track by $index" ng-if="v.visible">
+
+					<div ng-if="v.hasHtml" bind-html-compile="value[v.key]">
+					</div>
+
+					<div ng-if="v.hasHtmlValue" bind-html-compile="prepareHtml(value,v)">
+					</div>
+
+					<div ng-if="!v.hasHtml && !v.hasHtmlValue">
+						<div ng-bind="value[v.key] | converter:v"></div>
+					</div>
+				</td>
+			</tr>
+			<!-- COLUMN HEAD AND SORTING ENDS -->
+		</tbody>
+	</table>
+</div>
