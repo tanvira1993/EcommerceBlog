@@ -20,5 +20,5 @@ Route::get('/admin', function () {
 });
 
 Route::get('/product', function () {
-	return view('products');
+	return view('product-page');
 });

@@ -310,8 +310,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/slick.min.js"></script>
-        <script src="js/nouislider.min.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/nouislider.min.js"></script>        
         <script src="js/angular.min.js"></script>
         <script src="js/ocLazyLoad.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.6/angular-ui-router.js"></script>

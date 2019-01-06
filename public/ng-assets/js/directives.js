@@ -3,7 +3,7 @@ GLobal Directives
 ***/
 
 // Route State Load Spinner(used on page or content load)
-LcApp.directive('ngSpinnerBar', ['$rootScope', '$state',
+EcommerceApp.directive('ngSpinnerBar', ['$rootScope', '$state',
     function($rootScope, $state) {
         return {
             link: function(scope, element, attrs) {
@@ -39,10 +39,10 @@ LcApp.directive('ngSpinnerBar', ['$rootScope', '$state',
             }
         };
     }
-])
+    ])
 
 // Handle global LINK click
-LcApp.directive('a', function() {
+EcommerceApp.directive('a', function() {
     return {
         restrict: 'E',
         link: function(scope, elem, attrs) {
@@ -56,7 +56,7 @@ LcApp.directive('a', function() {
 });
 
 // Handle Dropdown Hover Plugin Integration
-LcApp.directive('dropdownMenuHover', function () {
+EcommerceApp.directive('dropdownMenuHover', function () {
     return {
         link: function (scope, elem) {
             elem.dropdownHover();
@@ -64,7 +64,7 @@ LcApp.directive('dropdownMenuHover', function () {
     };
 });
 
-LcApp.directive('bindHtmlCompile', ['$compile', function ($compile) {
+EcommerceApp.directive('bindHtmlCompile', ['$compile', function ($compile) {
     'use strict';
     return {
         restrict: 'A',
@@ -79,13 +79,13 @@ LcApp.directive('bindHtmlCompile', ['$compile', function ($compile) {
     };
 }]);
 
-LcApp.filter('trusted', ['$sce', function ($sce) {
+EcommerceApp.filter('trusted', ['$sce', function ($sce) {
     return function (text) {
         return $sce.trustAsHtml(text);
     };
 }]);
 
-LcApp.filter('converter', ['$filter', function ($filter) {
+EcommerceApp.filter('converter', ['$filter', function ($filter) {
     return function (input, column) {
 
         if (column.filters == "" || column.filters == undefined || column.filters == null) {
@@ -101,7 +101,7 @@ LcApp.filter('converter', ['$filter', function ($filter) {
 }]);
 
 
-LcApp.directive('stickyTableHeader', [function () {
+EcommerceApp.directive('stickyTableHeader', [function () {
     return {
         restrict: 'A',
         scope: {
@@ -170,7 +170,7 @@ LcApp.directive('stickyTableHeader', [function () {
 }]);
 
 
-LcApp.directive('myTable', function () {
+EcommerceApp.directive('myTable', function () {
     'use strict';
     /*jshint unused: false, undef:false */
     return {
@@ -219,24 +219,24 @@ LcApp.directive('myTable', function () {
 
                 $scope.tableData.columns.forEach(function (val, index) {
                     $scope.tableDataFinal.columns[index] =
-                        {
-                            'key': val.key,
-                            'alias': !!val.alias ? val.alias : val.key,
-                            'columnType': !!val.columnType ? val.columnType : 'text',
-                            'searchComparisons': !!val.searchComparisons ? val.searchComparisons : '*',
-                            'rangeSearch': !!val.rangeSearch,
-                            'searchable': typeof (val.searchable) === 'undefined' || val.searchable === true ? true : false,
-                            'sortable': typeof (val.sortable) === 'undefined' || val.sortable === true ? true : false,
-                            'hasHtml': !!val.hasHtml,
-                            'hasHtmlValue': !!val.hasHtmlValue,
-                            'htmlValue': val.htmlValue ? val.htmlValue : '',
-                            'thStyle': !val.thStyle ? '' : val.thStyle,
-                            'thWidth': !!val.thWidth ? val.thWidth : '',
-                            'showComparison': typeof (val.showComparison) === 'undefined' ? true : val.showComparison,
-                            'visible': true,
-                            'selectOptions': !!val.selectOptions ? val.selectOptions : [],
-                            'filters': !!val.filters ? val.filters : ""
-                        };
+                    {
+                        'key': val.key,
+                        'alias': !!val.alias ? val.alias : val.key,
+                        'columnType': !!val.columnType ? val.columnType : 'text',
+                        'searchComparisons': !!val.searchComparisons ? val.searchComparisons : '*',
+                        'rangeSearch': !!val.rangeSearch,
+                        'searchable': typeof (val.searchable) === 'undefined' || val.searchable === true ? true : false,
+                        'sortable': typeof (val.sortable) === 'undefined' || val.sortable === true ? true : false,
+                        'hasHtml': !!val.hasHtml,
+                        'hasHtmlValue': !!val.hasHtmlValue,
+                        'htmlValue': val.htmlValue ? val.htmlValue : '',
+                        'thStyle': !val.thStyle ? '' : val.thStyle,
+                        'thWidth': !!val.thWidth ? val.thWidth : '',
+                        'showComparison': typeof (val.showComparison) === 'undefined' ? true : val.showComparison,
+                        'visible': true,
+                        'selectOptions': !!val.selectOptions ? val.selectOptions : [],
+                        'filters': !!val.filters ? val.filters : ""
+                    };
                 });
                 //
 
@@ -301,18 +301,18 @@ LcApp.directive('myTable', function () {
                     url: $scope.tableData.dataUrl,
                     data: $scope.filter,
                 })
-                    .success(function (data) {
-                        $scope.dataCount = data.data.count;
-                        $scope.allData = data.data.data;
-                        $scope.selectedPagination = Math.ceil((1 + $scope.filter.offset * 1) / $scope.filter.limit);
-                        var total = 0;
-                        if (parseInt($scope.filter.limit) != 0) {
-                            total = Math.ceil(($scope.dataCount / parseInt($scope.filter.limit)));
-                        }
-                        $scope.noOfPaginationCount = total;
-                        createPagination(total);
-                        $scope.tableData.loading = false;
-                        $scope.tableDataFinal.httpSuccessCallback(data);
+                .success(function (data) {
+                    $scope.dataCount = data.data.count;
+                    $scope.allData = data.data.data;
+                    $scope.selectedPagination = Math.ceil((1 + $scope.filter.offset * 1) / $scope.filter.limit);
+                    var total = 0;
+                    if (parseInt($scope.filter.limit) != 0) {
+                        total = Math.ceil(($scope.dataCount / parseInt($scope.filter.limit)));
+                    }
+                    $scope.noOfPaginationCount = total;
+                    createPagination(total);
+                    $scope.tableData.loading = false;
+                    $scope.tableDataFinal.httpSuccessCallback(data);
 
                         //For Sticky Header
                         if ($scope.tableDataFinal.stickyHeader) {
@@ -323,10 +323,10 @@ LcApp.directive('myTable', function () {
                             }, 1000)
                         }
                     })
-                    .error(function (data) {
-                        $scope.tableData.loading = false;
-                        $scope.tableDataFinal.httpErrorCallback(data);
-                    });
+                .error(function (data) {
+                    $scope.tableData.loading = false;
+                    $scope.tableDataFinal.httpErrorCallback(data);
+                });
             };
 
             $scope.selectedPagination = 1;
