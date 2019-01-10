@@ -7,7 +7,7 @@ angular.module('EcommerceApp').controller('addProductController', ['$scope', '$r
 			let formData = new FormData($("#otherDocumentForm")[0]);
 
 			$.ajax({
-				url: $rootScope.CURRENT_API_DATA + 'api/other/documents/save',
+				url: 'api/other/documents/save',
 				type: 'POST',
 				data: formData,
 				headers: {

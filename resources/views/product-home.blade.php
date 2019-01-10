@@ -110,7 +110,7 @@
                 <div class="product product-single">
                     <div class="product-thumb">
                         <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                        <img src="./img/product01.jpg" alt="">
+                        <img src="uploads/yuy_yuy_yu_1547119124.jpeg" alt="">
                     </div>
                     <div class="product-body">
                         <h3 class="product-price">$32.50</h3>

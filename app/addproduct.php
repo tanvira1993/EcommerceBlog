@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \Eloquence\Behaviours\CamelCasing;
+//use Illuminate\Database\Eloquent\CamelCasing;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class OtherDocument extends Model
+class addproduct extends Model
 {
     //
-	use CamelCasing;
+	//use CamelCasing;
 
 	protected $primaryKey = 'id_products';
 	protected $table = 'product_lists';

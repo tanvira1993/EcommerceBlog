@@ -36,6 +36,7 @@ class addProductController extends Controller
 			
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
+		//$documentTypeInfo = DocumentType::find($request->idDocumentTypes);
 
 		$path = public_path().'/uploads/';
 		if (!is_dir($path)) {
@@ -44,7 +45,7 @@ class addProductController extends Controller
 		$fileName = null;
 		if(!empty($request->file('image'))){
 
-			$fileName = str_replace(" ", "_", $documentTypeInfo->name).'_'.time().'.'.$request->file('image')->extension();
+			$fileName = str_replace(" ", "_", "yuy yuy yu").'_'.time().'.'.$request->file('image')->extension();
 			$request->file('image')->move(public_path() . '/uploads/', $fileName);
 		}
 
