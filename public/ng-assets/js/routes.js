@@ -9,26 +9,41 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
     
     //Added by Tanvir
 
-/*    .state('otherDocumentEdit', {
-        url: "/other/documents/edit/{id}",
-        templateUrl: "/other/documents/edit",
-        data: {pageTitle: 'Other Documents Edit'},
-        controller: "otherDocumentsEditController",
+    .state('EcommerceProduct', {
+        url: "/product",
+        templateUrl: "/product",
+        data: {pageTitle: 'Ecommerce Product'},
+        controller: "BlankController",
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: 'EcommerceApp',
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
-                        files: [
-                        CURRENT_ASSET+'assets/global/plugins/select2/css/select2.min.css',
-                        CURRENT_ASSET+'assets/global/plugins/select2/css/select2-bootstrap.min.css',
-                        CURRENT_ASSET+'assets/global/plugins/select2/js/select2.full.js',
-                        'ng-assets/js/controllers/otherDocumentsEditController.js'
-                        ]
-                    });
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/BlankController.js'
+                    ]
+                });
             }]
         }
-    })*/
+    })
 
     
+    .state('adminview', {
+        url: "/admin",
+        templateUrl: "/admin",
+        data: {pageTitle: 'Add Product'},
+        controller: "addProductController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/addProductController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
 }]);

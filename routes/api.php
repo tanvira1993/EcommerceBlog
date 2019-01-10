@@ -17,6 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 	return $request->user();
 });
 
-Route::delete('insuranceCovarage/fileremove/{id}', 'InsuranceCoverageController@destroyFile');
-Route::post('lcCharge/uploadFile/{id}', 'ChargeController@uploadFile');
-Route::delete('lcCharge/fileremove/{id}', 'ChargeController@destroyFile');
+
+Route::post('other/documents/save', 'addProductController@save');

@@ -15,10 +15,10 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::get('/admin', function () {
-	return view('product-page');
+Route::get('/product', function () {
+	return view('product-home');
 });
 
-Route::get('/product', function () {
-	return view('product-page');
+Route::get('/admin', function () {
+	return view('addproduct');
 });
