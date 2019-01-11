@@ -113,7 +113,7 @@
                         <img src="uploads/@{{value.product_file}}" alt="">
                     </div>
                     <div class="product-body">
-                        <h3 class="product-price">$32.50</h3>
+                        <h3 class="product-price">@{{value.product_cost}}</h3>
                         <div class="product-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -121,7 +121,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o empty"></i>
                         </div>
-                        <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+                        <h2 class="product-name"><a href="#">@{{value.product_name}}</a></h2>
                         <div class="product-btns">
                             <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                             <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>

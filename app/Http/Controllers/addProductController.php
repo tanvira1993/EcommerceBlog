@@ -17,16 +17,26 @@ class addProductController extends Controller
 		//echo '<pre>';
 		//print_r($request->all());
 		// exit;
-		$files = $request->file('image');
+		$files = $request->file('image'); 
 		
 		$rules = [
 			
-			'image' => 'required |max:51200|mimes:jpg,jpeg,png,pdf,gif'
+			'image' => 'required |max:51200|mimes:jpg,jpeg,png,pdf,gif',
+			'name' => 'required',
+			'unit' => 'required',
+			'cost' => 'required'
+
+
+
 		];
 
 		$messages = [
 
 			'image.required' => 'Attachment is required',
+			'name.required' => 'Name is required',
+			'unit.required' => 'Unit Name is required',
+			'cost.required' => 'Cost is required',
+
 
 		];
 
@@ -53,7 +63,12 @@ class addProductController extends Controller
 
 		//exit;
 		$document = new addproduct;
+		$document->product_cost = $request->cost;
+		$document->product_unit_name = $request->unit;
 		$document->product_file = !empty($fileName) ? $fileName : null;
+		$document->product_name = $request->name;
+		
+
 		
 		$document->save();
 		
@@ -77,7 +92,7 @@ class addProductController extends Controller
 
 	public function getFileInfo(Request $request){
 
-		$docTypes = addproduct::select('id_products', 'product_file')->get();
+		$docTypes = addproduct::select('product_lists.*')->get();
 		return Response::json(['success' => true, 'data' => $docTypes], 200);
 	}
 
