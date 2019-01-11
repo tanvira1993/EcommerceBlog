@@ -13,7 +13,7 @@
             <div class="portlet-body">
                 <form class="form-horizontal" role="form" name="otherDocumentForm" id="otherDocumentForm" novalidate enctype="multipart/form-data">
 
-                   
+                 
 
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="image">Attach<span class="required">*</span></label>

@@ -17,6 +17,8 @@ class addProductController extends Controller
 		//echo '<pre>';
 		//print_r($request->all());
 		// exit;
+		$files = $request->file('image');
+		
 		$rules = [
 			
 			'image' => 'required |max:51200|mimes:jpg,jpeg,png,pdf,gif'
@@ -36,7 +38,7 @@ class addProductController extends Controller
 			
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
-		//$documentTypeInfo = DocumentType::find($request->idDocumentTypes);
+		$nameonly = preg_replace('/\..+$/', '', $files->getClientOriginalName());
 
 		$path = public_path().'/uploads/';
 		if (!is_dir($path)) {
@@ -45,7 +47,7 @@ class addProductController extends Controller
 		$fileName = null;
 		if(!empty($request->file('image'))){
 
-			$fileName = str_replace(" ", "_", "yuy yuy yu").'_'.time().'.'.$request->file('image')->extension();
+			$fileName = str_replace(" ", "_", $nameonly).'_'.time().'.'.$request->file('image')->extension();
 			$request->file('image')->move(public_path() . '/uploads/', $fileName);
 		}
 
@@ -72,4 +74,11 @@ class addProductController extends Controller
 		
 
 	}
+
+	public function getFileInfo(Request $request){
+
+		$docTypes = addproduct::select('id_products', 'product_file')->get();
+		return Response::json(['success' => true, 'data' => $docTypes], 200);
+	}
+
 }

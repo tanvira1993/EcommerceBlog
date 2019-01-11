@@ -13,14 +13,14 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         url: "/product",
         templateUrl: "/product",
         data: {pageTitle: 'Ecommerce Product'},
-        controller: "BlankController",
+        controller: "HomeController",
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: 'EcommerceApp',
                     insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                     files: [
-                    'ng-assets/js/controllers/BlankController.js'
+                    'ng-assets/js/controllers/HomeController.js'
                     ]
                 });
             }]
