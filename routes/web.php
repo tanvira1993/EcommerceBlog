@@ -22,3 +22,11 @@ Route::get('/product', function () {
 Route::get('/admin', function () {
 	return view('addproduct');
 });
+
+Route::get('/manageProduct', function () {
+	return view('manageProduct');
+});
+
+Route::get('/product/edit', function () {
+	return view('edit');
+});

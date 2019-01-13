@@ -21,3 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('other/documents/save', 'addProductController@save');
 Route::get('productInfo/details', 'addProductController@getFileInfo');
 
+Route::delete('product/delete/{id}', 'addProductController@deleteFile');
+Route::post('product/update/{id}', 'addProductController@update');
+Route::get('productdetailById/{id}', 'addProductController@getProductInfo');
+
+
+
+
+
