@@ -24,6 +24,8 @@ Route::get('productInfo/details', 'addProductController@getFileInfo');
 Route::delete('product/delete/{id}', 'addProductController@deleteFile');
 Route::post('product/update/{id}', 'addProductController@update');
 Route::get('productdetailById/{id}', 'addProductController@getProductInfo');
+Route::get('order/details', 'addProductController@getOrderInfo');
+
 
 
 

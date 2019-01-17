@@ -30,3 +30,7 @@ Route::get('/manageProduct', function () {
 Route::get('/product/edit', function () {
 	return view('edit');
 });
+
+Route::get('/orderlist', function () {
+	return view('orderlist');
+});

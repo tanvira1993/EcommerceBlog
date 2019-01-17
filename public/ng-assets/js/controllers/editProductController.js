@@ -15,7 +15,7 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 					url:'api/productdetailById/'+$scope.id
 				}).then(function(response) {
 					$scope.editProductData = response.data.data;
-
+					
 				}, function(response) {
 					console.log(response);
 				});

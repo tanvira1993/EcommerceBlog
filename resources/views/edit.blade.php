@@ -11,13 +11,13 @@
 				</div>
 			</div>
 			<div class="portlet-body">
-				<form class="form-horizontal" role="form" name="editotherDocumentForm" id="otherDocumentForm" novalidate enctype="multipart/form-data">
+				<form class="form-horizontal" role="form" name="editotherDocumentForm" id="editotherDocumentForm" novalidate enctype="multipart/form-data">
 
 					<div>
 						<label for="name">Product Name<span class="required">*</span></label>
 						<div>
 							<div >
-								<input type="text" class="form-control" id="name" name="name"  ng-model="editData.product_name">
+								<input type="text" class="form-control" id="name" name="name"  ng-model="editProductData.product_name" ng-value="editProductData.product_name">
 							</div>
 						</div>
 					</div>
@@ -26,7 +26,7 @@
 						<label for="cost">Product cost<span class="required">*</span></label>
 						<div >
 							<div >
-								<input type="text"  class="form-control" id="cost" name="cost"  ng-bind="editProductData.product_cost">
+								<input type="text"  class="form-control" id="cost" name="cost"  ng-model="editProductData.product_cost" ng-value="editProductData.product_cost">
 							</div>
 						</div>
 					</div>
@@ -35,7 +35,7 @@
 						<label for="unit">Product Unit Name<span class="required">*</span></label>
 						<div>
 							<div>
-								<input type="text" class="form-control" id="unit" name="unit"  ng-bind="editProductData.product_unit_name">
+								<input type="text" class="form-control" id="unit" name="unit"  ng-model="editProductData.product_unit_name" ng-value="editProductData.product_unit_name">
 							</div>
 						</div>
 					</div>

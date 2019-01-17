@@ -82,4 +82,24 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         }
     })
 
+
+    //
+    .state('orderlist', {
+        url: "/orderlist",
+        templateUrl: "/orderlist",
+        data: {pageTitle: 'Order List'},
+        controller: "orderListController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/orderListController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
 }]);

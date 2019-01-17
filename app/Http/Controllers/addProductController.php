@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\addproduct;
+use App\orderlist;
+use App\itemList;
 use Response;
 use DB;
 use Validator;
@@ -125,14 +127,15 @@ class addProductController extends Controller
 	
 	public function Update(Request $request, $id)
 	{
+		$files = $request->file('image');
 		$target = addproduct::find($id);
 		if(empty($target)){
 			return Response::json(array('success' => FALSE, 'heading' => 'Bad Request', 'message' => 'Invalid Product ID'), 400);
 		}
 		$rules = [
-			/*'name' => 'required',
+			'name' => 'required',
 			'unit' => 'required',
-			'cost' => 'required'*/
+			'cost' => 'required'
 		];
 
 		if(!empty($request->file('image'))){
@@ -163,6 +166,7 @@ class addProductController extends Controller
 
     	//Finding the document type by Id
 		//$documentTypeInfo = addproduct::find($request->idDocumentTypes);
+		$nameonly = preg_replace('/\..+$/', '', $files->getClientOriginalName());
 
 		$fileName = null;
 		if(!empty($request->file('image'))){
@@ -171,7 +175,7 @@ class addProductController extends Controller
 			$request->file('image')->move(public_path() . '/uploads/', $fileName);
 
     		//If block image already existing it is deleted previous block image
-			$filePath = public_path() . '/uploads/'. $document->product_file;
+			$filePath = public_path() . '/uploads/'. $target->product_file;
 
 
 			if (file_exists($filePath)) {
@@ -210,6 +214,43 @@ class addProductController extends Controller
 
 
 	}
+	public function getOrderInfo(Request $request){
+		$dq=0;
+		$dd=0;
+		//$docTypes = addproduct::select('product_lists.*')->get();
+		$order = orderlist:: with('itemList')
+		->where('delivery_queue', $dq)
+		->where('delivery_done', $dq)
+		->get();
+		return Response::json(['success' => true, 'data' => $order], 200);
 
 
+	}
+
+	//////
+	public function getdeliveryPendingInfo(Request $request){
+		$dq=1;
+		$dd=0;
+		//$docTypes = addproduct::select('product_lists.*')->get();
+		$queue = orderlist:: with('itemList')
+		->where('delivery_queue', $dq)
+		->where('delivery_done', $dq)
+		->get();
+		return Response::json(['success' => true, 'data' => $queue], 200);
+
+
+	}
+	////
+	public function getdeliveryDoneInfo(Request $request){
+		$dq=1;
+		$dd=1;
+		//$docTypes = addproduct::select('product_lists.*')->get();
+		$done = orderlist:: with('itemList')
+		->where('delivery_queue', $dq)
+		->where('delivery_done', $dq)
+		->get();
+		return Response::json(['success' => true, 'data' => $done], 200);
+
+
+	}
 }
