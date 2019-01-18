@@ -113,7 +113,7 @@
 						<img src="uploads/@{{value.product_file}}" alt="">
 					</div>
 					<div class="product-body">
-						<h3 class="product-price">@{{value.product_cost}}</h3>
+						<h3 class="product-price" >@{{value.product_cost}}</h3>
 						<div class="product-rating">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
@@ -121,11 +121,11 @@
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star-o empty"></i>
 						</div>
-						<h2 class="product-name"><a href="#">@{{value.product_name}}</a></h2>
+						<h2 class="product-name" ng-value=@{{value.product_name}}><a href="#">@{{value.product_name}}</a></h2>
 						<div class="product-btns">
 							<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 							<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-							<button class="primary-btn add-to-cart" ng-value="@{{value}}" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-shopping-cart" ></i> Add to Cart</button>
+							<button class="primary-btn add-to-cart" ng-click="alert(value.id_products)"ng-value="@{{value}}" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-shopping-cart" ></i> Add to Cart</button>
 
 
 
@@ -284,22 +284,36 @@
 				<div class="modal-body mx-3">
 					<div class="md-form mb-5">
 						<i class="fas fa-envelope prefix grey-text"></i>
-						<input type="email" id="defaultForm-email" class="form-control validate" ng-model="@{{value.id_products}}" readonly>
+						<input type="email" id="defaultForm-email" class="form-control validate" ng-model="productCart.product_name" readonly>
 						<label data-error="wrong" data-success="right" for="defaultForm-email">Product Name</label>
 					</div>
 
 					<div class="md-form mb-4">
 						<i class="fas fa-lock prefix grey-text"></i>
-						<input type="number" min="1" id="defaultForm-pass" class="form-control validate">
-						<label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+						<input type="text" ng-model="productCart.product_cost"  id="defaultForm-pass" readonly class="form-control validate">
+						
+
+						<label data-error="wrong" data-success="right" for="defaultForm-pass">Cost</label>
+					</div>
+
+					<div class="md-form mb-4">
+						<i class="fas fa-lock prefix grey-text"></i>
+						<input type="number" ng-model="productCart.item_quantity" min="1" id="defaultForm-pass"  class="form-control validate">
+						
+
+						<label data-error="wrong" data-success="right" for="defaultForm-pass">quantity</label>
 					</div>
 
 				</div>
 			</div>
+			<pre>
+				@{{productCart|json}}
+			</pre>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-primary" ng-click="saveOrder()">Order Create</button>
 			</div>
 		</div>
 	</div>
 </div>
+

@@ -253,4 +253,42 @@ class addProductController extends Controller
 
 
 	}
+
+	public function savecart(Request $request)
+	{
+		$rules = [
+
+			'productCart.item_quantity' => 'required|numeric',			
+
+		];
+
+
+		$messages = [
+			'productCart.item_quantity.required' => 'quantity must need to select',
+		];
+
+		$validation = Validator::make($request->all(), $rules, $messages);
+
+        // redirect on validation error
+		if ($validation->fails()) {
+			$errorMsgString = implode("<br/>",$validation->messages()->all());
+            // change below as required
+			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
+		}
+
+		$itemList = new itemList;
+		$itemList->item_quantity = $request->item_quantity;
+		$itemList->save();
+		$orderlist = new orderlist;
+		$orderlist->delivery_queue = 0;
+		$orderlist->delivery_done = 0;
+		$orderlist->save();
+		
+		if($itemList && $orderlist){
+			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
+		}else{
+			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'order could not be created!'), 400);
+		}
+	}
+
 }
