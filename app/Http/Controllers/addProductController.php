@@ -258,13 +258,13 @@ class addProductController extends Controller
 	{
 		$rules = [
 
-			'productCart.item_quantity' => 'required|numeric',			
+			'item_quantity' => 'required',			
 
 		];
 
 
 		$messages = [
-			'productCart.item_quantity.required' => 'quantity must need to select',
+			'item_quantity.required' => 'quantity must need to select',
 		];
 
 		$validation = Validator::make($request->all(), $rules, $messages);
@@ -291,8 +291,10 @@ class addProductController extends Controller
 		$itemList->save();
 		
 		if($itemList && $orderlist){
+			DB::commit();
 			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
 		}else{
+			DB::rollBack();
 			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'order could not be created!'), 400);
 		}
 	}

@@ -298,7 +298,7 @@
 
 					<div class="md-form mb-4">
 						<i class="fas fa-lock prefix grey-text"></i>
-						<input type="number" ng-model="productCart.item_quantity" min="1" id="defaultForm-pass"  class="form-control validate">
+						<input type="text" ng-model="productCart.item_quantity" id="defaultForm-pass"  class="form-control validate">
 						
 
 						<label data-error="wrong" data-success="right" for="defaultForm-pass">quantity</label>
