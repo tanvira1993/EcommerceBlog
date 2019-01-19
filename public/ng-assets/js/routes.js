@@ -102,4 +102,40 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         }
     })
 
+    .state('deliverylist', {
+        url: "/deliverylist",
+        templateUrl: "/deliverylist",
+        data: {pageTitle: 'Delivery Queue List'},
+        controller: "deliveryListController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/deliveryListController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('deliveryDoneList', {
+        url: "/deliveryDoneList",
+        templateUrl: "/deliveryDoneList",
+        data: {pageTitle: 'Delivery Done List'},
+        controller: "deliveryDoneListController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/deliveryDoneListController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
 }]);

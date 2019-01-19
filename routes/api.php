@@ -28,6 +28,10 @@ Route::post('product/update/{id}', 'addProductController@update');
 Route::get('productdetailById/{id}', 'addProductController@getProductInfo');
 Route::get('order/details', 'addProductController@getOrderInfo');
 Route::post('product/addcart', 'addProductController@savecart');
+Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');
+Route::get('delivery/done', 'addProductController@getdeliveryDoneInfo');
+
+
 
 
 

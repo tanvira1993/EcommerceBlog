@@ -34,3 +34,11 @@ Route::get('/product/edit', function () {
 Route::get('/orderlist', function () {
 	return view('orderlist');
 });
+
+Route::get('/deliverylist', function () {
+	return view('deliveryqueue');
+});
+
+Route::get('/deliveryDoneList', function () {
+	return view('deliveryDone');
+});

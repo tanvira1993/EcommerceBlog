@@ -234,7 +234,7 @@ class addProductController extends Controller
 		//$docTypes = addproduct::select('product_lists.*')->get();
 		$queue = orderlist:: with('itemList')
 		->where('delivery_queue', $dq)
-		->where('delivery_done', $dq)
+		->where('delivery_done', $dd)
 		->get();
 		return Response::json(['success' => true, 'data' => $queue], 200);
 
@@ -276,13 +276,19 @@ class addProductController extends Controller
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
 
-		$itemList = new itemList;
-		$itemList->item_quantity = $request->item_quantity;
-		$itemList->save();
+		
 		$orderlist = new orderlist;
+
 		$orderlist->delivery_queue = 0;
 		$orderlist->delivery_done = 0;
 		$orderlist->save();
+
+		
+		$itemList = new itemList;
+		$itemList->id_order_list = $orderlist->id_order_list;		
+		$itemList->item_quantity = $request->item_quantity;
+		$itemList ->id_products= $request->id_products;
+		$itemList->save();
 		
 		if($itemList && $orderlist){
 			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
