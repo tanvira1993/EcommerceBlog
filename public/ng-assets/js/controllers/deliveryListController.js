@@ -15,6 +15,22 @@ angular.module('EcommerceApp').controller('deliveryListController', ['$scope', '
 				});
 			}
 
+			
+			$scope.deliveryDone = function(id_order_list)
+			{
+				$http({
+					method:'get',
+					url:'api/deliveryDone/'+ id_order_list
+				}).then(function(response) {
+					//$scope.editProductData = response.data.data;
+					$location.path("/deliveryDoneList");
+					
+					
+				}, function(response) {
+					console.log(response);
+				});
+			}
+
 			$scope.getOrderInfo();
 
 		});

@@ -299,4 +299,42 @@ class addProductController extends Controller
 		}
 	}
 
+	public function productdeliveryqueue($id)
+	{
+		$orderlist = orderlist::find($id);
+		$orderlist->delivery_queue = 1;
+		
+		$orderlist->save();
+
+		if($orderlist){
+			DB::commit();
+			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
+		}else{
+			DB::rollBack();
+			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'order could not be created!'), 400);
+		}
+
+	}
+
+	public function productdeliveryDone($id)
+	{
+		$orderlist = orderlist::find($id);
+		$orderlist->delivery_queue = 1;
+		$orderlist->delivery_done = 1;
+		
+		
+		$orderlist->save();
+
+		if($orderlist){
+			DB::commit();
+			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
+		}else{
+			DB::rollBack();
+			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'order could not be created!'), 400);
+		}
+
+	}
+
+	
+	
 }

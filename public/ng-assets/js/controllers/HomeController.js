@@ -51,7 +51,7 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 
                 //Charge model data initialize
                 
-                $location.path("/product");
+                $location.path("/orderlist");
                 if (!$scope.$$phase)
                 	$scope.$apply();
             });
