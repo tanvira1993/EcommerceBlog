@@ -42,3 +42,7 @@ Route::get('/deliverylist', function () {
 Route::get('/deliveryDoneList', function () {
 	return view('deliveryDone');
 });
+
+Route::get('/order/billSlip', function () {
+	return view('bill');
+});

@@ -335,6 +335,17 @@ class addProductController extends Controller
 
 	}
 
+	/*public function billSlip($id)
+	{
+		$docTypes = itemList::where('id_order_list', $id)->get();
+
+
+		$target = addproduct:: where('id_products',$docTypes->id_products)->get();
+
+		return Response::json(['success' => true, 'data' => $docTypes], 200);
+	}*/
+
+
 	
 	
 }
