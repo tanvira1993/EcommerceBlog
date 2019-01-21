@@ -46,3 +46,5 @@ Route::get('/deliveryDoneList', function () {
 Route::get('/order/billSlip', function () {
 	return view('bill');
 });
+
+Route::get('/order/billSlip/{id}', 'addProductController@bill');

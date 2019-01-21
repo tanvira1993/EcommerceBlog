@@ -96,30 +96,30 @@ text-align:center;line-height:normal'><span style='font-size:12.0pt'>Amount</spa
 
 <?php for ($x = 0; $x <= 20; $x++) { ?>
 
-<tr style='height:15.75pt'>
-	<td width=402 colspan=3 style='width:301.5pt;border:solid 1.0pt;border-right:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
-		<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:normal'>
-			<span style='font-size:12.0pt'><? echo "item Name"?></span>
-		</p>
+	<tr style='height:15.75pt'>
+		<td width=402 colspan=3 style='width:301.5pt;border:solid 1.0pt;border-right:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
+			<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:normal'>
+				<span style='font-size:12.0pt'><? echo "item Name"?></span>
+			</p>
+		</td>
+		<td width=98 style='width:73.45pt;border:solid 1.0pt;border-left: none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
+			<p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;text-align:right;line-height:normal'>
+				<span style='font-size:12.0pt'><? echo "item Qty"?></span>
+			</p>
+		</td>
+		<td width=71 nowrap style='width:53.1pt;border:solid 1.0pt;	border-left:none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
+			<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+			normal'><? echo "item Unit"?></p>
+		</td>
+		<td width=77 style='width:57.55pt;border:solid 1.0pt;border-left:
+		none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
+		<p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;
+		text-align:right;line-height:normal'><? echo "item Rate"?></p>
 	</td>
-	<td width=98 style='width:73.45pt;border:solid 1.0pt;border-left: none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
-		<p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;text-align:right;line-height:normal'>
-			<span style='font-size:12.0pt'><? echo "item Qty"?></span>
-		</p>
-	</td>
-	<td width=71 nowrap style='width:53.1pt;border:solid 1.0pt;	border-left:none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
-		<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-		normal'><? echo "item Unit"?></p>
-	</td>
-	<td width=77 style='width:57.55pt;border:solid 1.0pt;border-left:
-	none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
+	<td width=103 nowrap style='width:76.9pt;border:solid 1.0pt;
+	border-left:none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
 	<p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;
-	text-align:right;line-height:normal'><? echo "item Rate"?></p>
-</td>
-<td width=103 nowrap style='width:76.9pt;border:solid 1.0pt;
-border-left:none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
-<p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;
-text-align:right;line-height:normal'><span style='font-size:12.0pt'><? echo "item Total Amount"?></span></p>
+	text-align:right;line-height:normal'><span style='font-size:12.0pt'><? echo "item Total Amount"?></span></p>
 </td>
 <td style='height:15.75pt;border:none' width=0 height=21></td>
 </tr>
@@ -172,7 +172,11 @@ padding:0in 5.4pt 0in 5.4pt;height:24.0pt'><?php echo "100" ?></td>
 
 
 </div>
-
+<script src="{{ asset('ng-assets/js/controllers/billSlipController.js')}}" type="text/javascript"></script>
 </body>
-
+<?php
+foreach($result as $row){
+	echo $row;
+}
+?>
 </html>

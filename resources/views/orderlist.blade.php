@@ -16,7 +16,7 @@
 			<td>@{{value.user_name}}</td>
 			<td>@{{value.user_address}}</td>
 			<td>@{{value.user_phone_no}}</td>			
-			<td> <a href="/order/billSlip" class="btn btn-primary"> Bill Slip</a><a ng-click="deliveryQueue(value.id_order_list)" class="btn btn-info"> Delivery Progress</a></td>
+			<td> <a href="/order/billSlip/@{{value.id_order_list}}" class="btn btn-primary"> Bill Slip</a><a ng-click="deliveryQueue(value.id_order_list)" class="btn btn-info"> Delivery Progress</a></td>
 
 
 

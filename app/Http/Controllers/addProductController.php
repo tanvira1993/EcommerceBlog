@@ -346,6 +346,14 @@ class addProductController extends Controller
 	}*/
 
 
+	public function bill($id){
+
+		$data['result'] = array('id'=>1,'name'=>'test1', 'k'=>$id);
+
+		return view('bill', $data);
+	}
+
+
 	
 	
 }
