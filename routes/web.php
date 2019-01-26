@@ -47,4 +47,8 @@ Route::get('/order/billSlip', function () {
 	return view('bill');
 });
 
+Route::get('/login', function () {
+	return view('login');
+});
+
 Route::get('/order/billSlip/{id}', 'addProductController@bill');

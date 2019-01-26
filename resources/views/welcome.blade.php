@@ -27,6 +27,7 @@
 
  <!-- Custom stlylesheet -->
  <link type="text/css" rel="stylesheet" href="css/style.css" />
+
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css"/>
 
  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -640,6 +641,7 @@
 <!-- jQuery Plugins -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 <script src="js/slick.min.js"></script>
 <script src="js/nouislider.min.js"></script>        
 <script src="js/angular.min.js"></script>
