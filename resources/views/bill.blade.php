@@ -172,11 +172,11 @@ padding:0in 5.4pt 0in 5.4pt;height:24.0pt'><?php echo "100" ?></td>
 
 
 </div>
-<script src="{{ asset('ng-assets/js/controllers/billSlipController.js')}}" type="text/javascript"></script>
+
 </body>
 <?php
-foreach($result as $row){
-	echo $row;
+foreach($result as $data){
+	echo $data;
 }
 ?>
 </html>

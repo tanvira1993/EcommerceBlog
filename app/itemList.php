@@ -16,5 +16,7 @@ class itemList extends Model
 	protected $table = 'item_lists';
 	public $timestamps = false;
 
-	
+	public function productDetails() {
+		return $this->hasMany('App\addproduct', 'id_products' , 'id_products');
+	}
 }

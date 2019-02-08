@@ -348,10 +348,12 @@ class addProductController extends Controller
 
 	public function bill($id){
 
-		$data['result'] = array('id'=>1,'name'=>'test1', 'k'=>$id);
+		$data['result'] = orderlist:: with('itemList','itemList.productDetails')
+		->where('id_order_list', $id)
+		->first();
 
-		return view('bill', $data);
-	}
+		return view('bill', $data); 
+	} 
 
 
 	
