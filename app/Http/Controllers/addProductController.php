@@ -352,7 +352,7 @@ class addProductController extends Controller
 		->where('id_order_list', $id)
 		->first();
 
-		return view('bill', $data); 
+		return view('bill',$data);
 	} 
 
 

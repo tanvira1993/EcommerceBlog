@@ -174,9 +174,12 @@ padding:0in 5.4pt 0in 5.4pt;height:24.0pt'><?php echo "100" ?></td>
 </div>
 
 </body>
-<?php
-foreach($result as $data){
-	echo $data;
-}
-?>
+<pre>
+	<?php
+
+	var_dump($result);
+
+	?>
+	
+</pre>
 </html>
