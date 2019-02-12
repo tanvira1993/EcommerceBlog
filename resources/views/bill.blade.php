@@ -99,7 +99,7 @@ text-align:center;line-height:normal'><span style='font-size:12.0pt'>Amount</spa
 	<tr style='height:15.75pt'>
 		<td width=402 colspan=3 style='width:301.5pt;border:solid 1.0pt;border-right:solid black 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
 			<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:normal'>
-				<span style='font-size:12.0pt'><? echo "item Name"?></span>
+				<span style='font-size:12.0pt'><? echo $itemList['product_name']?></span>
 			</p>
 		</td>
 		<td width=98 style='width:73.45pt;border:solid 1.0pt;border-left: none;padding:0in 5.4pt 0in 5.4pt;height:15.75pt'>
@@ -177,7 +177,7 @@ padding:0in 5.4pt 0in 5.4pt;height:24.0pt'><?php echo "100" ?></td>
 <pre>
 	<?php
 
-	var_dump($result);
+	print_r($result);
 
 	?>
 	
