@@ -51,4 +51,11 @@ Route::get('/login', function () {
 	return view('login');
 });
 
+Route::get('/userreg', function () {
+	return view('userRegistration');
+});
+Route::get('/adminreg', function () {
+	return view('adminRegistration');
+});
+
 Route::get('/order/billSlip/{id}', 'addProductController@bill');
