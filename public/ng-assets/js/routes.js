@@ -162,14 +162,14 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         url: "/userreg",
         templateUrl: "/userreg",
         data: {pageTitle: 'registration Form'},
-        controller: "BlankController",
+        controller: "userRegController",
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: 'EcommerceApp',
                     insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                     files: [
-                    'ng-assets/js/controllers/BlankController.js'
+                    'ng-assets/js/controllers/userRegController.js'
                     ]
                 });
             }]
@@ -180,18 +180,18 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         url: "/adminreg",
         templateUrl: "/adminreg",
         data: {pageTitle: 'registration Form'},
-        controller: "BlankController",
+        controller: "adminRegController",
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: 'EcommerceApp',
                     insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                     files: [
-                    'ng-assets/js/controllers/BlankController.js'
+                    'ng-assets/js/controllers/adminRegController.js'
                     ]
                 });
             }]
         }
-    })
+    });
 
 }]);

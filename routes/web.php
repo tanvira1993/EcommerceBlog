@@ -54,6 +54,7 @@ Route::get('/login', function () {
 Route::get('/userreg', function () {
 	return view('userRegistration');
 });
+
 Route::get('/adminreg', function () {
 	return view('adminRegistration');
 });
