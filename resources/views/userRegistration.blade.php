@@ -1,12 +1,6 @@
 
 <div class="container">
-	<br>  <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com</a></p>
-	<hr>
-
-
-
-
-
+	
 	<div class="card bg-light">
 		<article class="card-body mx-auto" style="max-width: 400px;">
 			<h4 class="card-title mt-3 text-center">Create Account</h4>
@@ -35,25 +29,13 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
 					</div>
-					<select class="custom-select" style="max-width: 120px;">
-						<option selected="">+971</option>
-						<option value="1">+972</option>
-						<option value="2">+198</option>
-						<option value="3">+701</option>
+					<select class="custom-select" disabled=""di style="max-width: 120px;">
+						<option value="+880">+880</option>
 					</select>
 					<input name="" class="form-control" placeholder="Phone number" type="text">
 				</div> <!-- form-group// -->
-				<div class="form-group input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text"> <i class="fa fa-building"></i> </span>
-					</div>
-					<select class="form-control">
-						<option selected=""> Select job type</option>
-						<option>Designer</option>
-						<option>Manager</option>
-						<option>Accaunting</option>
-					</select>
-				</div> <!-- form-group end.// -->
+				<!-- form-group end.// -->
+				<textarea name="" placeholder="Put Your Address"></textarea>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
