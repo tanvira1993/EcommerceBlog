@@ -18,6 +18,13 @@
 					</div>
 					<input name="" class="form-control" placeholder="Email address" type="email">
 				</div> <!-- form-group// -->
+
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="far fa-shield-check"></i> </span>
+					</div>
+					<input name="" class="form-control" placeholder="Access Code" type="email">
+				</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
@@ -29,7 +36,9 @@
 				</div> <!-- form-group// -->
 				<!-- form-group end.// -->
 				<div>
-					
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fas fa-address-card"></i> </span>
+					</div>
 					<textarea name="" placeholder="Put Your Address"></textarea>
 				</div>
 				
