@@ -1,30 +1,25 @@
-
 <div class="container">
-	
+
 	<div class="card bg-light">
 		<article class="card-body mx-auto" style="max-width: 400px;">
 			<h4 class="card-title mt-3 text-center">Create Account</h4>
-			<p class="text-center">Get started with your free account</p>
-			<p>
-				<a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
-				<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
-			</p>
-			<p class="divider-text">
-				<span class="bg-light">OR</span>
-			</p>
-			<form>
+
+			<form class="form-horizontal" role="form" name="userRegistrationForm" novalidate>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
+						
 						<span class="input-group-text"> <i class="fa fa-user"></i> </span>
 					</div>
-					<input name="" class="form-control" placeholder="Full name" type="text">
+					<input name="name" class="form-control" ng-model="userInfo.name" placeholder="Full name"  type="text">
 				</div> <!-- form-group// -->
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					</div>
-					<input name="" class="form-control" placeholder="Email address" type="email">
+					<input name="email" ng-model="userInfo.email" class="form-control" placeholder="Email address" type="text">
 				</div> <!-- form-group// -->
+
+				
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
@@ -32,24 +27,30 @@
 					<select class="custom-select" disabled=""di style="max-width: 120px;">
 						<option value="+880">+880</option>
 					</select>
-					<input name="" class="form-control" placeholder="Phone number" type="text">
+					<input name="phone" ng-model="userInfo.phone" class="form-control" placeholder="Phone number" type="text">
 				</div> <!-- form-group// -->
 				<!-- form-group end.// -->
-				<textarea name="" placeholder="Put Your Address"></textarea>
+				<div  class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">  </span>
+					</div>
+					<textarea name="address" ng-model="userInfo.address" placeholder="Put Your Address"></textarea>
+				</div>
+				
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Create password" type="password">
+					<input name="pass" ng-model="userInfo.pass" class="form-control" placeholder="Create password" type="password">
 				</div> <!-- form-group// -->
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Repeat password" type="password">
+					<input name="repass" ng-model="userInfo.repass"class="form-control" placeholder="Repeat password" type="password">
 				</div> <!-- form-group// -->                                      
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+					<button type="submit" ng-click="createUser()"class="btn btn-primary btn-block"> Create Account  </button>
 				</div> <!-- form-group// -->      
 				<p class="text-center">Have an account? <a ui-sref="login">Log In</a> </p>                                                                 
 			</form>
@@ -59,3 +60,6 @@
 </div> 
 <!--container end.//-->
 
+<pre>
+	@{{userInfo | json}}
+</pre>

@@ -123,6 +123,7 @@ EcommerceApp.controller('AppController', ['$scope', '$rootScope', '$location', '
     });
 }]);
 
+
 /***
 Layout Partials.
 By default the partials are loaded through AngularJS ng-include directive. In case they loaded in server side(e.g: PHP include function) then below partial
@@ -174,7 +175,15 @@ initialization can be disabled and Layout.init() should be called on page load c
 }]);
 */
 /* Init global settings and run the app */
-/*LcApp.run(['$rootScope', 'settings', '$http', 'LocalStorageService', '$state', function($rootScope, settings, $http, LocalStorageService ,$state) {
+EcommerceApp.run(['$rootScope', '$http','$state', function($rootScope, $http, $state) {
+    $rootScope.logout = function(){
+        /* var redirectUrl = $rootScope.;
+        redirectUrl = window.btoa(redirectUrl);
+        redirectUrl = encodeURIComponent(redirectUrl);*/
+        window.location.href = 'login/logout/';
+    }
+}]);
+/*
     $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$settings = settings; // state to be accessed from view
 
@@ -216,7 +225,7 @@ initialization can be disabled and Layout.init() should be called on page load c
     	if (!$rootScope.jwt){
     		window.location.href = CURRENT_LOGIN+'login/index/'+redirectUrl;
     	}
-*/    	// else if (!$rootScope.userInfo) {
+    	// else if (!$rootScope.userInfo) {
     	// 	$state.go('role',{ 'error':'403_1','target':toState.name});
     	// }
     	// else if(error==401){

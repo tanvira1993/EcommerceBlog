@@ -45,7 +45,7 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 
 					swal({
 						title: 'Success!',
-						text: 'Charge Created Successfuly.',
+						text: 'Order Created Successfuly.',
 						type: 'success'
 					}, function () {
 
