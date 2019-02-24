@@ -1,12 +1,37 @@
-/* Setup blank page controller */
-angular.module('EcommerceApp').controller('userRegController', ['$scope', '$rootScope', '$location', '$timeout', '$http', function($scope, $rootScope, $location, $timeout, $http) {
-	$scope.$on('$viewContentLoaded', function() {
-        // initialize core components
-        
+angular.module('EcommerceApp').controller('userRegController', ['$scope', '$rootScope', '$location', '$timeout', '$http', 
+	function($scope, $rootScope, $location, $timeout, $http) {
+		$scope.$on('$viewContentLoaded', function() {
+			$scope.createUser = function(){
 
-        // set default layout mode
-        /*$rootScope.settings.layout.pageContentWhite = true;
-        $rootScope.settings.layout.pageBodySolid = false;
-        $rootScope.settings.layout.pageSidebarClosed = false;*/
-    });
-}]);
+				$http({
+					method: 'post',
+					url: 'api/createUser',
+					data:$scope.userInfo
+				}).then(function (response) {
+					$scope.userInfo=null;        			
+					$scope.userRegistrationForm.$setPristine();
+
+					swal({
+						title: 'Success!',
+						text: 'Account Created Successfully.',
+						type: 'success'
+					}, function () {
+
+						$location.path("/login");
+
+						if (!$scope.$$phase)
+							$scope.$apply();
+					});
+
+				}, function (response) {
+
+					swal({
+						title: response.data.heading,
+						text: response.data.message,
+						html:true,
+						type: 'error'
+					});
+				});
+			}
+		});
+	}]);

@@ -16,14 +16,14 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					</div>
-					<input name="" class="form-control" placeholder="Email address" type="email">
+					<input name="email" ng-model="adminInfo.email" class="form-control" placeholder="Email address" type="text">
 				</div> <!-- form-group// -->
 
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="far fa-shield-check"></i> </span>
 					</div>
-					<input name="" class="form-control" placeholder="Access Code" type="email">
+					<input name="code" ng-model="adminInfo.code" class="form-control" placeholder="Access Code" type="text">
 				</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
@@ -32,19 +32,20 @@
 					<select class="custom-select" disabled=""di style="max-width: 120px;">
 						<option value="+880">+880</option>
 					</select>
-					<input name="" class="form-control" placeholder="Phone number" type="text">
+					<input name="phone" ng-model="adminInfo.phone" class="form-control" placeholder="Phone number" type="text">
 				</div> <!-- form-group// -->
 				<!-- form-group end.// -->
-				<div>
+				<div  class="form-group input-group">
+
 					<div class="input-group-prepend">
-						<span class="input-group-text"> <i class="fas fa-address-card"></i> </span>
+						<span class="input-group-text"></span>
 					</div>
-					<textarea name="" placeholder="Put Your Address"></textarea>
+					<textarea name="address" ng-model="adminInfo.address" placeholder="Put Your Address"></textarea>
 				</div>
 				
-				<div>
+				<div class="form-group input-group">
 					<label>User Roles</label>
-					<select class="custom-select" di style="max-width: 120px;">
+					<select class="custom-select" name="role" ng-model="adminInfo.role" di style="max-width: 120px;">
 						<option value="1">Admin</option>
 						<option value="2">Super Admin</option>
 
@@ -54,16 +55,16 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Create password" type="password">
+					<input name="pass" ng-model="adminInfo.pass" class="form-control" placeholder="Create password" type="password">
 				</div> <!-- form-group// -->
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Repeat password" type="password">
+					<input name="repass" ng-model="adminInfo.repass"class="form-control" placeholder="Repeat password" type="password">
 				</div> <!-- form-group// -->                                      
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+					<button ng-click="createAdmin()" class="btn btn-primary btn-block"> Create Account  </button>
 				</div> <!-- form-group// -->      
 				<p class="text-center">Have an account? <a ui-sref="login">Log In</a> </p>                                                                 
 			</form>
