@@ -1,5 +1,3 @@
-
-
 /* Setup blank page controller */
 angular.module('EcommerceApp').controller('editProductController', ['$scope', '$rootScope', '$location', '$timeout', '$http', '$stateParams',
 	function($scope, $rootScope, $location, $timeout, $http,$stateParams) {

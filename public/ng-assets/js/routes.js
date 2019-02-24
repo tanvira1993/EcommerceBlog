@@ -142,14 +142,14 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         url: "/login",
         templateUrl: "/login",
         data: {pageTitle: 'Login Form'},
-        controller: "BlankController",
+        controller: "LoginController",
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: 'EcommerceApp',
                     insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                     files: [
-                    'ng-assets/js/controllers/BlankController.js'
+                    'ng-assets/js/controllers/LoginController.js'
                     ]
                 });
             }]
@@ -193,5 +193,24 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
             }]
         }
     });
+
+    
+  /*  .state('logout', {
+        url: "/logout",
+        templateUrl: "/logout",
+        data: {pageTitle: 'Logout'},
+        controller: "adminRegController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/adminRegController.js'
+                    ]
+                });
+            }]
+        }
+    });*/
 
 }]);

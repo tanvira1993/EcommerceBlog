@@ -59,4 +59,8 @@ Route::get('/adminreg', function () {
 	return view('adminRegistration');
 });
 
+Route::get('login/logout', function () {
+	return (String)view('logout_view');
+});
+
 Route::get('/order/billSlip/{id}', 'addProductController@bill');
