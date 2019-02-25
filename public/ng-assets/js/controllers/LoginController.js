@@ -15,6 +15,7 @@ angular.module('EcommerceApp').controller('LoginController', ['$scope', '$rootSc
         		$scope.loginInfo= null;
         		$scope.loginForm.$setPristine();
         		localStorage.setItem('token', response.data.token);
+        		$rootScope.token = localStorage.getItem('token');
         		swal({
         			title: 'Success!',
         			text: 'LoggedIn Successfully.',

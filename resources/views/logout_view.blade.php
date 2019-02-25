@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	localStorage.removeItem("token");
 	
-	pathname = null;
+	window.location.pathname = '';
 	myLocation = "#!/product";
 	window.location = myLocation;
 

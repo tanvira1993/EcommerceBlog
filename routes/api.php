@@ -31,6 +31,8 @@ Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){
 	Route::post('details', 'UserController@details');
+	
+
 });
 
 
@@ -53,8 +55,25 @@ Route::post('createAdmin', 'UserController@saveAdmin');
 
 
 
+//Middleware Add
+Route::group(['middleware' => 'user'], function()
+{
+	
+
+});
 
 
+Route::group(['middleware' => 'admin'], function()
+{
+	
+
+});
+
+
+Route::group(['middleware' => 'superAdmin'], function()
+{
+	
+});
 
 
 

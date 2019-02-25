@@ -33,11 +33,11 @@ var EcommerceApp = angular.module("EcommerceApp", [
 /*===============================================
 =            custom http interceptor            =
 ===============================================*/
-/*LcApp.config(['$httpProvider', function($httpProvider) {
+EcommerceApp.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.interceptors.push('MaxInterceptor');
 	//   $httpProvider.defaults.headers.post['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
 }]);
-*/
+
 
 /*============================================
 =            localstorage service            =
@@ -57,12 +57,15 @@ var EcommerceApp = angular.module("EcommerceApp", [
 }]);
 *//*=====  End of localstorage service  ======*/
 
-/*LcApp.factory('MaxInterceptor', ['$rootScope','$q', function ($rootScope,$q) {
+EcommerceApp.factory('MaxInterceptor', ['$rootScope','$q', function ($rootScope,$q) {
 	var interceptor = {
 		request: function(config) {
 			config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-			if (!!$rootScope.jwt && !!$rootScope.jwt.token) {
-				config.headers.Authorization = 'Bearer '+$rootScope.jwt.token;
+			if (!!$rootScope.token) {
+				config.headers.Token = 'Bearer '+$rootScope.token;
+                // config.headers.IdUser = 'Bearer '+$rootScope.token;
+                // config.headers. = 'Bearer '+$rootScope.token;
+
 			}
 
 			if (config.method === 'POST') {
@@ -74,7 +77,7 @@ var EcommerceApp = angular.module("EcommerceApp", [
 			return response;
 		},
 		responseError: function(response, error) {
-			var redirectUrl = $rootScope.CURRENT_API;
+			/*var redirectUrl = $rootScope.CURRENT_API;
 			redirectUrl = window.btoa(redirectUrl);
 			redirectUrl = encodeURIComponent(redirectUrl);
 			console.log('Response : ', response, 'error : ',error);
@@ -84,14 +87,14 @@ var EcommerceApp = angular.module("EcommerceApp", [
 					window.localStorage.removeItem('userInfo');
 					window.location.href = CURRENT_LOGIN+'login/index/'+redirectUrl;
 				}
-			}
+			}*/
 
 			return $q.reject(response);
 		}
 	};
 	return interceptor;
 }]);
-*///
+//
 /*=====  End of custom http interceptor  ======*/
 
 
@@ -176,6 +179,7 @@ initialization can be disabled and Layout.init() should be called on page load c
 */
 /* Init global settings and run the app */
 EcommerceApp.run(['$rootScope', '$http','$state', function($rootScope, $http, $state) {
+    $rootScope.token = localStorage.getItem('token');
     $rootScope.logout = function(){
         /* var redirectUrl = $rootScope.;
         redirectUrl = window.btoa(redirectUrl);
