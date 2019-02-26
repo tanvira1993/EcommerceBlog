@@ -15,7 +15,12 @@ angular.module('EcommerceApp').controller('LoginController', ['$scope', '$rootSc
         		$scope.loginInfo= null;
         		$scope.loginForm.$setPristine();
         		localStorage.setItem('token', response.data.token);
+        		localStorage.setItem('idUser', response.data.userInfo.id_users);
+        		localStorage.setItem('idUserRole', response.data.userInfo.id_user_roles);        		
+
         		$rootScope.token = localStorage.getItem('token');
+        		$rootScope.idUser = localStorage.getItem('idUser');
+        		$rootScope.idUserRole= localStorage.getItem('idUserRole');
         		swal({
         			title: 'Success!',
         			text: 'LoggedIn Successfully.',

@@ -62,9 +62,9 @@ EcommerceApp.factory('MaxInterceptor', ['$rootScope','$q', function ($rootScope,
 		request: function(config) {
 			config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 			if (!!$rootScope.token) {
-				config.headers.Token = 'Bearer '+$rootScope.token;
-                // config.headers.IdUser = 'Bearer '+$rootScope.token;
-                // config.headers. = 'Bearer '+$rootScope.token;
+				config.headers.Token = 'Bearer '+ 'kochu '+$rootScope.token;
+				config.headers.idUser = $rootScope.idUser;
+				config.headers.idUserRole = $rootScope.idUserRole;
 
 			}
 
@@ -179,8 +179,10 @@ initialization can be disabled and Layout.init() should be called on page load c
 */
 /* Init global settings and run the app */
 EcommerceApp.run(['$rootScope', '$http','$state', function($rootScope, $http, $state) {
-    $rootScope.token = localStorage.getItem('token');
-    $rootScope.logout = function(){
+	$rootScope.token = localStorage.getItem('token');
+	$rootScope.idUser = localStorage.getItem('idUser');
+	$rootScope.idUserRole= localStorage.getItem('idUserRole');
+	$rootScope.logout = function(){
         /* var redirectUrl = $rootScope.;
         redirectUrl = window.btoa(redirectUrl);
         redirectUrl = encodeURIComponent(redirectUrl);*/

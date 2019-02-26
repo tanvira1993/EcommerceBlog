@@ -20,19 +20,23 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        /*if ($request->user() && $request->user()->type != 0)
-        {
-            return new Response(view('unauthorized')->with('id_user_roles', 0));
-        }*/
-        // exit();
-        // pritn "faasdffds";
-        // if(true){
-        //   // return Response::json(['heading' => 'Access Denied', 'message' => 'Please check header data such as idRoles, idProjects and idUserRoles'], 403); 
-        // }
-        // print_r($request->user());
-        $user =  $request->user();
+    	$idUserRole = $request->header('iduserrole');
+    	$idUser = $request->header('iduser');
+    	$token = $request->header('token');
+    	if($idUserRole != 0 )
+    	{
+    		//return $next($request);
+    		return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'not Authorized'], 403);
 
-        return Response::json(['heading' => 'Access Denied', 'message' => $user], 403);
-        return $next($request);
+    	}
+    	if($idUserRole == 0)
+    	{
+    		return $next($request);
+
+    	}
+
+    	// return Response::json(['heading' => 'Access Denied', 'message' => array('userRole'=>$idUserRole,'userInfo'=>$idUser,'token'=>$token)], 403);
+    	
+    	
     }
 }

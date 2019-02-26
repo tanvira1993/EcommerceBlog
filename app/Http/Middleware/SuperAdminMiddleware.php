@@ -3,6 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Response;
+use DB;
+use App\User;
+use Validator;
+use Illuminate\Http\Request;
 
 class SuperAdminMiddleware
 {
@@ -15,6 +20,25 @@ class SuperAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $idUserRole = $request->header('iduserrole');
+        $idUser = $request->header('iduser');
+        $token = $request->header('token');
+        
+        if($idUserRole == 2)
+        {
+            return $next($request);
+
+        }
+        
+        if($idUserRole != 2 )
+        {
+            //return $next($request);
+            return Response::json(['heading' => 'Access Denied, Login First !!', 'message' => 'not Authorized'], 403);
+
+        }
+
+
+        // return Response::json(['heading' => 'Access Denied', 'message' => array('userRole'=>$idUserRole,'userInfo'=>$idUser,'token'=>$token)], 403);
+        
     }
 }

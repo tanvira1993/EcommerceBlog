@@ -11,10 +11,14 @@ angular.module('EcommerceApp').controller('addProductController', ['$scope', '$r
 				type: 'POST',
 				data: formData,
 				headers: {
-					'Authorization':'Bearer '+$rootScope.jwt
+					'Token' : 'Bearer '+ 'kochu '+$rootScope.token,
+					'idUser' : $rootScope.idUser,
+					'idUserRole' : $rootScope.idUserRole
+
 				},
 				success: (response)=> {
-					//show_toastr("success","Success","other Documents Successfully Created.");
+					
+					toastr.success("other Documents Successfully Created.")
 					$location.path("/product");
 					if (!$scope.$$phase)
 						$scope.$apply();
@@ -23,7 +27,8 @@ angular.module('EcommerceApp').controller('addProductController', ['$scope', '$r
 				error: function(xhr) {
 					let response = JSON.parse(xhr.responseText);
 					console.log(response);
-					//show_toastr("error",response.heading,(response.message==undefined?"":response.message));
+					
+					toastr.error(response.message == undefined ? "contact Admin" : response.message)
 				},
 				cache: false,
 				contentType: false,
