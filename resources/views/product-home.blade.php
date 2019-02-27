@@ -303,6 +303,20 @@
 
 						<label data-error="wrong" data-success="right" for="defaultForm-pass">quantity</label>
 					</div>
+					<div class="md-form mb-4">
+						<i class="fas fa-lock prefix grey-text"></i>
+						<input type="text" ng-model="productCart.address" id="defaultForm-pass"  class="form-control validate">
+						
+
+						<label data-error="wrong" data-success="right" for="defaultForm-pass">Address</label>
+					</div>
+					<div class="md-form mb-4">
+						<i class="fas fa-lock prefix grey-text"></i>
+						<input type="text" ng-model="productCart.phone" id="defaultForm-pass"  class="form-control validate">
+						
+
+						<label data-error="wrong" data-success="right" for="defaultForm-pass">Phone No</label>
+					</div>
 
 				</div>
 			</div>

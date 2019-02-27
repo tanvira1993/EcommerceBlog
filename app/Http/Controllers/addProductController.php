@@ -69,7 +69,7 @@ class addProductController extends Controller
 		$document->product_unit_name = $request->unit;
 		$document->product_file = !empty($fileName) ? $fileName : null;
 		$document->product_name = $request->name;
-		
+		$document->id_users = $request->header('iduser');
 
 		
 		$document->save();
@@ -258,13 +258,19 @@ class addProductController extends Controller
 	{
 		$rules = [
 
-			'item_quantity' => 'required',			
+			'item_quantity' => 'required | numeric',	
+			'address' => 'required',			
+			'phone' => 'required | numeric',			
+
 
 		];
 
 
 		$messages = [
 			'item_quantity.required' => 'quantity must need to select',
+			'address.required' => 'Address must need to fill',
+			'phone.required' => 'Phone must need to Fill',
+
 		];
 
 		$validation = Validator::make($request->all(), $rules, $messages);
@@ -281,6 +287,10 @@ class addProductController extends Controller
 
 		$orderlist->delivery_queue = 0;
 		$orderlist->delivery_done = 0;
+		$orderlist->user_address = $request->address;
+		$orderlist->user_phone_no = $request->phone;		
+		$orderlist->id_users = $request->header('iduser');
+
 		$orderlist->save();
 
 		
@@ -288,6 +298,8 @@ class addProductController extends Controller
 		$itemList->id_order_list = $orderlist->id_order_list;		
 		$itemList->item_quantity = $request->item_quantity;
 		$itemList ->id_products= $request->id_products;
+		$itemList ->id_users= $request->id_users;
+
 		$itemList->save();
 		
 		if($itemList && $orderlist){

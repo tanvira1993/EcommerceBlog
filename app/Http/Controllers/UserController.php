@@ -136,6 +136,7 @@ class UserController extends Controller
 
 	public function login (Request $request)
 	{
+
 		$credentials = [
 			'email' => $request->email,
 			'password' => $request->password
@@ -143,10 +144,11 @@ class UserController extends Controller
 
 		if (auth()->attempt($credentials)) {
 			$token = auth()->user()->createToken('TutsForWeb')->accessToken;
-           //var_dump($token);exit;
-			return response()->json(['message'=>'Success','token' => $token], 200);
+			$userInfo= $request->user();
+			// var_dump($token);
+			return response()->json(['message'=>'Success','token' => $token, 'userInfo' => $userInfo], 200);
 		} else {
-			return response()->json(['message' => 'Invalid email or password'], 401);
+			return response()->json(['heading' => 'Access Denied', 'message' => 'Invalid email or password'], 401);
 		}	
 	}
 	
