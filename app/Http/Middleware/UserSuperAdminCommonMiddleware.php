@@ -9,7 +9,7 @@ use App\User;
 use Validator;
 use Illuminate\Http\Request;
 
-class AdminMiddleware
+class UserSuperAdminCommonMiddleware
 {
     /**
      * Handle an incoming request.
@@ -20,24 +20,22 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $idUserRole = $request->header('iduserrole');
-        $idUser = $request->header('iduser');
-        $token = $request->header('token');
+    	$idUserRole = $request->header('iduserrole');
+    	$idUser = $request->header('iduser');
+    	$token = $request->header('token');
         /*$accessUrl = array(
             'admin'=> array('manageProduct','product/edit'),
             'supperAdmin'=> array()
         )*/
         
-        
-
-        if($idUserRole != 1 )
+        if($idUserRole ==0 || $idUserRole == 2)
         {
-            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
+        	return $next($request);
 
         }
-        if($idUserRole ==1)
+        else
         {
-            return $next($request);
+        	return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
 
         }
 

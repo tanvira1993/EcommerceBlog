@@ -25,18 +25,20 @@ class UserMiddleware
     	$token = $request->header('token');
     	if($idUserRole != 0 )
     	{
+            //print_r($idUserRole);
+            //exit;
     		//return $next($request);
-    		return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'not Authorized'], 403);
+            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
 
-    	}
-    	if($idUserRole == 0)
-    	{
-    		return $next($request);
+        }
+        if($idUserRole == 0)
+        {
+          return $next($request);
 
-    	}
+      }
 
     	// return Response::json(['heading' => 'Access Denied', 'message' => array('userRole'=>$idUserRole,'userInfo'=>$idUser,'token'=>$token)], 403);
-    	
-    	
-    }
+
+
+  }
 }

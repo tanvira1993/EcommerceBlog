@@ -9,7 +9,7 @@ use App\User;
 use Validator;
 use Illuminate\Http\Request;
 
-class AdminMiddleware
+class CommonMiddleware
 {
     /**
      * Handle an incoming request.
@@ -28,16 +28,14 @@ class AdminMiddleware
             'supperAdmin'=> array()
         )*/
         
-        
-
-        if($idUserRole != 1 )
-        {
-            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
-
-        }
-        if($idUserRole ==1)
+        if($idUserRole ==1 || $idUserRole == 2)
         {
             return $next($request);
+
+        }
+        else
+        {
+            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
 
         }
 

@@ -258,13 +258,19 @@ class addProductController extends Controller
 	{
 		$rules = [
 
-			'item_quantity' => 'required',			
+			'item_quantity' => 'required | numeric',	
+			'address' => 'required',			
+			'phone' => 'required | numeric',			
+
 
 		];
 
 
 		$messages = [
 			'item_quantity.required' => 'quantity must need to select',
+			'address.required' => 'Address must need to fill',
+			'phone.required' => 'Phone must need to Fill',
+
 		];
 
 		$validation = Validator::make($request->all(), $rules, $messages);
@@ -282,7 +288,9 @@ class addProductController extends Controller
 		$orderlist->delivery_queue = 0;
 		$orderlist->delivery_done = 0;
 		$orderlist->user_address = $request->address;
-		$orderlist->user_phone_no = $request->phone;
+		$orderlist->user_phone_no = $request->phone;		
+		$orderlist->id_users = $request->header('iduser');
+
 		$orderlist->save();
 
 		
