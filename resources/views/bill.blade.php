@@ -31,7 +31,7 @@
 				<td style='height:27.0pt;border:none' width=0 height=36></td>
 			</tr>
 			<tr style='height:30.75pt'>
-				<td width=174 style='width:130.5pt;border:solid 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:30.75pt'>
+				<td width=174 style='width:300.5pt;border:solid 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:30.75pt'>
 					<p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;text-align:center;line-height:normal'>
 						<span style='font-size:12.0pt'>Seller Name : <?php
 						foreach ($result['item_list'] as $value) {
@@ -191,7 +191,7 @@ padding:0in 5.4pt 0in 5.4pt;height:24.0pt'></td>
 <pre>
 	<?php
 
-	print_r($result);
+	//print_r($result);
 
 	?>
 	
