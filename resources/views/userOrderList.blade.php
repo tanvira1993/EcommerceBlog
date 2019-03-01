@@ -1,4 +1,16 @@
-<center><h1>Your Order List</h1></center>
+<center><h1>Your Order List</h1>
+	<table>
+		<thead>
+			<tr>
+				<td colspan="2"> <a ui-sref="userDeliveryPendingList"> delivery Pending List</a></td><br>
+				<td><a ui-sref="userDeliveryDoneList">Delivery Complete history</a></td>
+
+			</tr>
+		</thead>
+		
+	</table>
+</center>
+
 <table class="table table-dark">
 	<thead >
 		<tr>
@@ -17,7 +29,7 @@
 			<td>@{{value.name}}</td>
 			<td>@{{value.user_address}}</td>
 			<td>@{{value.user_phone_no}}</td>			
-			<td> <a href="/order/billSlip/@{{value.id_order_list}}" class="btn btn-primary"> Bill Slip</a><a ng-click="deliveryQueue(value.id_order_list)" class="btn btn-info"> Delivery Progress</a></td>
+			<td> <a href="/order/billSlip/@{{value.id_order_list}}" class="btn btn-primary"> Bill Slip</a></td>
 
 
 

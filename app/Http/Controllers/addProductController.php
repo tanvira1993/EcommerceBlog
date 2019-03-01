@@ -23,7 +23,7 @@ class addProductController extends Controller
 		
 		$rules = [
 			
-			'image' => 'required |max:51200|mimes:jpg,jpeg,png,pdf,gif',
+			'image' => 'required |max:51200|mimes:jpg,jpeg,png,gif',
 			'name' => 'required',
 			'unit' => 'required',
 			'cost' => 'required'
@@ -124,6 +124,15 @@ class addProductController extends Controller
 
 	}
 
+	public function getFileInfoForManages(Request $request)
+	{
+
+		$docTypes = addproduct::select('product_lists.*')
+		->get()
+		->where('id_users',$request->header('iduser'));
+		return Response::json(['success' => true, 'data' => $docTypes], 200);
+	}
+
 	
 	public function Update(Request $request, $id)
 	{
@@ -139,7 +148,7 @@ class addProductController extends Controller
 		];
 
 		if(!empty($request->file('image'))){
-			$rules['image'] = 'required |max:52000|mimes:jpg,jpeg,png,pdf,gif';
+			$rules['image'] = 'required |max:52000|mimes:jpg,jpeg,png,gif';
 		}
 
 		$messages = [
@@ -214,40 +223,105 @@ class addProductController extends Controller
 
 
 	}
+	// for admin
 	public function getOrderInfo(Request $request){
 		$dq=0;
 		$dd=0;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$order = orderlist:: with('itemList')
+		$order = orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+		
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dq)
+		->where('item_lists.id_users',$request->header('iduser'))
 		->get();
 		return Response::json(['success' => true, 'data' => $order], 200);
 
 
 	}
 
+	// for admin
 	//////
 	public function getdeliveryPendingInfo(Request $request){
 		$dq=1;
 		$dd=0;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$queue = orderlist:: with('itemList')
+		$queue = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dd)
+		->where('item_lists.id_users',$request->header('iduser'))
 		->get();
 		return Response::json(['success' => true, 'data' => $queue], 200);
 
 
 	}
+	// for admin
 	////
 	public function getdeliveryDoneInfo(Request $request){
 		$dq=1;
 		$dd=1;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$done = orderlist:: with('itemList')
+		$done = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dq)
+		->where('item_lists.id_users',$request->header('iduser'))		
+		->get();
+		return Response::json(['success' => true, 'data' => $done], 200);
+
+
+	}
+
+
+
+	//for user
+	public function getUserOrderList(Request $request){
+		$dq=0;
+		$dd=0;
+		//$docTypes = addproduct::select('product_lists.*')->get();
+		$order = orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+		->where('delivery_queue', $dq)
+		->where('delivery_done', $dq)
+		->where('order_lists.id_users',$request->header('iduser'))
+		->get();
+		return Response::json(['success' => true, 'data' => $order], 200);
+
+
+	}
+
+	//for user
+
+	public function getOrderInProgressList(Request $request){
+		$dq=1;
+		$dd=0;
+		//$docTypes = addproduct::select('product_lists.*')->get();
+		$queue = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+
+		->where('delivery_queue', $dq)
+		->where('delivery_done', $dd)
+		->where('order_lists.id_users',$request->header('iduser'))
+		->get();
+		return Response::json(['success' => true, 'data' => $queue], 200);
+
+
+	}
+
+	//for user
+	public function getOrderHistory (Request $request){
+		$dq=1;
+		$dd=1;
+		//$docTypes = addproduct::select('product_lists.*')->get();
+		$done = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+
+		->where('delivery_queue', $dq)
+		->where('delivery_done', $dq)
+		->where('order_lists.id_users',$request->header('iduser'))		
 		->get();
 		return Response::json(['success' => true, 'data' => $done], 200);
 
@@ -360,7 +434,7 @@ class addProductController extends Controller
 
 	public function bill($id){
 
-		$data['result'] = orderlist::with('itemList','itemList.product')
+		$data['result'] = orderlist::with('itemList','itemList.product','user','itemList.sellerInfo')
 		->where('id_order_list', $id)
 		->first()->toArray();
 

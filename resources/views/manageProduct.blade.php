@@ -1,3 +1,4 @@
+<center><h1>Manage Your Product</h1></center>
 <table class="table table-dark">
 	<thead >
 		<tr>
@@ -10,7 +11,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		
 		<tr scope="row" ng-repeat="(key, value) in fileInfo | filter:{id_products: search.id_products, product_name: search.product_name, product_cost: search.product_cost, product_unit_name: search.product_unit_name}">
 			<td>@{{value.id_products}}</td>
 			<td>@{{value.product_name}}</td>
@@ -21,6 +21,7 @@
 
 
 		</tr>
+		
 		
 	</tbody>
 </table>

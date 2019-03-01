@@ -19,4 +19,8 @@ class itemList extends Model
 	public function product() {
 		return $this->belongsTo('App\addproduct', 'id_products' , 'id_products');
 	}
+
+	public function sellerInfo(){
+		return $this->belongsTo('App\User', 'id_users','id_users');
+	}
 }

@@ -64,7 +64,21 @@ Route::get('login/logout', function () {
 });
 
 // Route::get('/order/billSlip/{id}', 'addProductController@bill');
+Route::group(['middleware' => 'user'], function()
+{
+	
+	Route::get('/userOrderList', function () {
+		return view('userOrderList');
+	});
+	Route::get('/userDeliveryPendingList', function () {
+		return view('userDeliveryPendingList');
+	});
+	Route::get('/userDeliveryDoneList', function () {
+		return view('userDeliveryDoneList');
+	});
+	
 
+});
 
 Route::group(['middleware' => 'superAdmin'], function()
 {
@@ -73,93 +87,25 @@ Route::group(['middleware' => 'superAdmin'], function()
 		return view('adminRegistration');
 	});
 
-	/*Route::get('/admin', function () {
-		return view('addproduct');
-	});
-
-	Route::get('/manageProduct', function () {
-		return view('manageProduct');
-	});
-
-	Route::get('/product/edit', function () {
-		return view('edit');
-	});
-
-	Route::get('/orderlist', function () {
-		return view('orderlist');
-	});
-
-	Route::get('/deliverylist', function () {
-		return view('deliveryqueue');
-	});
-
-	Route::get('/deliveryDoneList', function () {
-		return view('deliveryDone');
-	});
-
-	Route::get('/order/billSlip', function () {
-		return view('bill');
-	});
-
-	Route::get('/order/billSlip/{id}', 'addProductController@bill');*/
-
+	
 
 });
 
 Route::group(['middleware' => 'admin'], function()
 {
 	
-	/*Route::get('/admin', function () {
-		return view('addproduct');
-	});
-*/
-	/*Route::get('/manageProduct', function () {
-		return view('manageProduct');
-	});
 
-	Route::get('/product/edit', function () {
-		return view('edit');
-	});
-
-	Route::get('/orderlist', function () {
-		return view('orderlist');
-	});
-
-	Route::get('/deliverylist', function () {
-		return view('deliveryqueue');
-	});
-
-	Route::get('/deliveryDoneList', function () {
-		return view('deliveryDone');
-	});
-
-	Route::get('/order/billSlip', function () {
-		return view('bill');
-	});
-
-	Route::get('/order/billSlip/{id}', 'addProductController@bill');*/
 });
 
 Route::group(['middleware' => 'UserCommonMiddleware'], function()
 {
-	Route::get('/orderlist', function () {
-		return view('orderlist');
-	});
-
-	Route::get('/deliverylist', function () {
-		return view('deliveryqueue');
-	});
-
-	Route::get('/deliveryDoneList', function () {
-		return view('deliveryDone');
-	});
-
 	Route::get('/order/billSlip', function () {
 		return view('bill');
 	});
 
 	Route::get('/order/billSlip/{id}', 'addProductController@bill');
 
+	
 });
 
 
@@ -177,6 +123,20 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 	Route::get('/product/edit', function () {
 		return view('edit');
 	});
+
+	Route::get('/orderlist', function () {
+		return view('orderlist');
+	});
+
+	Route::get('/deliverylist', function () {
+		return view('deliveryqueue');
+	});
+
+	Route::get('/deliveryDoneList', function () {
+		return view('deliveryDone');
+	});
+
+
 
 /*	Route::get('/orderlist', function () {
 		return view('orderlist');

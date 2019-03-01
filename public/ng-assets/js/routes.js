@@ -192,25 +192,62 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
                 });
             }]
         }
-    });
+    })
 
-    
-  /*  .state('logout', {
-        url: "/logout",
-        templateUrl: "/logout",
-        data: {pageTitle: 'Logout'},
-        controller: "adminRegController",
+
+    //user order status
+    .state('userOrderList', {
+        url: "/userOrderList",
+        templateUrl: "/userOrderList",
+        data: {pageTitle: 'Order List'},
+        controller: "userOrderListController",
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: 'EcommerceApp',
                     insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                     files: [
-                    'ng-assets/js/controllers/adminRegController.js'
+                    'ng-assets/js/controllers/userOrderListController.js'
                     ]
                 });
             }]
         }
-    });*/
+    })
+
+    .state('userDeliveryPendingList', {
+        url: "/userDeliveryPendingList",
+        templateUrl: "/userDeliveryPendingList",
+        data: {pageTitle: 'Delivery Pending List'},
+        controller: "userDeliveryPendingListController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/userDeliveryPendingListController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('userDeliveryDoneList', {
+        url: "/userDeliveryDoneList",
+        templateUrl: "/userDeliveryDoneList",
+        data: {pageTitle: 'Delivery Done List'},
+        controller: "userDeliveryDoneListController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/userDeliveryDoneListController.js'
+                    ]
+                });
+            }]
+        }
+    })
 
 }]);

@@ -50,8 +50,14 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 					}, function () {
 
                 //Charge model data initialize
+                if($rootScope.idUserRole== 1 || $rootScope.idUserRole==2){
+                	$location.path("/orderlist");
+                }
+
+                if($rootScope.idUserRole== 0){
+                	$location.path("/userOrderList");
+                }
                 
-                $location.path("/orderlist");
                 if (!$scope.$$phase)
                 	$scope.$apply();
             });

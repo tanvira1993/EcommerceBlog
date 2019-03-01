@@ -10,7 +10,7 @@ angular.module('EcommerceApp').controller('manageProductController', ['$scope', 
 
         	$http({
         		method:'get',
-        		url: 'api/productInfo/details'
+        		url: 'api/productInfo/details/manage'
         	}).then(function(response) {
         		$scope.fileInfo = response.data.data;				
         	}, function(response) {
