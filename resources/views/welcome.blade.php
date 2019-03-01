@@ -112,7 +112,7 @@
    </div>
    <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
  </div>
- <a href="#" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+ <a ui-sref="login" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
  <ul class="custom-menu">
   <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
   <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>

@@ -18,7 +18,7 @@ angular.module('EcommerceApp').controller('addProductController', ['$scope', '$r
 				},
 				success: (response)=> {
 					
-					toastr.success("other Documents Successfully Created.")
+					toastr.success("Product Added Successfully.")
 					$location.path("/product");
 					if (!$scope.$$phase)
 						$scope.$apply();

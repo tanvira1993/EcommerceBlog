@@ -32,6 +32,20 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 			}
 
 
+			$scope.addToCart = function(){
+
+				for($i=0; $i<100; $i++)
+				{
+					
+					localStorage.setItem('idProduct', $scope.productCart.id_products);
+					// localStorage.setItem('quantity', $scope.productCart.item_quantity);					
+				}
+
+				// localStorage.setItem('token', response.data.token);
+
+			}
+
+
 			$scope.saveOrder = function(){
 
 				$http({
@@ -50,8 +64,14 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 					}, function () {
 
                 //Charge model data initialize
+                if($rootScope.idUserRole== 1 || $rootScope.idUserRole==2){
+                	$location.path("/orderlist");
+                }
+
+                if($rootScope.idUserRole== 0){
+                	$location.path("/userOrderList");
+                }
                 
-                $location.path("/orderlist");
                 if (!$scope.$$phase)
                 	$scope.$apply();
             });

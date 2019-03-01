@@ -59,13 +59,9 @@ Route::get('productInfo/detailsbyid/{id}', 'addProductController@getProductInfo'
 //Middleware Add
 Route::group(['middleware' => 'user'], function()
 {
-	
-	// Route::post('product/addcart', 'addProductController@savecart');
-	/*Route::get('delivery/done', 'addProductController@getdeliveryDoneInfo');
-	Route::get('productdeliveryqueue/{id}', 'addProductController@productdeliveryqueue');
-	Route::get('deliveryDone/{id}', 'addProductController@productdeliveryDone');
-	Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');
-	Route::get('order/details', 'addProductController@getOrderInfo');*/
+	Route::get('user/order/details', 'addProductController@getUserOrderList');
+	Route::get('user/deliveryPending/details', 'addProductController@getOrderInProgressList');
+	Route::get('user/deliveryDone/details', 'addProductController@getOrderHistory');
 
 });
 
@@ -89,6 +85,8 @@ Route::group(['middleware' => 'superAdmin'], function()
 {
 	Route::post('createAdmin', 'UserController@saveAdmin');
 	Route::delete('product/delete/{id}', 'addProductController@deleteFile');
+	// Route::post('product/update/{id}', 'addProductController@update');
+	
 	// Route::post('product/update/{id}', 'addProductController@update');
 	// Route::post('other/documents/save', 'addProductController@save');
 	// Route::post('product/addcart', 'addProductController@savecart');
@@ -120,6 +118,15 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 	// Route::get('productdeliveryqueue/{id}', 'addProductController@productdeliveryqueue');
 	Route::get('deliveryDone/{id}', 'addProductController@productdeliveryDone');
 	Route::get('productdeliveryqueue/{id}', 'addProductController@productdeliveryqueue');
+	Route::get('order/details', 'addProductController@getOrderInfo');
+	Route::get('delivery/done', 'addProductController@getdeliveryDoneInfo');
+	// Route::get('productdeliveryqueue/{id}', 'addProductController@productdeliveryqueue');
+	Route::get('productdetailById/{id}', 'addProductController@getProductInfo');
+	Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');
+	Route::get('productInfo/details/manage', 'addProductController@getFileInfoForManages');
+
+	
+	
 
 	// Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');
 
@@ -128,15 +135,7 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 
 Route::group(['middleware' => 'UserCommonMiddleware'], function()
 {
-	/*Route::get('delivery/done', 'addProductController@getdeliveryDoneInfo');
-	Route::get('productdeliveryqueue/{id}', 'addProductController@productdeliveryqueue');
-	Route::get('deliveryDone/{id}', 'addProductController@productdeliveryDone');
-	Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');*/
-	Route::get('order/details', 'addProductController@getOrderInfo');
-	Route::get('delivery/done', 'addProductController@getdeliveryDoneInfo');
-	// Route::get('productdeliveryqueue/{id}', 'addProductController@productdeliveryqueue');
-	Route::get('productdetailById/{id}', 'addProductController@getProductInfo');
-	Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');
+	
 	
 
 

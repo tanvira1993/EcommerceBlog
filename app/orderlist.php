@@ -19,4 +19,10 @@ class orderlist extends Model
 	public function itemList() {
 		return $this->hasMany('App\itemList', 'id_order_list' , 'id_order_list');
 	}
+
+	public function user(){
+		return $this->belongsTo('App\User', 'id_users' ,'id_users');
+	}
+
+	
 }
