@@ -31,22 +31,25 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 				});
 			}
 
+			// $scope.products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
 
 			$scope.addToCart = function(){
-
-				for($i=0; $i<100; $i++)
-				{
-					
-					localStorage.setItem('idProduct', $scope.productCart.id_products);
-					// localStorage.setItem('quantity', $scope.productCart.item_quantity);					
+				var objProduct = {
+					idProduct: $scope.productCart.id_products,
+					quantity: $scope.productCart.item_quantity
 				}
 
-				// localStorage.setItem('token', response.data.token);
+				$scope.products.push(objProduct);
+
+				localStorage.setItem('products', $scope.products);
+				
 
 			}
 
 
 			$scope.saveOrder = function(){
+
+				// var productsList = JSON.parse(localStorage.getItem('products'));
 
 				$http({
 					method:'post',
