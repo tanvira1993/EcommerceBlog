@@ -33,7 +33,7 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 
 			// $scope.products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
 
-			$scope.addToCart = function(){
+		/*	$scope.addToCart = function(){
 				var objProduct = {
 					idProduct: $scope.productCart.id_products,
 					quantity: $scope.productCart.item_quantity
@@ -44,7 +44,7 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 				localStorage.setItem('products', $scope.products);
 				
 
-			}
+			}*/
 
 
 			$scope.saveOrder = function(){
