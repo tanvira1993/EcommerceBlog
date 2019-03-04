@@ -356,26 +356,32 @@ class addProductController extends Controller
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
 
-		
-		$orderlist = new orderlist;
+		if($request->header('iduserrole') ==2 || $request->header('iduserrole') ==0){
+			$orderlist = new orderlist;
 
-		$orderlist->delivery_queue = 0;
-		$orderlist->delivery_done = 0;
-		$orderlist->user_address = $request->address;
-		$orderlist->user_phone_no = $request->phone;		
-		$orderlist->id_users = $request->header('iduser');
+			$orderlist->delivery_queue = 0;
+			$orderlist->delivery_done = 0;
+			$orderlist->user_address = $request->address;
+			$orderlist->user_phone_no = $request->phone;		
+			$orderlist->id_users = $request->header('iduser');
+			// echo '<pre>';
+			// print_r($request->header('iduserrole'));						
+			// echo '</pre>';
+			// exit;
+			$orderlist->save();
 
-		$orderlist->save();
 
-		
-		$itemList = new itemList;
-		$itemList->id_order_list = $orderlist->id_order_list;		
-		$itemList->item_quantity = $request->item_quantity;
-		$itemList ->id_products= $request->id_products;
-		$itemList ->id_users= $request->id_users;
+			$itemList = new itemList;
+			$itemList->id_order_list = $orderlist->id_order_list;		
+			$itemList->item_quantity = $request->item_quantity;
+			$itemList ->id_products= $request->id_products;
+			$itemList ->id_users= $request->id_users;
 
-		$itemList->save();
-		
+			$itemList->save();
+		}
+
+
+
 		if($itemList && $orderlist){
 			DB::commit();
 			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
@@ -389,7 +395,7 @@ class addProductController extends Controller
 	{
 		$orderlist = orderlist::find($id);
 		$orderlist->delivery_queue = 1;
-		
+
 		$orderlist->save();
 
 		if($orderlist){
@@ -407,8 +413,8 @@ class addProductController extends Controller
 		$orderlist = orderlist::find($id);
 		$orderlist->delivery_queue = 1;
 		$orderlist->delivery_done = 1;
-		
-		
+
+
 		$orderlist->save();
 
 		if($orderlist){

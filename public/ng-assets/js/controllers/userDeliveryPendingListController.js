@@ -9,7 +9,9 @@ angular.module('EcommerceApp').controller('userDeliveryPendingListController', [
 					method:'get',
 					url: 'api/user/deliveryPending/details'
 				}).then(function(response) {
-					$scope.fileInfo = response.data.data;				
+					$scope.fileInfo = response.data.data;
+					// toastr.success("Delivered")
+
 				}, function(response) {
 					console.log(response);
 				});

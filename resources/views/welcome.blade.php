@@ -112,15 +112,18 @@
    </div>
    <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
  </div>
- <a ui-sref="login" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+ <a ui-sref="login" class="text-uppercase">Login</a> / <a ui-sref="userreg" class="text-uppercase">Join</a>
  <ul class="custom-menu">
-  <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-  <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-  
-  <button ng-click="logout()"><i class="fa fa-exchange"></i>Logout</button>
-  <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
+
+
+  <li ><a ui-sref="adminview"><i class="fa fa-heart-o"></i> ADD Product</a></li>  
+  <li ><a ui-sref="manageProduct"><i class="fa fa-user-o"></i> Manage Product</a></li>
+  <li ><a ui-sref="adminreg"><i class="fa fa-heart-o"></i> Create Admin/Super Admin Account</a></li>  
+  <!-- <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li> -->
   <li><a ui-sref="login"><i class="fa fa-unlock-alt"></i> Login</a></li>
-  <li><a ui-sref="userreg"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+  <button ng-click="logout()"><i class="fa fa-exchange"></i>Logout</button>
+
+  <!-- <li><a ui-sref="userreg"><i class="fa fa-user-plus"></i> Create An Account</a></li> -->
 </ul>
 </li>
 <!-- /Account -->
@@ -388,8 +391,8 @@
 <div class="menu-nav">
   <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
   <ul class="menu-list">
-   <li><a href="#">Home</a></li>
-   <li><a href="#">Shop</a></li>
+   <li><a ui-sref="EcommerceProduct">Home</a></li>
+   <!-- <li><a href="#">Home</a></li> -->
    <li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
     <div class="custom-menu">
      <div class="row">
@@ -529,13 +532,17 @@
 </div>
 </div>
 </li>
-<li><a href="#">Sales</a></li>
+<!-- <li><a href="#">Sales</a></li> -->
 <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pages <i class="fa fa-caret-down"></i></a>
  <ul class="custom-menu">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="products.html">Products</a></li>
-  <li><a href="product-page.html">Product Details</a></li>
-  <li><a href="checkout.html">Checkout</a></li>
+  <li ><a ui-sref="orderlist">Product Order Lists</a></li>
+  <li ><a ui-sref="deliverylist">Order Delivery in Progress Lists</a></li>
+  <li ><a ui-sref="deliveryDoneList">Completed Delivered Orders List</a></li>
+  <li ><a ui-sref="userOrderList">Product Order Lists</a></li>
+  <li ><a ui-sref="userDeliveryPendingList">Order Delivery in Progress Lists</a></li>
+  <li ><a ui-sref="userDeliveryDoneList">Completed Delivered Orders List</a></li>
+
+  <!-- <li><a href="checkout.html">Checkout</a></li> -->
 </ul>
 </li>
 </ul>

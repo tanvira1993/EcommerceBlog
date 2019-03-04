@@ -33,9 +33,14 @@ class UserSuperAdminCommonMiddleware
         	return $next($request);
 
         }
+
+        elseif($idUserRole ==null && $idUserRole ==undefined)
+        {
+            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'You have to Login to create order'], 403);
+        }
         else
         {
-        	return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
+        	return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'You have to Login to create order'], 403);
 
         }
 

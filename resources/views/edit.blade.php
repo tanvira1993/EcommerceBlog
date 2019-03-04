@@ -80,5 +80,5 @@
 </div> <!--  row end -->
 
 <pre>
-	@{{editProductData |json}}	
+	<!-- @{{editProductData |json}}	 -->
 </pre>
