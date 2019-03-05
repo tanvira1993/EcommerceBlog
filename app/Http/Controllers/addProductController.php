@@ -330,6 +330,11 @@ class addProductController extends Controller
 
 	public function savecart(Request $request)
 	{
+		
+		if(empty($request->header('idUserRole'))){
+			return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
+		}
+
 		$rules = [
 
 			'item_quantity' => 'required | numeric',	
@@ -356,7 +361,7 @@ class addProductController extends Controller
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
 
-		if($request->header('iduserrole') ==2 || $request->header('iduserrole') ==0){
+		if($request->header('idUserRole') ==2 || $request->header('idUserRole') ==0){
 			$orderlist = new orderlist;
 
 			$orderlist->delivery_queue = 0;
@@ -365,7 +370,7 @@ class addProductController extends Controller
 			$orderlist->user_phone_no = $request->phone;		
 			$orderlist->id_users = $request->header('iduser');
 			// echo '<pre>';
-			// print_r($request->header('iduserrole'));						
+			// print_r($request->header('idUserRole'));						
 			// echo '</pre>';
 			// exit;
 			$orderlist->save();

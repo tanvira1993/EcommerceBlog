@@ -199,7 +199,7 @@
 			</pre>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-disabled="$rootScope.idUserRole=1 || !$rootScope.idUserRole" ng-click="saveOrder()" data-dismiss="modal">Order Create</button>
+				<button type="button" class="btn btn-primary" ng-click="saveOrder()" data-dismiss="modal">Order Create</button>
 			</div>
 		</div>
 	</div>

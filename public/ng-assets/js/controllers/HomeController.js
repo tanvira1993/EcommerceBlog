@@ -2,7 +2,7 @@
 angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootScope', '$location', '$timeout', '$http','$window', 
 	function($scope, $rootScope, $location, $timeout, $http,$window) {
 		$scope.$on('$viewContentLoaded', function() {
-
+			$rootScope.idUserRole= localStorage.getItem('idUserRole');
 			$scope.fileInfo = {};
 			$scope.getFileInfo = function(){
 
@@ -50,13 +50,14 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 			$scope.saveOrder = function(){
 
 				// var productsList = JSON.parse(localStorage.getItem('products'));
+				if($rootScope.idUserRole== 0 || $rootScope.idUserRole==2){
 
-				$http({
-					method:'post',
-					url: 'api/product/addcart',
+					$http({
+						method:'post',					
+						url: 'api/product/addcart',
 
-					data: $scope.productCart
-				}).then(function (response) {
+						data: $scope.productCart
+					}).then(function (response) {
 					//hide_all_toastr();
 					//$scope.chargeForm.$setPristine();
 
@@ -88,6 +89,14 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 						type: 'error'
 					});
 				});
+				}
+
+				else
+				{
+					toastr.error("Login First")
+
+				}
+
 			}
 
 
