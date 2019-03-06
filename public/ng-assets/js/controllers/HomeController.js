@@ -50,7 +50,7 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 			$scope.saveOrder = function(){
 
 				// var productsList = JSON.parse(localStorage.getItem('products'));
-				if($rootScope.idUserRole== 0 || $rootScope.idUserRole==2){
+				if($rootScope.idUserRole== 0){
 
 					$http({
 						method:'post',					

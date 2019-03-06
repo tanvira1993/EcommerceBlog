@@ -116,7 +116,7 @@
       							<ul class="custom-menu">
 
 
-      								<li ng-if="$rootScope.idUserRole=='2'"><a ui-sref="adminview"><i class="fa fa-heart-o"></i> ADD Product</a></li>  
+      								<li><a ui-sref="adminview"><i class="fa fa-heart-o"></i> ADD Product</a></li>  
       								<li ><a ui-sref="manageProduct"><i class="fa fa-user-o"></i> Manage Product</a></li>
       								<li ><a ui-sref="adminreg"><i class="fa fa-heart-o"></i> Create Admin/Super Admin Account</a></li>  
       								<!-- <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li> -->

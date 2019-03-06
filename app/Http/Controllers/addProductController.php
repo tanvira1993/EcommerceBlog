@@ -331,9 +331,9 @@ class addProductController extends Controller
 	public function savecart(Request $request)
 	{
 		
-		if(empty($request->header('idUserRole'))){
-			return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
-		}
+		// if(empty($request->header('idUserRole'))){
+		// 	return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
+		// }
 
 		$rules = [
 
@@ -361,29 +361,28 @@ class addProductController extends Controller
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
 
-		if($request->header('idUserRole') ==2 || $request->header('idUserRole') ==0){
-			$orderlist = new orderlist;
+		$orderlist = new orderlist;
 
-			$orderlist->delivery_queue = 0;
-			$orderlist->delivery_done = 0;
-			$orderlist->user_address = $request->address;
-			$orderlist->user_phone_no = $request->phone;		
-			$orderlist->id_users = $request->header('iduser');
+		$orderlist->delivery_queue = 0;
+		$orderlist->delivery_done = 0;
+		$orderlist->user_address = $request->address;
+		$orderlist->user_phone_no = $request->phone;		
+		$orderlist->id_users = $request->header('iduser');
 			// echo '<pre>';
 			// print_r($request->header('idUserRole'));						
 			// echo '</pre>';
 			// exit;
-			$orderlist->save();
+		$orderlist->save();
 
 
-			$itemList = new itemList;
-			$itemList->id_order_list = $orderlist->id_order_list;		
-			$itemList->item_quantity = $request->item_quantity;
-			$itemList ->id_products= $request->id_products;
-			$itemList ->id_users= $request->id_users;
+		$itemList = new itemList;
+		$itemList->id_order_list = $orderlist->id_order_list;		
+		$itemList->item_quantity = $request->item_quantity;
+		$itemList ->id_products= $request->id_products;
+		$itemList ->id_users= $request->id_users;
 
-			$itemList->save();
-		}
+		$itemList->save();
+		
 
 
 
