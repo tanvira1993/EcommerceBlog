@@ -136,6 +136,7 @@ class addProductController extends Controller
 	
 	public function Update(Request $request, $id)
 	{
+
 		$files = $request->file('image');
 		$target = addproduct::find($id);
 		if(empty($target)){
@@ -197,7 +198,7 @@ class addProductController extends Controller
 		$document->product_cost = $request->cost;
 		$document->product_unit_name = $request->unit; 
 		$document->product_name = $request->name;
-		
+
 		if(!empty($request->file('image'))){
 			$document->product_file = $fileName;
 		}
@@ -211,7 +212,7 @@ class addProductController extends Controller
 		}else{
 			//If block image already existing it is deleted previous block image
 			$filePath = public_path() . '/uploads/'. $document->product_file;
-			
+
 
 			if (file_exists($filePath)) {
 				@unlink($filePath);
@@ -219,7 +220,6 @@ class addProductController extends Controller
 			DB::rollBack();
 			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Other Document could not be Updated!'), 400);
 		}
-
 
 
 	}
@@ -284,6 +284,7 @@ class addProductController extends Controller
 		//$docTypes = addproduct::select('product_lists.*')->get();
 		$order = orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
 		->leftJoin('users','users.id_users','=','order_lists.id_users')
+		// ->select('order_lists.*')
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dq)
 		->where('order_lists.id_users',$request->header('iduser'))
@@ -331,7 +332,7 @@ class addProductController extends Controller
 	public function savecart(Request $request)
 	{
 		
-		// if(empty($request->header('idUserRole'))){
+		// if(($request->header('idUserRole'))!=0){
 		// 	return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
 		// }
 
@@ -430,17 +431,6 @@ class addProductController extends Controller
 		}
 
 	}
-
-	/*public function billSlip($id)
-	{
-		$docTypes = itemList::where('id_order_list', $id)->get();
-
-
-		$target = addproduct:: where('id_products',$docTypes->id_products)->get();
-
-		return Response::json(['success' => true, 'data' => $docTypes], 200);
-	}*/
-
 
 	public function bill($id){
 

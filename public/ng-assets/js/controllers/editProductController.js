@@ -21,19 +21,23 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 
 
 			$scope.updateOtherDocument = function(){
-				let formData = new FormData($("#editotherDocumentForm")[0]);
 
-				$.ajax({
-					url: 'api/product/update/' +$scope.id,
-					type: 'POST',
-					data: formData,
-					headers: {
-						'Token' : 'Bearer '+ 'kochu '+$rootScope.token,
-						'idUser' : $rootScope.idUser,
-						'idUserRole' : $rootScope.idUserRole
+				// if($rootScope.idUser==$scope.id){
 
-					},
-					success: (response)=> {
+					
+					let formData = new FormData($("#editotherDocumentForm")[0]);
+
+					$.ajax({
+						url: 'api/product/update/' +$scope.id,
+						type: 'POST',
+						data: formData,
+						headers: {
+							'Token' : 'Bearer '+ 'kochu '+$rootScope.token,
+							'idUser' : $rootScope.idUser,
+							'idUserRole' : $rootScope.idUserRole
+
+						},
+						success: (response)=> {
 					//show_toastr("success","Success","other Documents Successfully Created.");
 					toastr.success("Product Added Successfully.")
 
@@ -53,7 +57,14 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 				contentType: false,
 				processData: false
 			});
-			}
+				}
+
+				/*else
+				{
+					toastr.error("Dont Be Smart")
+
+				}
+			}*/
 
 
 			$scope.getProductDetailsById();

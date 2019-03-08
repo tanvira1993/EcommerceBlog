@@ -44,6 +44,7 @@ Route::group(['middleware' => 'user'], function()
 	Route::get('user/order/details', 'addProductController@getUserOrderList');
 	Route::get('user/deliveryPending/details', 'addProductController@getOrderInProgressList');
 	Route::get('user/deliveryDone/details', 'addProductController@getOrderHistory');
+	Route::post('product/addcart', 'addProductController@savecart');
 
 });
 
@@ -62,7 +63,7 @@ Route::group(['middleware' => 'superAdmin'], function()
 	
 });
 
-
+// for admin and super admin
 Route::group(['middleware' => 'CommonMiddleware'], function()
 {
 	Route::post('other/documents/save', 'addProductController@save');
@@ -77,15 +78,17 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 
 });
 
+//for all user
 Route::group(['middleware' => 'UserCommonMiddleware'], function()
 {
 	
 });
 
+//for user and super admin
 Route::group(['middleware' => 'UserSuperAdminCommonMiddleware'], function()
 {
-	Route::post('product/addcart', 'addProductController@savecart');
-
+	
+	
 });
 
 

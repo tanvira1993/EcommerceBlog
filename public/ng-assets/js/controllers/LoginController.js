@@ -6,42 +6,49 @@ angular.module('EcommerceApp').controller('LoginController', ['$scope', '$rootSc
         //Create User Account
         $scope.loginCheck = function(){
 
+        	if(localStorage.getItem('token') !=null)
+        	{
+        		toastr.error("Logout First")
 
-        	$http({
-        		method: 'post',
-        		url: 'api/login',
-        		data:$scope.loginInfo
-        	}).then(function (response) {
-        		$scope.loginInfo= null;
-        		$scope.loginForm.$setPristine();
-        		localStorage.setItem('token', response.data.token);
-        		localStorage.setItem('idUser', response.data.userInfo.id_users);
-        		localStorage.setItem('idUserRole', response.data.userInfo.id_user_roles);        		
+        	}
+        	else{
 
-        		$rootScope.token = localStorage.getItem('token');
-        		$rootScope.idUser = localStorage.getItem('idUser');
-        		$rootScope.idUserRole= localStorage.getItem('idUserRole');
-        		swal({
-        			title: 'Success!',
-        			text: 'LoggedIn Successfully.',
-        			type: 'success'
-        		}, function () {
+        		$http({
+        			method: 'post',
+        			url: 'api/login',
+        			data:$scope.loginInfo
+        		}).then(function (response) {
+        			$scope.loginInfo= null;
+        			$scope.loginForm.$setPristine();
+        			localStorage.setItem('token', response.data.token);
+        			localStorage.setItem('idUser', response.data.userInfo.id_users);
+        			localStorage.setItem('idUserRole', response.data.userInfo.id_user_roles);        		
 
-        			$location.path("/product");
+        			$rootScope.token = localStorage.getItem('token');
+        			$rootScope.idUser = localStorage.getItem('idUser');
+        			$rootScope.idUserRole= localStorage.getItem('idUserRole');
+        			swal({
+        				title: 'Success!',
+        				text: 'LoggedIn Successfully.',
+        				type: 'success'
+        			}, function () {
 
-        			if (!$scope.$$phase)
-        				$scope.$apply();
+        				$location.path("/product");
+
+        				if (!$scope.$$phase)
+        					$scope.$apply();
+        			});
+
+        		}, function (response) {
+
+        			swal({
+        				title: response.data.heading,
+        				text: response.data.message,
+        				html:true,
+        				type: 'error'
+        			});
         		});
-
-        	}, function (response) {
-
-        		swal({
-        			title: response.data.heading,
-        			text: response.data.message,
-        			html:true,
-        			type: 'error'
-        		});
-        	});
+        	}
         }
     });
 }]);

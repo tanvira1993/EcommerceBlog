@@ -56,7 +56,7 @@
 						<label class="col-md-3 control-label"> </label>
 						<div class="col-md-6">
 							<div class="input-group">
-								<div><p>(NOTE : File size not more than 50MB, File type must be PDF,PNG,JPG,PNG,GIF Format)</p></div>
+								<div><p>(NOTE : File size not more than 50MB, File type must be PNG,JPG,PNG,GIF Format)</p></div>
 							</div>
 						</div>
 
