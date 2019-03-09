@@ -60,7 +60,7 @@ class UserController extends Controller
 		$user->name = $request->name;
 		$user->email = $request->email;
 		$user->phone = $request->phone;
-		$user->user_address = $request->address;		
+		$user->address = $request->address;		
 		$user->password = Hash::make($request->pass);
 		$user->id_user_roles=0;
 
@@ -118,7 +118,7 @@ class UserController extends Controller
 		$user->name = $request->name;
 		$user->email = $request->email;
 		$user->phone = $request->phone;
-		$user->user_address = $request->address;		
+		$user->address = $request->address;		
 		$user->password = Hash::make($request->pass);
 		$user->id_user_roles=$request->role;
 

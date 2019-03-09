@@ -59,7 +59,7 @@ Route::group(['middleware' => 'superAdmin'], function()
 {
 	Route::post('createAdmin', 'UserController@saveAdmin');
 	Route::delete('product/delete/{id}', 'addProductController@deleteFile');
-
+	Route::post('product/update/{id}', 'addProductController@update');	
 	
 });
 
@@ -67,7 +67,7 @@ Route::group(['middleware' => 'superAdmin'], function()
 Route::group(['middleware' => 'CommonMiddleware'], function()
 {
 	Route::post('other/documents/save', 'addProductController@save');
-	Route::post('product/update/{id}', 'addProductController@update');	
+	// Route::post('product/update/{id}', 'addProductController@update');	
 	Route::get('deliveryDone/{id}', 'addProductController@productdeliveryDone');
 	Route::get('productdeliveryqueue/{id}', 'addProductController@productdeliveryqueue');
 	Route::get('order/details', 'addProductController@getOrderInfo');

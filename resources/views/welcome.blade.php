@@ -111,15 +111,15 @@
   								</div>
   								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
   							</div>
-  							<a ui-sref="login" class="text-uppercase">Login</a> / <a ui-sref="userreg" class="text-uppercase">Join</a>
+  							<a ng-if="idUserRole==null" ui-sref="login" class="text-uppercase">Login / </a>  <a ng-if="idUserRole==null"ui-sref="userreg" class="text-uppercase">Join</a>
   							<ul class="custom-menu">
 
 
-  								<li><a ui-sref="adminview"><i class="fa fa-heart-o"></i> ADD Product</a></li>  
-  								<li ><a ui-sref="manageProduct"><i class="fa fa-user-o"></i> Manage Product</a></li>
-  								<li ><a ui-sref="adminreg"><i class="fa fa-heart-o"></i> Create Admin/Super Admin Account</a></li>
-  								<li><a ui-sref="login"><i class="fa fa-unlock-alt"></i> Login</a></li>
-  								<li><a ng-click="logout()"><i class="fa fa-unlock-alt"></i> Logout</a></li>
+  								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="adminview"><i class="fa fa-heart-o"></i> ADD Product</a></li>  
+  								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="manageProduct"><i class="fa fa-user-o"></i> Manage Product</a></li>
+  								<li ng-if="idUserRole==2"><a ui-sref="adminreg"><i class="fa fa-heart-o"></i> Create Admin/Super Admin Account</a></li>
+  								<li ng-if="idUserRole==null"><a ui-sref="login"><i class="fa fa-unlock-alt"></i> Login</a></li>
+  								<li ng-if="idUserRole!=null"><a ng-click="logout()"><i class="fa fa-unlock-alt"></i> Logout</a></li>
 
   							</ul>
   						</li>
@@ -204,14 +204,14 @@
 
 
   						<!-- <li><a href="#">Sales</a></li> -->
-  						<li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Order Status <i class="fa fa-caret-down"></i></a>
+  						<li ng-if="idUserRole==0 || idUserRole==1 || idUserRole==2"class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Order Status <i class="fa fa-caret-down"></i></a>
   							<ul class="custom-menu">
-  								<li><a ui-sref="orderlist">Product Order Lists</a></li>
-  								<li><a ui-sref="deliverylist">Order Delivery in Progress Lists</a></li>
-  								<li ><a ui-sref="deliveryDoneList">Completed Delivered Orders List</a></li>
-  								<li ><a ui-sref="userOrderList">Your Orders</a></li>
-  								<li ><a ui-sref="userDeliveryPendingList">Delivery in Progress</a></li>
-  								<li ><a ui-sref="userDeliveryDoneList">Orders History</a></li>
+  								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="orderlist">Product Order Lists</a></li>
+  								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="deliverylist">Order Delivery in Progress Lists</a></li>
+  								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="deliveryDoneList">Completed Delivered Orders List</a></li>
+  								<li ng-if="idUserRole==0"><a ui-sref="userOrderList">Your Orders</a></li>
+  								<li ng-if="idUserRole==0"><a ui-sref="userDeliveryPendingList">Delivery in Progress</a></li>
+  								<li ng-if="idUserRole==0"><a ui-sref="userDeliveryDoneList">Orders History</a></li>
   							</ul>
   						</li>
   					</ul>

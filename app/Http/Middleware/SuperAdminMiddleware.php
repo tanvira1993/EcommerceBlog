@@ -33,7 +33,7 @@ class SuperAdminMiddleware
         if($idUserRole != 2 )
         {
             //return $next($request);
-            return Response::json(['heading' => 'Access Denied, Login First !!', 'message' => $idUserRole], 403);
+            return Response::json(['heading' => 'Access Denied, Login First !!', 'message' => 'Access Denied'], 403);
 
         }
 

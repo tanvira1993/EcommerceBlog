@@ -16,11 +16,11 @@
 			<td>@{{value.product_name}}</td>
 			<td>@{{value.product_cost}}</td>
 			<td>@{{value.product_unit_name}}</td>
-			<td> <a ng-href="#!/product/edit/@{{value.id_products}}" class="btn btn-primary"> Edit</a><a ng-click="deleteProduct(value.id_products)" class="btn btn-danger"> Delete</a></td>
+			<td ng-if="idUserRole==2"> <a ng-href="#!/product/edit/@{{value.id_products}}" class="btn btn-primary"> Edit</a><a ng-click="deleteProduct(value.id_products)" class="btn btn-danger"> Delete</a></td>
+			<td ng-if="idUserRole==1">Contact To Admin for any change</td>
 
 
-
-		</tr>
+		</tr> 
 		
 		
 	</tbody>

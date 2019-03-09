@@ -28,7 +28,7 @@ class AdminMiddleware
         if($idUserRole != 1 )
         {
 
-            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
+            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'Access Denied'], 403);
 
         }
         if($idUserRole ==1)

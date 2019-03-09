@@ -10,6 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear-cache', function() {
+	$exitCode = Artisan::call('cache:clear');
+	Artisan::call('view:clear');
+	Artisan::call('config:cache');
+	Artisan::call('optimize');
+	return ["success"=>2];
+    // return what you want
+});
 
 Route::get('/', function () {
 	return view('welcome');
@@ -54,6 +62,9 @@ Route::group(['middleware' => 'superAdmin'], function()
 		return view('adminRegistration');
 	});
 
+	Route::get('/product/edit', function () {
+		return view('edit');
+	});
 	
 
 });
@@ -87,10 +98,7 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 		return view('manageProduct');
 	});
 
-	Route::get('/product/edit', function () {
-		return view('edit');
-	});
-
+	
 	Route::get('/orderlist', function () {
 		return view('orderlist');
 	});

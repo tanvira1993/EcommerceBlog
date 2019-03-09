@@ -12,7 +12,7 @@ angular.module('EcommerceApp').controller('manageProductController', ['$scope', 
         		method:'get',
         		url: 'api/productInfo/details/manage'
         	}).then(function(response) {
-        		$scope.fileInfo = response.data.data;				
+        		$scope.fileInfo = response.data.data.fileInfoList;				
         	}, function(response) {
         		console.log(response);
         	});

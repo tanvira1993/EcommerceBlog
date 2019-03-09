@@ -32,7 +32,7 @@ class CommonMiddleware
         }
         else
         {
-            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
+            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'Access Denied'], 403);
 
         }
 

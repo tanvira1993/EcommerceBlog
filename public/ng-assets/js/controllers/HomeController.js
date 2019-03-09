@@ -3,8 +3,8 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 	function($scope, $rootScope, $location, $timeout, $http,$window) {
 		$scope.$on('$viewContentLoaded', function() {
 			
-			$scope.idUserRole= (localStorage.getItem('idUserRole'));
-			console.log((localStorage.getItem('idUserRole')));
+			//$scope.idUserRole= (localStorage.getItem('idUserRole'));
+			//console.log((localStorage.getItem('idUserRole')));
 
 			$scope.fileInfo = {};
 			$scope.getFileInfo = function(){

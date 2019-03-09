@@ -128,9 +128,11 @@ class addProductController extends Controller
 	{
 
 		$docTypes = addproduct::select('product_lists.*')
-		->get()
-		->where('id_users',$request->header('iduser'));
-		return Response::json(['success' => true, 'data' => $docTypes], 200);
+
+		->where('id_users',$request->header('iduser'))
+		->get();
+		//->toArray();
+		return Response::json(['success' => true, 'data' => array('fileInfoList' => $docTypes, 'iduser' => $request->header('iduser'))], 200);
 	}
 
 	
@@ -241,7 +243,7 @@ class addProductController extends Controller
 	}
 
 	// for admin
-	//////
+
 	public function getdeliveryPendingInfo(Request $request){
 		$dq=1;
 		$dd=0;
@@ -258,7 +260,6 @@ class addProductController extends Controller
 
 	}
 	// for admin
-	////
 	public function getdeliveryDoneInfo(Request $request){
 		$dq=1;
 		$dd=1;
