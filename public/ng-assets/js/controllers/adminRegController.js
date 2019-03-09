@@ -2,14 +2,7 @@
 angular.module('EcommerceApp').controller('adminRegController', ['$scope', '$rootScope', '$location', '$timeout', '$http',
 	function($scope, $rootScope, $location, $timeout, $http) {
 		$scope.$on('$viewContentLoaded', function() {
-        // initialize core components
-        
 
-        // set default layout mode
-        /*$rootScope.settings.layout.pageContentWhite = true;
-        $rootScope.settings.layout.pageBodySolid = false;
-        $rootScope.settings.layout.pageSidebarClosed = false;*/
-        //window.location.href=$rootScope.CURRENT_API+"#/coverageNote/details/"+response.data.data.id;
         //Create Admin Account
         $scope.createAdmin = function(){
 

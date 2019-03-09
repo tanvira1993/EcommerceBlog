@@ -75,5 +75,5 @@
 <!--container end.//-->
 
 <pre>
-	@{{adminInfo | json}}
+	<!-- @{{adminInfo | json}} -->
 </pre>

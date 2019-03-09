@@ -128,14 +128,17 @@ class addProductController extends Controller
 	{
 
 		$docTypes = addproduct::select('product_lists.*')
-		->get()
-		->where('id_users',$request->header('iduser'));
-		return Response::json(['success' => true, 'data' => $docTypes], 200);
+
+		->where('id_users',$request->header('iduser'))
+		->get();
+		//->toArray();
+		return Response::json(['success' => true, 'data' => array('fileInfoList' => $docTypes, 'iduser' => $request->header('iduser'))], 200);
 	}
 
 	
 	public function Update(Request $request, $id)
 	{
+
 		$files = $request->file('image');
 		$target = addproduct::find($id);
 		if(empty($target)){
@@ -197,7 +200,7 @@ class addProductController extends Controller
 		$document->product_cost = $request->cost;
 		$document->product_unit_name = $request->unit; 
 		$document->product_name = $request->name;
-		
+
 		if(!empty($request->file('image'))){
 			$document->product_file = $fileName;
 		}
@@ -211,7 +214,7 @@ class addProductController extends Controller
 		}else{
 			//If block image already existing it is deleted previous block image
 			$filePath = public_path() . '/uploads/'. $document->product_file;
-			
+
 
 			if (file_exists($filePath)) {
 				@unlink($filePath);
@@ -219,7 +222,6 @@ class addProductController extends Controller
 			DB::rollBack();
 			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Other Document could not be Updated!'), 400);
 		}
-
 
 
 	}
@@ -241,7 +243,7 @@ class addProductController extends Controller
 	}
 
 	// for admin
-	//////
+
 	public function getdeliveryPendingInfo(Request $request){
 		$dq=1;
 		$dd=0;
@@ -258,7 +260,6 @@ class addProductController extends Controller
 
 	}
 	// for admin
-	////
 	public function getdeliveryDoneInfo(Request $request){
 		$dq=1;
 		$dd=1;
@@ -284,6 +285,7 @@ class addProductController extends Controller
 		//$docTypes = addproduct::select('product_lists.*')->get();
 		$order = orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
 		->leftJoin('users','users.id_users','=','order_lists.id_users')
+		// ->select('order_lists.*')
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dq)
 		->where('order_lists.id_users',$request->header('iduser'))
@@ -330,6 +332,11 @@ class addProductController extends Controller
 
 	public function savecart(Request $request)
 	{
+		
+		// if(($request->header('idUserRole'))!=0){
+		// 	return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
+		// }
+
 		$rules = [
 
 			'item_quantity' => 'required | numeric',	
@@ -356,7 +363,6 @@ class addProductController extends Controller
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
 		}
 
-		
 		$orderlist = new orderlist;
 
 		$orderlist->delivery_queue = 0;
@@ -364,10 +370,13 @@ class addProductController extends Controller
 		$orderlist->user_address = $request->address;
 		$orderlist->user_phone_no = $request->phone;		
 		$orderlist->id_users = $request->header('iduser');
-
+			// echo '<pre>';
+			// print_r($request->header('idUserRole'));						
+			// echo '</pre>';
+			// exit;
 		$orderlist->save();
 
-		
+
 		$itemList = new itemList;
 		$itemList->id_order_list = $orderlist->id_order_list;		
 		$itemList->item_quantity = $request->item_quantity;
@@ -376,6 +385,9 @@ class addProductController extends Controller
 
 		$itemList->save();
 		
+
+
+
 		if($itemList && $orderlist){
 			DB::commit();
 			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
@@ -389,7 +401,7 @@ class addProductController extends Controller
 	{
 		$orderlist = orderlist::find($id);
 		$orderlist->delivery_queue = 1;
-		
+
 		$orderlist->save();
 
 		if($orderlist){
@@ -407,8 +419,8 @@ class addProductController extends Controller
 		$orderlist = orderlist::find($id);
 		$orderlist->delivery_queue = 1;
 		$orderlist->delivery_done = 1;
-		
-		
+
+
 		$orderlist->save();
 
 		if($orderlist){
@@ -420,17 +432,6 @@ class addProductController extends Controller
 		}
 
 	}
-
-	/*public function billSlip($id)
-	{
-		$docTypes = itemList::where('id_order_list', $id)->get();
-
-
-		$target = addproduct:: where('id_products',$docTypes->id_products)->get();
-
-		return Response::json(['success' => true, 'data' => $docTypes], 200);
-	}*/
-
 
 	public function bill($id){
 

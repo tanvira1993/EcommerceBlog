@@ -2,6 +2,9 @@
 angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootScope', '$location', '$timeout', '$http','$window', 
 	function($scope, $rootScope, $location, $timeout, $http,$window) {
 		$scope.$on('$viewContentLoaded', function() {
+			
+			//$scope.idUserRole= (localStorage.getItem('idUserRole'));
+			//console.log((localStorage.getItem('idUserRole')));
 
 			$scope.fileInfo = {};
 			$scope.getFileInfo = function(){
@@ -31,29 +34,33 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 				});
 			}
 
+			// $scope.products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
 
-			$scope.addToCart = function(){
-
-				for($i=0; $i<100; $i++)
-				{
-					
-					localStorage.setItem('idProduct', $scope.productCart.id_products);
-					// localStorage.setItem('quantity', $scope.productCart.item_quantity);					
+		/*	$scope.addToCart = function(){
+				var objProduct = {
+					idProduct: $scope.productCart.id_products,
+					quantity: $scope.productCart.item_quantity
 				}
 
-				// localStorage.setItem('token', response.data.token);
+				$scope.products.push(objProduct);
 
-			}
+				localStorage.setItem('products', $scope.products);
+				
+
+			}*/
 
 
 			$scope.saveOrder = function(){
 
-				$http({
-					method:'post',
-					url: 'api/product/addcart',
+				// var productsList = JSON.parse(localStorage.getItem('products'));
+				if($rootScope.idUserRole== 0){
 
-					data: $scope.productCart
-				}).then(function (response) {
+					$http({
+						method:'post',					
+						url: 'api/product/addcart',
+
+						data: $scope.productCart
+					}).then(function (response) {
 					//hide_all_toastr();
 					//$scope.chargeForm.$setPristine();
 
@@ -85,11 +92,20 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 						type: 'error'
 					});
 				});
+				}
+
+				else
+				{
+					toastr.error("Login First")
+
+				}
+
 			}
 
 
 
 			$scope.getFileInfo();
+
 
 
 		});

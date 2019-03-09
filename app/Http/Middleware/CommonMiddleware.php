@@ -23,10 +23,7 @@ class CommonMiddleware
         $idUserRole = $request->header('iduserrole');
         $idUser = $request->header('iduser');
         $token = $request->header('token');
-        /*$accessUrl = array(
-            'admin'=> array('manageProduct','product/edit'),
-            'supperAdmin'=> array()
-        )*/
+        
         
         if($idUserRole ==1 || $idUserRole == 2)
         {
@@ -35,11 +32,10 @@ class CommonMiddleware
         }
         else
         {
-            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
+            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'Access Denied'], 403);
 
         }
 
-        // return Response::json(['heading' => 'Access Denied', 'message' => array('userRole'=>$idUserRole,'userInfo'=>$idUser,'token'=>$token)], 403);
         
     }
 }

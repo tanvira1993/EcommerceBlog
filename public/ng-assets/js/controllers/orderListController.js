@@ -23,11 +23,15 @@ angular.module('EcommerceApp').controller('orderListController', ['$scope', '$ro
 					url:'api/productdeliveryqueue/'+ id_order_list
 				}).then(function(response) {
 					//$scope.editProductData = response.data.data;
+					toastr.success("Delivery on Progress")
+
 					$location.path("/deliverylist");
 					
 					
 				}, function(response) {
 					console.log(response);
+					toastr.error(response.message == undefined ? "contact Admin" : response.message)
+					
 				});
 			}
 

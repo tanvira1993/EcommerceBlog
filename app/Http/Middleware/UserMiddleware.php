@@ -28,7 +28,7 @@ class UserMiddleware
             //print_r($idUserRole);
             //exit;
     		//return $next($request);
-            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => $idUserRole], 403);
+            return Response::json(['heading' => 'Access Denied, Login First!!', 'message' => 'Access Denied'], 403);
 
         }
         if($idUserRole == 0)

@@ -61,5 +61,5 @@
 <!--container end.//-->
 
 <pre>
-	@{{userInfo | json}}
+	<!-- @{{userInfo | json}} -->
 </pre>

@@ -43,7 +43,7 @@
 				<td width=326 nowrap colspan=3 style='width:244.45pt;border:solid 1.0pt;border-left:none;padding:0in 5.4pt 0in 5.4pt;height:30.75pt'>
 					<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:normal'><b><u><span style='font-size:12.0pt'>Shop Name :<?php
 					foreach ($result['item_list'] as $value) {
-						echo $value['seller_info']['user_address'];	
+						echo $value['seller_info']['address'];	
 					}
 					?>
 				</span></u></b></p>
