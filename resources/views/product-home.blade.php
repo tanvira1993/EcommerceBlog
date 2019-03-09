@@ -110,7 +110,7 @@
 				<div class="product product-single">
 					<div class="product-thumb">
 						<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-						<img src="uploads/@{{value.product_file}}" alt="">
+						<img src="uploads/@{{value.product_file}}" alt="Smiley face" height="210" width="310">
 					</div>
 					<div class="product-body">
 						<h3 class="product-price" >@{{value.product_cost}}</h3>
@@ -195,11 +195,11 @@
 				</div>
 			</div>
 			<pre>
-				<!-- @{{productCart|json}} -->
+				@{{productCart|json}}
 			</pre>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="saveOrder()" data-dismiss="modal">Order Create</button>
+				<button type="button" class="btn btn-primary" ng-click="addToCart()" data-dismiss="modal">Order Create</button>
 			</div>
 		</div>
 	</div>

@@ -130,38 +130,29 @@
   							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
   								<div class="header-btns-icon">
   									<i class="fa fa-shopping-cart"></i>
-  									<span class="qty">3</span>
+  									<!-- item maker notification <span class="qty">3</span> -->
   								</div>
   								<strong class="text-uppercase">My Cart:</strong>
   								<br>
-  								<span>35.20$</span>
+  								<!-- Total Cost of Shopping <span>35.20$</span> -->
   							</a>
   							<div class="custom-menu">
   								<div id="shopping-cart">
-  									<div class="shopping-cart-list">
+  									<div class="shopping-cart-list" ng-repeat="(key, value) in products">
   										<div class="product product-widget">
   											<div class="product-thumb">
-  												<img src="" alt="">
+  												<img src="uploads/@{{value.productPic}}" alt="Smiley face" height="10" width="15">
   											</div>
   											<div class="product-body">
-  												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-  												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+  												<h3 class="product-price"> @{{value.productCost}}<span class="qty">x@{{value.quantity}}</span></h3>
+  												<h2 class="product-name"><a href="#">@{{value.productName}}</a></h2>
   											</div>
   											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
   										</div>
-  										<div class="product product-widget">
-  											<div class="product-thumb">
-  												<img src="" alt="">
-  											</div>
-  											<div class="product-body">
-  												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-  												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-  											</div>
-  											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
-  										</div>
+  										
   									</div>
   									<div class="shopping-cart-btns">
-  										<button class="main-btn">View Cart</button>
+  										<!-- <button class="main-btn">View Cart</button> -->
   										<button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
   									</div>
   								</div>

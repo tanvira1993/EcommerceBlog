@@ -1,5 +1,5 @@
 /* Setup blank page controller */
-angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootScope', '$location', '$timeout', '$http','$window', 
+angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootScope', '$location', '$timeout', '$http','$window',
 	function($scope, $rootScope, $location, $timeout, $http,$window) {
 		$scope.$on('$viewContentLoaded', function() {
 			
@@ -34,21 +34,26 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 				});
 			}
 
-			// $scope.products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+			
+			$scope.products = [];
 
-		/*	$scope.addToCart = function(){
+			$scope.addToCart = function(){
+				
 				var objProduct = {
-					idProduct: $scope.productCart.id_products,
-					quantity: $scope.productCart.item_quantity
-				}
+					"idProduct": $scope.productCart.id_products,
+					"quantity": $scope.productCart.item_quantity,
+					"adminId": $scope.productCart.id_users,
+					"productName": $scope.productCart.product_name,
+					"productCost": $scope.productCart.product_cost,
+					"productPic": $scope.productCart.product_file,
 
-				$scope.products.push(objProduct);
 
+				};
+				$scope.products.push(JSON.stringify(objProduct));
+				// console.log($scope.products);
 				localStorage.setItem('products', $scope.products);
 				
-
-			}*/
-
+			}
 
 			$scope.saveOrder = function(){
 
