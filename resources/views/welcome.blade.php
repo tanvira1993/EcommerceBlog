@@ -138,7 +138,7 @@
   							</a>
   							<div class="custom-menu">
   								<div id="shopping-cart">
-  									<div class="shopping-cart-list" ng-repeat="(key, value) in products">
+  									<div class="shopping-cart-list" ng-repeat="(key, value) in cartItem track by $index">
   										<div class="product product-widget">
   											<div class="product-thumb">
   												<img src="uploads/@{{value.productPic}}" alt="Smiley face" height="10" width="15">
@@ -149,7 +149,7 @@
   											</div>
   											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
   										</div>
-  										
+
   									</div>
   									<div class="shopping-cart-btns">
   										<!-- <button class="main-btn">View Cart</button> -->

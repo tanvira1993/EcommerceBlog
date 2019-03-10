@@ -182,7 +182,10 @@ EcommerceApp.run(['$rootScope', '$http','$state', function($rootScope, $http, $s
 	$rootScope.token = localStorage.getItem('token');
 	$rootScope.idUser = localStorage.getItem('idUser');
 	$rootScope.idUserRole= localStorage.getItem('idUserRole');
-	$rootScope.logout = function(){
+    $rootScope.cartItem = localStorage.getItem('products');
+    $rootScope.cartItem = $rootScope.cartItem!=null && $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : [];
+
+    $rootScope.logout = function(){
         /* var redirectUrl = $rootScope.;
         redirectUrl = window.btoa(redirectUrl);
         redirectUrl = encodeURIComponent(redirectUrl);*/

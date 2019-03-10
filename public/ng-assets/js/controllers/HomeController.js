@@ -6,6 +6,10 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 			//$scope.idUserRole= (localStorage.getItem('idUserRole'));
 			//console.log((localStorage.getItem('idUserRole')));
 
+			$rootScope.cartItem=localStorage.getItem('products');
+			$rootScope.cartItem = $rootScope.cartItem!=null && $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : [];
+			
+
 			$scope.fileInfo = {};
 			$scope.getFileInfo = function(){
 
@@ -35,7 +39,7 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 			}
 
 			
-			$scope.products = [];
+			// $scope.products = [];
 
 			$scope.addToCart = function(){
 				
@@ -45,14 +49,16 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 					"adminId": $scope.productCart.id_users,
 					"productName": $scope.productCart.product_name,
 					"productCost": $scope.productCart.product_cost,
-					"productPic": $scope.productCart.product_file,
-
-
+					"productPic": $scope.productCart.product_file
 				};
-				$scope.products.push(JSON.stringify(objProduct));
+				// $rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+				$rootScope.cartItem.push(objProduct);
+				// $scope.products = $scope.products.push(JSON.stringify(objProduct));
 				// console.log($scope.products);
-				localStorage.setItem('products', $scope.products);
-				
+				localStorage.removeItem('products');
+				localStorage.setItem('products', JSON.stringify($rootScope.cartItem));
+				$rootScope.cartItem=localStorage.getItem('products');
+				$rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
 			}
 
 			$scope.saveOrder = function(){
