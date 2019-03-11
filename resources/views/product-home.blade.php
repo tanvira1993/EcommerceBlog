@@ -113,7 +113,7 @@
 						<img src="uploads/@{{value.product_file}}" alt="Smiley face" height="210" width="310">
 					</div>
 					<div class="product-body">
-						<h3 class="product-price" >@{{value.product_cost}}</h3>
+						<h3 class="product-price" >@{{value.product_cost}} TK.</h3>
 						<div class="product-rating">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>

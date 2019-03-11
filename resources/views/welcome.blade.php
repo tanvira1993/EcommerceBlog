@@ -126,7 +126,7 @@
   						<!-- /Account -->
 
   						<!-- Cart -->
-  						<li class="header-cart dropdown default-dropdown">
+  						<li class="header-cart dropdown default-dropdown" ng-if="idUserRole==0 || idUserRole==null ">
   							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
   								<div class="header-btns-icon">
   									<i class="fa fa-shopping-cart"></i>
@@ -141,13 +141,13 @@
   									<div class="shopping-cart-list" ng-repeat="(key, value) in cartItem track by $index">
   										<div class="product product-widget">
   											<div class="product-thumb">
-  												<img src="uploads/@{{value.productPic}}" alt="Smiley face" height="10" width="15">
+  												<img src="uploads/@{{value.productPic}}" alt="Smiley face" height="55" width="15">
   											</div>
   											<div class="product-body">
   												<h3 class="product-price"> @{{value.productCost}}<span class="qty">x@{{value.quantity}}</span></h3>
   												<h2 class="product-name"><a href="#">@{{value.productName}}</a></h2>
   											</div>
-  											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
+  											<button ng-click="deleteCart($index)" class="cancel-btn"><i class="fa fa-trash"></i></button>
   										</div>
 
   									</div>

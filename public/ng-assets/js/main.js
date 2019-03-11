@@ -178,14 +178,31 @@ initialization can be disabled and Layout.init() should be called on page load c
 }]);
 */
 /* Init global settings and run the app */
-EcommerceApp.run(['$rootScope', '$http','$state', function($rootScope, $http, $state) {
+EcommerceApp.run(['$rootScope', '$http','$state','$window', function($rootScope, $http, $state,$window) {
 	$rootScope.token = localStorage.getItem('token');
 	$rootScope.idUser = localStorage.getItem('idUser');
 	$rootScope.idUserRole= localStorage.getItem('idUserRole');
     $rootScope.cartItem = localStorage.getItem('products');
     $rootScope.cartItem = $rootScope.cartItem!=null && $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : [];
 
-    $rootScope.logout = function(){
+    
+
+    $rootScope.deleteCart = function(index){
+        $window.alert(index +' selected');
+
+        
+               /* $http({
+                    method:'get',
+                    //url:'api/productdetailById/'+$scope.id
+                }).then(function(response) {
+                    $scope.editProductData = response.data.data;
+                    
+                }, function(response) {
+                    console.log(response);
+                });*/
+            }
+
+            $rootScope.logout = function(){
         /* var redirectUrl = $rootScope.;
         redirectUrl = window.btoa(redirectUrl);
         redirectUrl = encodeURIComponent(redirectUrl);*/
