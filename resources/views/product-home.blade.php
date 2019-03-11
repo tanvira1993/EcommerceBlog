@@ -145,7 +145,7 @@
 
 <!-- Button trigger modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -157,26 +157,24 @@
 			<div class="modal-body">
 				<div class="modal-body mx-3">
 					<div class="md-form mb-5">
-						<i class="fas fa-envelope prefix grey-text"></i>
-						<input type="email" id="defaultForm-email" class="form-control validate" ng-model="productCart.product_name" readonly>
 						<label data-error="wrong" data-success="right" for="defaultForm-email">Product Name</label>
+						<input type="email" id="defaultForm-email" class="form-control validate" ng-model="productCart.product_name" readonly>
+						
 					</div>
 
 					<div class="md-form mb-4">
-						<i class="fas fa-lock prefix grey-text"></i>
+						<label data-error="wrong" data-success="right" for="defaultForm-pass">Cost</label>
 						<input type="text" ng-model="productCart.product_cost"  id="defaultForm-pass" readonly class="form-control validate">
 						
 
-						<label data-error="wrong" data-success="right" for="defaultForm-pass">Cost</label>
+						
 					</div>
 
 					<div class="md-form mb-4">
-						<i class="fas fa-lock prefix grey-text"></i>
-						<input type="text" ng-model="productCart.item_quantity" id="defaultForm-pass"  class="form-control validate">
-						
-
 						<label data-error="wrong" data-success="right" for="defaultForm-pass">quantity</label>
+						<input type="text" ng-minlength="1" ng-maxlength="100" ng-model="productCart.item_quantity" id="defaultForm-pass"  class="form-control validate">	
 					</div>
+					
 					<div class="md-form mb-4">
 						<i class="fas fa-lock prefix grey-text"></i>
 						<input type="text" ng-model="productCart.address" id="defaultForm-pass"  class="form-control validate">
@@ -191,7 +189,6 @@
 
 						<label data-error="wrong" data-success="right" for="defaultForm-pass">Phone No</label>
 					</div>
-
 				</div>
 			</div>
 			<pre>

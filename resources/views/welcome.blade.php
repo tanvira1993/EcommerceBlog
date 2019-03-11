@@ -130,11 +130,12 @@
   							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
   								<div class="header-btns-icon">
   									<i class="fa fa-shopping-cart"></i>
-  									<!-- item maker notification <span class="qty">3</span> -->
+  									<!-- Total Cart notification -->
+  									<span class="qty" ng-if="cartItem.length>0">@{{cartItem.length}}</span> 
   								</div>
   								<strong class="text-uppercase">My Cart:</strong>
   								<br>
-  								<!-- Total Cost of Shopping <span>35.20$</span> -->
+  								<!-- Total Cost of Shopping  --><span>Total TK</span>
   							</a>
   							<div class="custom-menu">
   								<div id="shopping-cart">
@@ -144,7 +145,7 @@
   												<img src="uploads/@{{value.productPic}}" alt="Smiley face" height="55" width="15">
   											</div>
   											<div class="product-body">
-  												<h3 class="product-price"> @{{value.productCost}}<span class="qty">x@{{value.quantity}}</span></h3>
+  												<h3 class="product-price"> @{{value.productCost}}<span class="qty">x@{{value.quantity}}</span><span> =@{{value.productCost* value.quantity}} Tk</span></h3>
   												<h2 class="product-name"><a href="#">@{{value.productName}}</a></h2>
   											</div>
   											<button ng-click="deleteCart($index)" class="cancel-btn"><i class="fa fa-trash"></i></button>
@@ -152,6 +153,7 @@
 
   									</div>
   									<div class="shopping-cart-btns">
+
   										<!-- <button class="main-btn">View Cart</button> -->
   										<button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
   									</div>

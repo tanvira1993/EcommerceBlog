@@ -189,23 +189,16 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', function($rootScope,
 
     $rootScope.deleteCart = function(index){
         $window.alert(index +' selected');
+        $rootScope.cart=[];
+        $rootScope.cart=$.parseJSON(localStorage.getItem('products'));
+        $rootScope.cart.splice(index,1);
+        localStorage.setItem('products', JSON.stringify($rootScope.cart));
+        $rootScope.cartItem=localStorage.getItem('products');
+        $rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+    }
 
-        
-               /* $http({
-                    method:'get',
-                    //url:'api/productdetailById/'+$scope.id
-                }).then(function(response) {
-                    $scope.editProductData = response.data.data;
-                    
-                }, function(response) {
-                    console.log(response);
-                });*/
-            }
+    $rootScope.logout = function(){
 
-            $rootScope.logout = function(){
-        /* var redirectUrl = $rootScope.;
-        redirectUrl = window.btoa(redirectUrl);
-        redirectUrl = encodeURIComponent(redirectUrl);*/
         window.location.href = 'login/logout/';
     }
 }]);
