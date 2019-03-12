@@ -38,30 +38,15 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 				});
 			}
 
-			/*$scope.getTotal = function(){
-				$scope.total = 0;
-				for(var i = 0; i < $rootScope.cartItem.length; i++){
-					
-					$scope.total += (JSON.parse($rootScope.cartItem[i].quantity) * JSON.parse($rootScope.cartItem[i].productCost));
-				}
-				// $rootScope.subTotal=total;
-				$scope.total = $scope.total + 0;
-				return $scope.total;
+			$rootScope.getTotal = function(){
+				$rootScope.total = 0;
+				$.each($rootScope.cartItem, function(index,val){
+					$rootScope.total += val.quantity*val.productCost;
+				});
 			}
 
-			$scope.getTotal();*/
+			$rootScope.getTotal();
 
-
-			/*$scope.total= function(){
-				var totalAmount = 0;
-				for (var i = 0; i < $localStorage.cartItem.length; i++) {
-					$localStorage.cartItem[i]['quantity']
-					var totalAmount += (parseFloat($localStorage.cartItem[i]['productCost'])*parseInt($localStorage.cartItem[i]['quantity'])); 
-				}
-				return totalAmount;
-			}
-
-			$scope.total();*/
 
 			$scope.addToCart = function(){
 				
@@ -75,10 +60,12 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 				};
 				
 				$rootScope.cartItem.push(objProduct);
+				$rootScope.getTotal();
 				localStorage.removeItem('products');
 				localStorage.setItem('products', JSON.stringify($rootScope.cartItem));
 				$rootScope.cartItem=localStorage.getItem('products');
 				$rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+
 			}
 
 			$scope.saveOrder = function(){

@@ -135,7 +135,7 @@
   								</div>
   								<strong class="text-uppercase">My Cart:</strong>
   								<br>
-  								<!-- Total Cost of Shopping  --><span>Total TK</span>
+  								<!-- Total Cost of Shopping  --><span>@{{total}} TK</span>
   							</a>
   							<div class="custom-menu">
   								<div id="shopping-cart">

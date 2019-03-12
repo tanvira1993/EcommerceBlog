@@ -192,9 +192,13 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', function($rootScope,
         $rootScope.cart=[];
         $rootScope.cart=$.parseJSON(localStorage.getItem('products'));
         $rootScope.cart.splice(index,1);
+        $rootScope.getTotal();
         localStorage.setItem('products', JSON.stringify($rootScope.cart));
+        
         $rootScope.cartItem=localStorage.getItem('products');
         $rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+
+
     }
 
     $rootScope.logout = function(){
