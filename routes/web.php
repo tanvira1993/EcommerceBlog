@@ -66,6 +66,12 @@ Route::group(['middleware' => 'superAdmin'], function()
 		return view('edit');
 	});
 	
+	Route::get('/categories', function () {
+		return view('categories');
+	});
+	Route::get('/subCategories', function () {
+		return view('subCategories');
+	});
 
 });
 

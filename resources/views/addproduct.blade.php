@@ -5,7 +5,7 @@
 			<div class="portlet-title">
 				<div class="caption font-blue-sharp">
 					<i class="fa fa-stack-exchange font-blue-sharp"></i>
-					<span class="caption-subject font-blue-sharp bold uppercase">Other Document Create</span>
+					<span class="caption-subject font-blue-sharp bold uppercase">Add Your Product</span>
 				</div>
 				<div class="tools">
 				</div>

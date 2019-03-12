@@ -65,8 +65,7 @@
 				</div> <!-- form-group// -->                                      
 				<div class="form-group">
 					<button ng-click="createAdmin()" class="btn btn-primary btn-block"> Create Account  </button>
-				</div> <!-- form-group// -->      
-				<p class="text-center">Have an account? <a ui-sref="login">Log In</a> </p>                                                                 
+				</div> <!-- form-group// -->                                                                  
 			</form>
 		</article>
 	</div> <!-- card.// -->

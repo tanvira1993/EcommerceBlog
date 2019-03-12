@@ -250,4 +250,40 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         }
     })
 
+    .state('categories', {
+        url: "/categories",
+        templateUrl: "/categories",
+        data: {pageTitle: 'Categories List'},
+        controller: "categoriesSetController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/categoriesSetController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('subCategories', {
+        url: "/subCategories",
+        templateUrl: "/subCategories",
+        data: {pageTitle: 'Sub Categories List'},
+        controller: "setCategoriesSetController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/setCategoriesSetController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
 }]);

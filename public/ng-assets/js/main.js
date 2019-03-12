@@ -182,29 +182,43 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', function($rootScope,
 	$rootScope.token = localStorage.getItem('token');
 	$rootScope.idUser = localStorage.getItem('idUser');
 	$rootScope.idUserRole= localStorage.getItem('idUserRole');
-    $rootScope.cartItem = localStorage.getItem('products');
-    $rootScope.cartItem = $rootScope.cartItem!=null && $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : [];
-
-    
-
-    $rootScope.deleteCart = function(index){
-        $window.alert(index +' selected');
-        $rootScope.cart=[];
-        $rootScope.cart=$.parseJSON(localStorage.getItem('products'));
-        $rootScope.cart.splice(index,1);
-        $rootScope.getTotal();
-        localStorage.setItem('products', JSON.stringify($rootScope.cart));
-        
-        $rootScope.cartItem=localStorage.getItem('products');
-        $rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+	$rootScope.cartItem = localStorage.getItem('products');
+	$rootScope.cartItem = $rootScope.cartItem!=null && $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : [];
 
 
-    }
 
-    $rootScope.logout = function(){
+	$rootScope.deleteCart = function(index){
+		$window.alert(index +' selected');
+		$rootScope.cart=[];
+		$rootScope.cart=$.parseJSON(localStorage.getItem('products'));
+		$rootScope.cart.splice(index,1);
+		$rootScope.getTotal();
+		localStorage.setItem('products', JSON.stringify($rootScope.cart));
 
-        window.location.href = 'login/logout/';
-    }
+		$rootScope.cartItem=localStorage.getItem('products');
+		$rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+
+
+	}
+
+	$rootScope.category = function(){
+
+		$http({
+			method:'get',
+			url: 'api/categoryInfo'
+		}).then(function(response) {
+			$rootScope.categoryInfo = response.data.data;               
+		}, function(response) {
+			console.log(response);
+		});
+	}
+
+	$rootScope.category();
+
+	$rootScope.logout = function(){
+
+		window.location.href = 'login/logout/';
+	}
 }]);
 /*
     $rootScope.$state = $state; // state to be accessed from view
