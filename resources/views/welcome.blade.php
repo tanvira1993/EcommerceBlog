@@ -214,7 +214,7 @@
 
   							<ul class="custom-menu">
   								<li ng-repeat="(key, value) in getSubCategories(category.id_categories)">
-  									<a ui-sref="">@{{value.sub_categories_name}}</a>
+  									<a ng-href="#!/searchProduct/@{{value.id_sub_categories}}">@{{value.sub_categories_name}}</a>
   								</li>
   							</ul>
   							

@@ -4,7 +4,17 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 		$scope.$on('$viewContentLoaded', function() {
 
 			$scope.id = $stateParams.id;			
-			//$scope.editProductData=[];
+			$scope.editProductData={
+				product_name: null,
+				product_unit_name : null,
+				product_cost : null,
+				category : null,
+				idSubCategory : null,
+				category : {
+					
+				}
+
+			};
 
 			$scope.getProductDetailsById = function(id){
 
@@ -12,27 +22,26 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 					method:'get',
 					url:'api/productdetailById/'+$scope.id
 				}).then(function(response) {
-					$scope.editProductData = response.data.data;
+					$scope.editProductData.category = response.data.data;
 					
 				}, function(response) {
 					console.log(response);
 				});
 			}
 
-			$scope.category = '';
-
-			$scope.getSubCategoryList = function(category){
+			
+			/*$scope.getSubCategoryList = function(){
 				$http({
 					method:'get',
-					url: 'api/subCategoryInfo/' +category
+					url: 'api/subCategoryInfo/' +$scope.id
 				}).then(function(response) {
-					$scope.editProductData.subCategorybycategory = response.data.data;  
+					$scope.editProductData.category = response.data.data;  
 
 				}, function(response) {
 					console.log(response);
 				});
-				console.log(category);
-			}
+				
+			}*/
 
 
 			$scope.updateOtherDocument = function(){

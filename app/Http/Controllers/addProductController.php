@@ -124,7 +124,8 @@ class addProductController extends Controller
 	
 	public function getProductInfo($id){
 
-		$docTypes = addproduct::where('id_products', $id)->first();
+		$docTypes = addproduct::with('category','subcategory')
+		->where('id_products', $id)->first();
 
 		return Response::json(['success' => true, 'data' => $docTypes], 200);
 

@@ -12,15 +12,23 @@
 			</div>
 			<div class="portlet-body">
 				<form class="form-horizontal" role="form" name="editotherDocumentForm" id="editotherDocumentForm" novalidate enctype="multipart/form-data">
-				<!-- 	<div class="form-group">
+					<!-- <div class="form-group">
 						<label class="control-label col-md-3" for="idCategory">Select Category<span class="required">*</span></label>
 						<div class="col-md-6">
-							<select name="category" id="category" ng-model="editProductData.category" ng-value="editProductData.category" class="form-control input-sm" ng-change="getSubCategoryList(category)">
+							<select name="category" id="category" ng-model="editProductData.category" class="form-control input-sm" >
 								<option value="">Select Category</option>
-								<option ng-repeat="(key, value) in categoryInfo" value="@{{value.id_categories}}">@{{value.category_name}}</option>
+								<option ng-repeat="(key, value) in categoryInfo" value="@{{editProductData.category.id_categories}}">@{{editProductData.category.category_name}}</option>
 							</select>
 						</div>
-					</div>
+					</div> -->
+<!-- 
+					<div class="col-md-6">
+						<select name="id_categories" id="id_categories" required class="form-control" >
+							<option value="">Select Category</option>
+							<option ng-repeat="(key, value) in categoryInfo"  value="@{{value.id_categories}}" ng-selected="editProductData.id_categories == @{{editProductData.category.id_categories}}">@{{value.category_name}}</option>
+						</select>
+					</div> -->
+					<!-- 
 					<div class="form-group">
 						<label class="control-label col-md-3" for="idSubCategory">Select Sub Category<span class="required">*</span></label>
 						<div class="col-md-6">
@@ -98,5 +106,5 @@
 </div> <!--  row end -->
 
 <pre>
-	<!-- @{{editProductData |json}}	 -->
+	@{{editProductData |json}}	
 </pre>

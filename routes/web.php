@@ -31,6 +31,10 @@ Route::get('/login', function () {
 	return view('login');
 });
 
+Route::get('/searchProduct', function () {
+	return view('searchProduct');
+});
+
 Route::get('/userreg', function () {
 	return view('userRegistration');
 });

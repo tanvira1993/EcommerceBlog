@@ -49,22 +49,31 @@ angular.module('EcommerceApp').controller('HomeController', ['$scope', '$rootSco
 
 
 			$scope.addToCart = function(){
+
+				if($rootScope.idUserRole== 0 || $rootScope.idUserRole== null){
+					var objProduct = {
+						"idProduct": $scope.productCart.id_products,
+						"quantity": $scope.productCart.item_quantity,
+						"adminId": $scope.productCart.id_users,
+						"productName": $scope.productCart.product_name,
+						"productCost": $scope.productCart.product_cost,
+						"productPic": $scope.productCart.product_file
+					};
+
+					$rootScope.cartItem.push(objProduct);
+					$rootScope.getTotal();
+					localStorage.removeItem('products');
+					localStorage.setItem('products', JSON.stringify($rootScope.cartItem));
+					$rootScope.cartItem=localStorage.getItem('products');
+					$rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+
+					toastr.success("Product added to cart")
+				}
+
 				
-				var objProduct = {
-					"idProduct": $scope.productCart.id_products,
-					"quantity": $scope.productCart.item_quantity,
-					"adminId": $scope.productCart.id_users,
-					"productName": $scope.productCart.product_name,
-					"productCost": $scope.productCart.product_cost,
-					"productPic": $scope.productCart.product_file
-				};
-				
-				$rootScope.cartItem.push(objProduct);
-				$rootScope.getTotal();
-				localStorage.removeItem('products');
-				localStorage.setItem('products', JSON.stringify($rootScope.cartItem));
-				$rootScope.cartItem=localStorage.getItem('products');
-				$rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+				else{
+					toastr.error("Login First")
+				}
 
 			}
 

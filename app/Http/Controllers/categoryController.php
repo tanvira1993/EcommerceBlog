@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\subCategory;
+use App\addproduct;
 use Response;
 use DB;
 use Validator;
@@ -116,8 +117,16 @@ class categoryController extends Controller
 	
 	public function getSelectedSubCategoryList(Request $request, $idCategory){
 
-		$docTypes = subCategory::select('sub_categories.*')
+		$docTypes = addproduct::select('sub_categories.*')
 		->where('id_categories',$idCategory)
+		->get();
+		return Response::json(['success' => true, 'data' => $docTypes], 200);
+	}
+	
+	public function getSearchedCategoryList(Request $request, $id){
+
+		$docTypes = addproduct::select('product_lists.*')
+		->where('id_sub_categories',$id)
 		->get();
 		return Response::json(['success' => true, 'data' => $docTypes], 200);
 	}
