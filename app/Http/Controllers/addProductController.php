@@ -26,7 +26,9 @@ class addProductController extends Controller
 			'image' => 'required |max:51200|mimes:jpg,jpeg,png,gif',
 			'name' => 'required',
 			'unit' => 'required',
-			'cost' => 'required'
+			'cost' => 'required',
+			'category'=> 'required',
+			'idSubCategory'=> 'required'
 
 
 
@@ -38,6 +40,8 @@ class addProductController extends Controller
 			'name.required' => 'Name is required',
 			'unit.required' => 'Unit Name is required',
 			'cost.required' => 'Cost is required',
+			'category.required' => 'Select Category',
+			'idSubCategory.required' => 'Select Sub Category',
 
 
 		];
@@ -69,6 +73,8 @@ class addProductController extends Controller
 		$document->product_unit_name = $request->unit;
 		$document->product_file = !empty($fileName) ? $fileName : null;
 		$document->product_name = $request->name;
+		$document->id_categories = $request->category;
+		$document->id_sub_categories = $request->idSubCategory;
 		$document->id_users = $request->header('iduser');
 
 		
@@ -147,7 +153,9 @@ class addProductController extends Controller
 		$rules = [
 			'name' => 'required',
 			'unit' => 'required',
-			'cost' => 'required'
+			'cost' => 'required',
+			'category'=> 'required',
+			'idSubCategory'=> 'required'
 		];
 
 		if(!empty($request->file('image'))){
@@ -159,6 +167,8 @@ class addProductController extends Controller
 			'name.required' => 'Name is required',
 			'unit.required' => 'Unit Name is required',
 			'cost.required' => 'Cost is required',
+			'category.required' => 'Select Category',
+			'idSubCategory.required' => 'Select Sub Category',
 
 		];
 
@@ -200,6 +210,8 @@ class addProductController extends Controller
 		$document->product_cost = $request->cost;
 		$document->product_unit_name = $request->unit; 
 		$document->product_name = $request->name;
+		$document->id_categories = $request->category;
+		$document->id_sub_categories = $request->idSubCategory;
 
 		if(!empty($request->file('image'))){
 			$document->product_file = $fileName;

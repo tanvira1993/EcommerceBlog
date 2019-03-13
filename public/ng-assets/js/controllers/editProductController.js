@@ -19,6 +19,21 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 				});
 			}
 
+			$scope.category = '';
+
+			$scope.getSubCategoryList = function(category){
+				$http({
+					method:'get',
+					url: 'api/subCategoryInfo/' +category
+				}).then(function(response) {
+					$scope.editProductData.subCategorybycategory = response.data.data;  
+
+				}, function(response) {
+					console.log(response);
+				});
+				console.log(category);
+			}
+
 
 			$scope.updateOtherDocument = function(){
 

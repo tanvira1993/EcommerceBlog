@@ -178,7 +178,7 @@ initialization can be disabled and Layout.init() should be called on page load c
 }]);
 */
 /* Init global settings and run the app */
-EcommerceApp.run(['$rootScope', '$http','$state','$window', function($rootScope, $http, $state,$window) {
+EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', function($rootScope, $http, $state,$window, $filter) {
 	$rootScope.token = localStorage.getItem('token');
 	$rootScope.idUser = localStorage.getItem('idUser');
 	$rootScope.idUserRole= localStorage.getItem('idUserRole');
@@ -213,7 +213,28 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', function($rootScope,
 		});
 	}
 
+	$rootScope.subCategory = function(){
+
+		$http({
+			method:'get',
+			url: 'api/subCategoryInfo'
+		}).then(function(response) {
+			$rootScope.subCategoryInfo = response.data.data;  
+			console.log($rootScope.subCategoryInfo);             
+		}, function(response) {
+			console.log(response);
+		});
+	}
+
 	$rootScope.category();
+	$rootScope.subCategory();
+
+	$rootScope.getSubCategories = function (idCategory) {
+		return $filter('filter')($rootScope.subCategoryInfo, function (elm) {
+			if (elm.id_categories == idCategory) 
+				return elm;
+		} )
+	}
 
 	$rootScope.logout = function(){
 

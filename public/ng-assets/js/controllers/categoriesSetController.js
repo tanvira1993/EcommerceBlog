@@ -10,7 +10,10 @@ angular.module('EcommerceApp').controller('categoriesSetController', ['$scope', 
         $rootScope.settings.layout.pageSidebarClosed = false;*/
     });
 
-
+	$scope.categoryInfo={
+		name:null,
+		details:null
+	}
 	
 	$scope.createCategory = function(){
 

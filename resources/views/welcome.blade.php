@@ -198,7 +198,7 @@
   						<!-- <li><a href="#">Home</a></li> -->
   						
   						<!-- <li><a href="#">Sales</a></li> -->
-  						<li ng-if="idUserRole==0 || idUserRole==1 || idUserRole==2"class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Order Status <i class="fa fa-caret-down"></i></a>
+  						<li  ng-if="idUserRole==0 || idUserRole==1 || idUserRole==2"class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Order Status <i class="fa fa-caret-down"></i></a>
   							<ul class="custom-menu">
   								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="orderlist">Product Order Lists</a></li>
   								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="deliverylist">Order Delivery in Progress Lists</a></li>
@@ -207,6 +207,17 @@
   								<li ng-if="idUserRole==0"><a ui-sref="userDeliveryPendingList">Delivery in Progress</a></li>
   								<li ng-if="idUserRole==0"><a ui-sref="userDeliveryDoneList">Orders History</a></li>
   							</ul>
+  						</li>
+
+  						<li ng-repeat="category in categoryInfo" class="dropdown default-dropdown">
+  							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">@{{category.category_name}} <i class="fa fa-caret-down"></i></a>
+
+  							<ul class="custom-menu">
+  								<li ng-repeat="(key, value) in getSubCategories(category.id_categories)">
+  									<a ui-sref="">@{{value.sub_categories_name}}</a>
+  								</li>
+  							</ul>
+  							
   						</li>
 
   						<!-- <div >

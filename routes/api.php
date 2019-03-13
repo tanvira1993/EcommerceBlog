@@ -28,7 +28,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 |
 */
 Route::post('createUser', 'UserController@saveUser');
-Route::get('categoryInfo', 'categoryController@getAllategory');
+Route::get('categoryInfo', 'categoryController@getAllCategory');
+Route::get('subCategoryInfo', 'categoryController@getAllSubCategory');
+
 
 Route::post('login', 'UserController@login');
 Route::group(['middleware' => 'auth:api'], function(){
@@ -64,9 +66,10 @@ Route::group(['middleware' => 'superAdmin'], function()
 	Route::post('product/update/{id}', 'addProductController@update');
 	Route::post('createCategory', 'categoryController@categoryStore');
 	Route::post('subCreateCategory', 'categoryController@subCategoryStore');
+	Route::get('categoryList', 'categoryController@getAllategory');
+	Route::get('subCategoryInfo/{id}', 'categoryController@getSelectedSubCategoryList');
 
 
-	
 });
 
 // for admin and super admin

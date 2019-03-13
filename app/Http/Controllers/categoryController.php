@@ -56,13 +56,69 @@ class categoryController extends Controller
 		}
 		
 	}
+	
+	public function subCategoryStore (Request $request)
+	{
+		
+		$rules = [
+			'idCategory' => 'required | numeric',
+			'name' => 'required| min:3 | unique:sub_categories,sub_categories_name',
+			
+		];
+
+
+		$messages = [
+			'idCategory.required' => 'Select A Category!',
+			'name.required' => 'Name is required!',
+			'name.unique' => 'This Sub Category already exists.',
+
+		];
+		
+
+		$validation = Validator::make($request->all(), $rules, $messages);
+
+        // redirect on validation error
+		if ($validation->fails()) {
+			$errorMsgString = implode("<br/>",$validation->messages()->all());
+			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
+		}
+		/*echo '<pre>';
+		print_r($request->all());
+		echo '</pre>';
+		exit; */
+		$subcategory = new subCategory;
+		$subcategory->sub_categories_name = $request->name;
+		$subcategory->sub_categories_details = $request->details;
+		$subcategory->id_categories = $request->idCategory;
+		
+		if($subcategory->save()){
+			DB::commit();
+			return Response::json(array('success' => TRUE, 'data' => $subcategory), 200);
+		}else{
+			DB::rollBack();
+			return Response::json(array('success' => FALSE, 'heading' => 'Insertion Failed', 'message' => 'Sub Category could not be created!'), 400);
+		}
+		
+	}
 
 	
-	public function getAllategory(Request $request){
+	public function getAllCategory(Request $request){
 
 		$docTypes = Category::select('categories.*')->get();
 		return Response::json(['success' => true, 'data' => $docTypes], 200);
 	}
 
+	public function getAllSubCategory(Request $request){
+
+		$docTypes = subCategory::select('sub_categories.*')->get();
+		return Response::json(['success' => true, 'data' => $docTypes], 200);
+	}
 	
+	public function getSelectedSubCategoryList(Request $request, $idCategory){
+
+		$docTypes = subCategory::select('sub_categories.*')
+		->where('id_categories',$idCategory)
+		->get();
+		return Response::json(['success' => true, 'data' => $docTypes], 200);
+	}
 }

@@ -12,7 +12,25 @@
 			</div>
 			<div class="portlet-body">
 				<form class="form-horizontal" role="form" name="editotherDocumentForm" id="editotherDocumentForm" novalidate enctype="multipart/form-data">
+				<!-- 	<div class="form-group">
+						<label class="control-label col-md-3" for="idCategory">Select Category<span class="required">*</span></label>
+						<div class="col-md-6">
+							<select name="category" id="category" ng-model="editProductData.category" ng-value="editProductData.category" class="form-control input-sm" ng-change="getSubCategoryList(category)">
+								<option value="">Select Category</option>
+								<option ng-repeat="(key, value) in categoryInfo" value="@{{value.id_categories}}">@{{value.category_name}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3" for="idSubCategory">Select Sub Category<span class="required">*</span></label>
+						<div class="col-md-6">
+							<select name="idSubCategory" id="idSubCategory" ng-model="editProductData.idSubCategory" ng-value="editProductData.idSubCategory" required class="form-control input-sm ">
+								<option value="">Select Sub Category</option>
+								<option ng-repeat="(key, value) in subCategorybycategory" value="@{{value.id_sub_categories}}">@{{value.sub_categories_name}}</option>
+							</select>
+						</div>
 
+					</div> -->
 					<div>
 						<label for="name">Product Name<span class="required">*</span></label>
 						<div>
