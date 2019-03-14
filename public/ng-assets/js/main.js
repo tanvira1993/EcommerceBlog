@@ -197,7 +197,7 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', function(
 
 		$rootScope.cartItem=localStorage.getItem('products');
 		$rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
-
+		$window.location.reload("/product");
 
 	}
 
@@ -226,9 +226,16 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', function(
 		});
 	}
 
+	$rootScope.getTotal = function(){
+		$rootScope.total = 0;
+		$.each($rootScope.cartItem, function(index,val){
+			$rootScope.total += val.quantity*val.productCost;
+		});
+	}
+
 	$rootScope.category();
 	$rootScope.subCategory();
-
+	$rootScope.getTotal();
 	$rootScope.getSubCategories = function (idCategory) {
 		return $filter('filter')($rootScope.subCategoryInfo, function (elm) {
 			if (elm.id_categories == idCategory) 

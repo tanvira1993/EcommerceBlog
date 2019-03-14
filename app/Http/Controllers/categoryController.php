@@ -117,7 +117,7 @@ class categoryController extends Controller
 	
 	public function getSelectedSubCategoryList(Request $request, $idCategory){
 
-		$docTypes = addproduct::select('sub_categories.*')
+		$docTypes = subCategory::select('sub_categories.*')
 		->where('id_categories',$idCategory)
 		->get();
 		return Response::json(['success' => true, 'data' => $docTypes], 200);

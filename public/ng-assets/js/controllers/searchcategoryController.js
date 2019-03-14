@@ -43,12 +43,6 @@ angular.module('EcommerceApp').controller('searchcategoryController', ['$scope',
 				});
 		}
 
-		$rootScope.getTotal = function(){
-			$rootScope.total = 0;
-			$.each($rootScope.cartItem, function(index,val){
-				$rootScope.total += val.quantity*val.productCost;
-			});
-		}
 
 		$rootScope.getTotal();
 
