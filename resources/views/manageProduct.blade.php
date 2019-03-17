@@ -6,6 +6,7 @@
 			<th scope="col">Product Name <br/><input ng-model="search.product_name" class="form-control input-sm" ></th>
 			<th scope="col">Product Cost <br/><input ng-model="search.product_cost" class="form-control input-sm" ></th>
 			<th scope="col">Product Unit Name <br/><input ng-model="search.product_unit_name" class="form-control input-sm" ></th>
+			<th scope="col">Product image <br/></th>
 			<th scope="col">Action</th>
 
 		</tr>
@@ -16,6 +17,7 @@
 			<td>@{{value.product_name}}</td>
 			<td>@{{value.product_cost}}</td>
 			<td>@{{value.product_unit_name}}</td>
+			<td><img src="uploads/@{{value.product_file}}" alt="Smiley face" height="30" width="60"></td>
 			<td ng-if="idUserRole==2"> <a ng-href="#!/product/edit/@{{value.id_products}}" class="btn btn-primary"> Edit</a><a ng-click="deleteProduct(value.id_products)" class="btn btn-danger"> Delete</a></td>
 			<td ng-if="idUserRole==1">Contact To Admin for any change</td>
 

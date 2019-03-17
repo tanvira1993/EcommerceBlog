@@ -4,25 +4,14 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 		$scope.$on('$viewContentLoaded', function() {
 
 			$scope.id = $stateParams.id;			
-			$scope.editProductData={
-				product_name: null,
-				product_unit_name : null,
-				product_cost : null,
-				category : null,
-				idSubCategory : null,
-				category : {
-					
-				}
-
-			};
-
+			
 			$scope.getProductDetailsById = function(id){
 
 				$http({
 					method:'get',
 					url:'api/productdetailById/'+$scope.id
 				}).then(function(response) {
-					$scope.editProductData.category = response.data.data;
+					$scope.editProductData = response.data.data;
 					
 				}, function(response) {
 					console.log(response);
@@ -30,10 +19,10 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 			}
 
 			
-			/*$scope.getSubCategoryList = function(){
+			$scope.getsubcategorybycategory = function(id){
 				$http({
 					method:'get',
-					url: 'api/subCategoryInfo/' +$scope.id
+					url: 'api/subCategoryInfo/' +id
 				}).then(function(response) {
 					$scope.editProductData.category = response.data.data;  
 
@@ -41,7 +30,7 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 					console.log(response);
 				});
 				
-			}*/
+			}
 
 
 			$scope.updateOtherDocument = function(){
@@ -63,7 +52,7 @@ angular.module('EcommerceApp').controller('editProductController', ['$scope', '$
 						},
 						success: (response)=> {
 					//show_toastr("success","Success","other Documents Successfully Created.");
-					toastr.success("Product Added Successfully.")
+					toastr.success("Product updated Successfully.")
 
 					$location.path("/manageProduct");
 					if (!$scope.$$phase)

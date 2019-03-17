@@ -76,6 +76,25 @@ Route::group(['middleware' => 'superAdmin'], function()
 	Route::get('/subCategories', function () {
 		return view('subCategories');
 	});
+	Route::get('/manageCategory', function () {
+		return view('manageCategory');
+	});
+	
+	Route::get('/manageSubCategory', function () {
+		return view('manageSubCategory');
+	});
+	
+	Route::get('/subcategory/edit', function () {
+		return view('editSubCategory');
+	});
+	
+	Route::get('/category/edit', function () {
+		return view('editCategory');
+	});
+	
+	Route::get('/manageallProduct', function () {
+		return view('manageProduct');
+	});
 
 });
 

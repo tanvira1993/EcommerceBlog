@@ -16,4 +16,8 @@ class subCategory extends Model
 	protected $table = 'sub_categories';
 	public $timestamps = false;
 	
+	public function category() {
+		return $this->belongsTo('App\Category', 'id_categories' , 'id_categories');
+	}
+	
 }

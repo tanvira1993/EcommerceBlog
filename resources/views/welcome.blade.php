@@ -117,9 +117,12 @@
 
   								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="adminview"><i class="fa fa-heart-o"></i> ADD Product</a></li>  
   								<li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="manageProduct"><i class="fa fa-user-o"></i> Manage Product</a></li>
+  								<li ng-if="idUserRole==2"><a ui-sref="manageallProduct"><i class="fa fa-user-o"></i> Manage All Product</a></li>
   								<li ng-if="idUserRole==2"><a ui-sref="adminreg"><i class="fa fa-heart-o"></i> Create Admin/Super Admin Account</a></li>
   								<li ng-if="idUserRole==2"><a ui-sref="categories"><i class="fa fa-heart-o"></i> Create Category</a></li>
+  								<li ng-if="idUserRole==2"><a ui-sref="manageCategory"><i class="fa fa-heart-o"></i> Manage Category</a></li>
   								<li ng-if="idUserRole==2"><a ui-sref="subCategories"><i class="fa fa-heart-o"></i> Create Sub Category</a></li>
+  								<li ng-if="idUserRole==2"><a ui-sref="manageSubCategory"><i class="fa fa-heart-o"></i> Manage Sub Category</a></li>
   								<li ng-if="idUserRole==null"><a ui-sref="login"><i class="fa fa-unlock-alt"></i> Login</a></li>
   								<li ng-if="idUserRole!=null"><a ng-click="logout()"><i class="fa fa-unlock-alt"></i> Logout</a></li>
 
@@ -196,7 +199,7 @@
   					<ul class="menu-list">
   						<li><a ui-sref="EcommerceProduct">Home</a></li>
   						<!-- <li><a href="#">Home</a></li> -->
-  						
+
   						<!-- <li><a href="#">Sales</a></li> -->
   						<li  ng-if="idUserRole==0 || idUserRole==1 || idUserRole==2"class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Order Status <i class="fa fa-caret-down"></i></a>
   							<ul class="custom-menu">
@@ -217,7 +220,7 @@
   									<a ng-href="#!/searchProduct/@{{value.id_sub_categories}}">@{{value.sub_categories_name}}</a>
   								</li>
   							</ul>
-  							
+
   						</li>
 
   						<!-- <div >

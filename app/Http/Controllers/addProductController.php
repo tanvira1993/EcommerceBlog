@@ -130,6 +130,7 @@ class addProductController extends Controller
 		return Response::json(['success' => true, 'data' => $docTypes], 200);
 
 	}
+	
 
 	public function getFileInfoForManages(Request $request)
 	{
@@ -155,8 +156,8 @@ class addProductController extends Controller
 			'name' => 'required',
 			'unit' => 'required',
 			'cost' => 'required',
-			'category'=> 'required',
-			'idSubCategory'=> 'required'
+			'idcategories'=> 'required',
+			'idSubCategories'=> 'required'
 		];
 
 		if(!empty($request->file('image'))){
@@ -168,8 +169,8 @@ class addProductController extends Controller
 			'name.required' => 'Name is required',
 			'unit.required' => 'Unit Name is required',
 			'cost.required' => 'Cost is required',
-			'category.required' => 'Select Category',
-			'idSubCategory.required' => 'Select Sub Category',
+			'idcategories.required' => 'Select Category',
+			'idSubCategories.required' => 'Select Sub Category',
 
 		];
 
@@ -211,8 +212,8 @@ class addProductController extends Controller
 		$document->product_cost = $request->cost;
 		$document->product_unit_name = $request->unit; 
 		$document->product_name = $request->name;
-		$document->id_categories = $request->category;
-		$document->id_sub_categories = $request->idSubCategory;
+		$document->id_categories = $request->idcategories;
+		$document->id_sub_categories = $request->idSubCategories;
 
 		if(!empty($request->file('image'))){
 			$document->product_file = $fileName;

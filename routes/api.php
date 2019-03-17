@@ -68,7 +68,20 @@ Route::group(['middleware' => 'superAdmin'], function()
 	Route::post('createCategory', 'categoryController@categoryStore');
 	Route::post('subCreateCategory', 'categoryController@subCategoryStore');
 	Route::get('categoryList', 'categoryController@getAllCategory');
-	Route::get('subCategoryInfo/{id}', 'categoryController@getSelectedSubCategoryList');
+	Route::get('subCategoryList', 'categoryController@getAllSubCategory');
+	Route::delete('category/delete/{id}', 'categoryController@deleteCategory');
+	Route::delete('subcategory/delete/{id}', 'categoryController@deleteSubCategory');
+	
+	Route::get('editCategory/{id}', 'categoryController@getCategoryById');
+	Route::post('editCategoryasve/{id}', 'categoryController@updateCategory');
+	
+	Route::get('editsubCategory/{id}', 'categoryController@getsubCategoryById');
+	Route::post('editsubCategoryasve/{id}', 'categoryController@updateSubCategory');
+
+	
+
+	Route::get('allproductInfo/manage', 'addProductController@getFileInfo');
+
 
 
 });
@@ -84,7 +97,8 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 	Route::get('delivery/done', 'addProductController@getdeliveryDoneInfo');
 	Route::get('productdetailById/{id}', 'addProductController@getProductInfo');
 	Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');
-	Route::get('productInfo/details/manage', 'addProductController@getFileInfoForManages');
+	Route::get('productInfo/details/manage', 'addProductController@getFileInfoForManages');	
+	Route::get('subCategoryInfo/{id}', 'categoryController@getSelectedSubCategoryList');
 
 });
 
