@@ -188,7 +188,7 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$locatio
 
 
 	$rootScope.deleteCart = function(index){
-		$window.alert(index +' selected');
+		$window.alert(index+1 +' No Product Already deleted!');
 		$rootScope.cart=[];
 		$rootScope.cart=$.parseJSON(localStorage.getItem('products'));
 		$rootScope.cart.splice(index,1);
@@ -257,7 +257,7 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$locatio
 						method:'post',					
 						url: 'api/product/addcart',
 
-						data: $rootScope.cartItem
+						data: $rootScope.createorder
 					}).then(function (response) {
 					//hide_all_toastr();
 					//$scope.chargeForm.$setPristine();

@@ -201,7 +201,7 @@
       <!-- <li><a href="#">Home</a></li> -->
 
       <!-- <li><a href="#">Sales</a></li> -->
-      <li  ng-if="idUserRole==0 || idUserRole==1 || idUserRole==2"class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Order Status <i class="fa fa-caret-down"></i></a>
+      <li  ng-if="idUserRole==0 || idUserRole==1 || idUserRole==2"class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Order Status<i class="fa fa-caret-down"></i></a>
        <ul class="custom-menu">
         <li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="orderlist">Product Order Lists</a></li>
         <li ng-if="idUserRole==1 || idUserRole==2"><a ui-sref="deliverylist">Order Delivery in Progress Lists</a></li>
