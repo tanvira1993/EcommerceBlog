@@ -20,5 +20,40 @@ angular.module('EcommerceApp').controller('manageAllproductController', ['$scope
 			console.log(response);
 		});
 	}
+
+	$scope.deleteProduct = function(id){
+		swal({
+			title: "Are you sure?",
+			text: "You will not be able to recover this Product!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonClass: "btn-danger",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel!",
+			CancelButtonClass: "btn-danger",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		},
+		function(isConfirm) {
+			if (isConfirm) {
+
+				$http({
+					method:'delete',
+					url: 'api/product/delete/'+id
+				}).then(function(response) {
+					console.log(response);
+					$scope.getAllFileInfo();
+					swal("Deleted!", "Your Product has been deleted.", "success");
+
+				}, function(response) {
+					console.log(response);
+				});
+
+			} 
+		});
+
+
+	}
+	
 	$scope.getAllFileInfo();
 }]);
