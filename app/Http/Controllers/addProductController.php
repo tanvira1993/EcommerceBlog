@@ -350,6 +350,10 @@ class addProductController extends Controller
 		// if(($request->header('idUserRole'))!=0){
 		// 	return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
 		// }
+		echo '<pre>';
+		print_r($request->all());						
+		echo '</pre>';
+		exit;
 
 		$rules = [
 

@@ -178,7 +178,7 @@ initialization can be disabled and Layout.init() should be called on page load c
 }]);
 */
 /* Init global settings and run the app */
-EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', function($rootScope, $http, $state,$window, $filter) {
+EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$location',function($rootScope, $http, $state,$window, $filter,$location) {
 	$rootScope.token = localStorage.getItem('token');
 	$rootScope.idUser = localStorage.getItem('idUser');
 	$rootScope.idUserRole= localStorage.getItem('idUserRole');
@@ -247,7 +247,59 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', function(
 
 		window.location.href = 'login/logout/';
 	}
-}]);
+
+	$rootScope.orderCreate = function(){
+
+				// var productsList = JSON.parse(localStorage.getItem('products'));
+				if($rootScope.idUserRole== 0){
+
+					$http({
+						method:'post',					
+						url: 'api/product/addcart',
+
+						data: $rootScope.cartItem
+					}).then(function (response) {
+					//hide_all_toastr();
+					//$scope.chargeForm.$setPristine();
+
+					swal({
+						title: 'Success!',
+						text: 'Order Created Successfuly.',
+						type: 'success'
+					}, function () {
+
+                //Charge model data initialize
+                if($rootScope.idUserRole== 1 || $rootScope.idUserRole==2){
+                	$location.path("/orderlist");
+                }
+
+                if($rootScope.idUserRole== 0){
+                	$location.path("/userOrderList");
+                }
+                
+                if (!$rootScope.$$phase)
+                	$rootScope.$apply();
+            });
+
+				}, function (response) {
+					//hide_all_toastr();
+					swal({
+						title: response.data.heading,
+						text: response.data.message,
+						html: true,
+						type: 'error'
+					});
+				});
+				}
+
+				else
+				{
+					toastr.error("Login First")
+
+				}
+
+			}
+		}]);
 /*
     $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$settings = settings; // state to be accessed from view

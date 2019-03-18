@@ -149,7 +149,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Product Add Your List</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -174,21 +174,7 @@
 						<label data-error="wrong" data-success="right" for="defaultForm-pass">quantity</label>
 						<input type="text" ng-minlength="1" ng-maxlength="100" ng-model="productCart.item_quantity" id="defaultForm-pass"  class="form-control validate">	
 					</div>
-					
-					<div class="md-form mb-4">
-						<i class="fas fa-lock prefix grey-text"></i>
-						<input type="text" ng-model="productCart.address" id="defaultForm-pass"  class="form-control validate">
-						
 
-						<label data-error="wrong" data-success="right" for="defaultForm-pass">Address</label>
-					</div>
-					<div class="md-form mb-4">
-						<i class="fas fa-lock prefix grey-text"></i>
-						<input type="text" ng-model="productCart.phone" id="defaultForm-pass"  class="form-control validate">
-						
-
-						<label data-error="wrong" data-success="right" for="defaultForm-pass">Phone No</label>
-					</div>
 				</div>
 			</div>
 			<pre>
@@ -196,7 +182,7 @@
 			</pre>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="addToCart()" data-dismiss="modal">Order Create</button>
+				<button type="button" class="btn btn-primary" ng-click="addToCart()" data-dismiss="modal">Add To cart</button>
 			</div>
 		</div>
 	</div>
