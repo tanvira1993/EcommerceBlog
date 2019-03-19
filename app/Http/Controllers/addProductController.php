@@ -351,7 +351,7 @@ class addProductController extends Controller
 		// 	return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
 		// }
 		echo '<pre>';
-		print_r($request->all());						
+		print_r(json_encode($request->all()));						
 		echo '</pre>';
 		exit;
 

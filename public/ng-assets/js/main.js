@@ -257,12 +257,15 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$locatio
 
 				// var productsList = JSON.parse(localStorage.getItem('products'));
 				if($rootScope.idUserRole== 0 && $rootScope.cartItem.length!=0){
-
+					var postdata =$rootScope.createorder
 					$http({
 						method:'post',					
 						url: 'api/product/addcart',
 						
-						data: $.parseJSON($rootScope.cartItem)
+						data:JSON.stringify($rootScope.cartItem)
+						//data:$rootScope.createorder
+						// data:($rootScope.cartItem)
+
 					}).then(function (response) {
 					//hide_all_toastr();
 					//$scope.chargeForm.$setPristine();
