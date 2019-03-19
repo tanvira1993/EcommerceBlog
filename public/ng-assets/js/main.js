@@ -250,14 +250,19 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$locatio
 
 	$rootScope.orderCreate = function(){
 
+		if($rootScope.cartItem.length==0){
+			toastr.error("No items in your cart")
+			exit;
+		}
+
 				// var productsList = JSON.parse(localStorage.getItem('products'));
-				if($rootScope.idUserRole== 0){
+				if($rootScope.idUserRole== 0 && $rootScope.cartItem.length!=0){
 
 					$http({
 						method:'post',					
 						url: 'api/product/addcart',
-
-						data: $rootScope.createorder
+						
+						data: $.parseJSON($rootScope.cartItem)
 					}).then(function (response) {
 					//hide_all_toastr();
 					//$scope.chargeForm.$setPristine();

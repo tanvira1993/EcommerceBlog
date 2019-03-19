@@ -402,7 +402,7 @@ class addProductController extends Controller
 		$itemList ->id_users= $request->id_users;
 
 		$itemList->save();
-		
+
 
 
 
@@ -461,6 +461,6 @@ class addProductController extends Controller
 	} 
 
 
-	
-	
+
+
 }
