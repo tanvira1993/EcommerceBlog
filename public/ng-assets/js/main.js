@@ -225,6 +225,23 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$locatio
 			console.log(response);
 		});
 	}
+	////
+
+	$rootScope.nameuser = function(){
+
+		$http({
+			method:'get',
+			url: 'api/nameuser/'+$rootScope.idUser
+		}).then(function(response) {
+			$rootScope.nameuser = response.data.data;  
+			console.log($rootScope.nameuser);             
+		}, function(response) {
+			console.log(response);
+		});
+	}
+	$rootScope.nameuser();
+
+	///
 
 	$rootScope.getTotal = function(){
 		$rootScope.total = 0;
@@ -248,6 +265,12 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$locatio
 		window.location.href = 'login/logout/';
 	}
 
+	$rootScope.createorder ={
+		address:null,
+		phoneNumber:null
+	}
+
+
 	$rootScope.orderCreate = function(){
 
 		if($rootScope.cartItem.length==0){
@@ -255,41 +278,38 @@ EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$locatio
 			exit;
 		}
 
-				// var productsList = JSON.parse(localStorage.getItem('products'));
-				if($rootScope.idUserRole== 0 && $rootScope.cartItem.length!=0){
-					var postdata =$rootScope.createorder
+		if($rootScope.idUserRole== 0 && $rootScope.cartItem.length!=0){
+			// $rootScope.result = angular.extend($rootScope.createorder ,($rootScope.cartItem))
+			$rootScope.finalData = {
+				"FirstScopeVariable" : $rootScope.createorder,
+				"SecondScopeVariable" : $rootScope.cartItem
+			}
+					//var postdata =$rootScope.createorder
 					$http({
 						method:'post',					
 						url: 'api/product/addcart',
-						
-						data:JSON.stringify($rootScope.cartItem)
-						//data:$rootScope.createorder
-						// data:($rootScope.cartItem)
+						data:$rootScope.finalData
 
 					}).then(function (response) {
-					//hide_all_toastr();
-					//$scope.chargeForm.$setPristine();
 
-					swal({
-						title: 'Success!',
-						text: 'Order Created Successfuly.',
-						type: 'success'
-					}, function () {
-
+						swal({
+							title: 'Success!',
+							text: 'Order Created Successfuly.',
+							type: 'success'
+						}, function () {
+							localStorage.removeItem("products");
+							$rootScope.cartItem=[];
                 //Charge model data initialize
-                if($rootScope.idUserRole== 1 || $rootScope.idUserRole==2){
-                	$location.path("/orderlist");
-                }
-
+                
                 if($rootScope.idUserRole== 0){
-                	$location.path("/userOrderList");
+                	$window.location.reload("/userOrderList");
                 }
                 
                 if (!$rootScope.$$phase)
                 	$rootScope.$apply();
             });
 
-				}, function (response) {
+					}, function (response) {
 					//hide_all_toastr();
 					swal({
 						title: response.data.heading,

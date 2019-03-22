@@ -109,7 +109,8 @@
     <div class="header-btns-icon">
      <i class="fa fa-user-o"></i>
    </div>
-   <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
+   <strong class="text-uppercase" ng-if="idUserRole==null">Create Your Account <i class="fa fa-caret-down"></i></strong>
+   <strong class="text-uppercase" ng-if="idUserRole!=null">Welcome, @{{nameuser.name}} <i class="fa fa-caret-down"></i></strong>
  </div>
  <a ng-if="idUserRole==null" ui-sref="login" class="text-uppercase">Login / </a>  <a ng-if="idUserRole==null"ui-sref="userreg" class="text-uppercase">Join</a>
  <ul class="custom-menu">
@@ -263,9 +264,9 @@
           
         </div>
       </div>
-      <pre>
+     <!--  <pre>
         @{{createorder|json}}
-      </pre>
+      </pre> -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" ng-click="orderCreate()" data-dismiss="modal">Order Create</button>

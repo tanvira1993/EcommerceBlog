@@ -26,6 +26,6 @@
 		</div>
 	</form>
 </div>
-<pre>
+<!-- <pre>
 	@{{categoryInfo | json}}
-</pre>
+</pre> -->

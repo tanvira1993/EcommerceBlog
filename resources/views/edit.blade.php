@@ -91,6 +91,6 @@
 
 </div> <!--  row end -->
 
-<pre>
+<!-- <pre>
 	@{{editProductData |json}}	
-</pre>
+</pre> -->

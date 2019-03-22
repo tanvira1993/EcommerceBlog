@@ -36,6 +36,7 @@
 		</div>
 	</form>
 </div>
-<pre>
+<!-- <pre>
 	@{{subcategoryInfo | json}}
 </pre>
+ -->

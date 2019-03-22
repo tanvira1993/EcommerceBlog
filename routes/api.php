@@ -106,6 +106,8 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 Route::group(['middleware' => 'UserCommonMiddleware'], function()
 {
 	
+	Route::get('nameuser/{id}', 'UserController@getuserInfoByloggedIn');
+
 });
 
 //for user and super admin
