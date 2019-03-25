@@ -12,7 +12,19 @@
 			</div>
 			<div class="portlet-body">
 				<form class="form-horizontal" role="form" name="editotherDocumentForm" id="editotherDocumentForm" novalidate enctype="multipart/form-data">
+					<div class="col-md-6">
+						<select name="idcategories" id="idcategories" ng-model="editProductData.idcategories" ng-change="getsubcategorybycategory(editProductData.idcategories)"class="form-control input-sm">
+							<option value="">Select Category</option>
+							<option ng-repeat="(key, value) in categoryInfo"  value="@{{value.id_categories}}">@{{value.category_name}}</option>
+						</select>
+					</div>
 
+					<div class="col-md-6">
+						<select name="idSubCategories" id="idSubCategories" ng-model="editProductData.idSubCategories" class="form-control input-sm select2dropdown">
+							<option value="">Select Sub Category</option>
+							<option ng-repeat="(key, value) in editProductData.category"  value="@{{value.id_sub_categories}}">@{{value.sub_categories_name}}</option>
+						</select>
+					</div>
 					<div>
 						<label for="name">Product Name<span class="required">*</span></label>
 						<div>
@@ -79,6 +91,6 @@
 
 </div> <!--  row end -->
 
-<pre>
-	<!-- @{{editProductData |json}}	 -->
-</pre>
+<!-- <pre>
+	@{{editProductData |json}}	
+</pre> -->

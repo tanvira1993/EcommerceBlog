@@ -178,17 +178,156 @@ initialization can be disabled and Layout.init() should be called on page load c
 }]);
 */
 /* Init global settings and run the app */
-EcommerceApp.run(['$rootScope', '$http','$state', function($rootScope, $http, $state) {
+EcommerceApp.run(['$rootScope', '$http','$state','$window', '$filter', '$location',function($rootScope, $http, $state,$window, $filter,$location) {
 	$rootScope.token = localStorage.getItem('token');
 	$rootScope.idUser = localStorage.getItem('idUser');
 	$rootScope.idUserRole= localStorage.getItem('idUserRole');
+	$rootScope.cartItem = localStorage.getItem('products');
+	$rootScope.cartItem = $rootScope.cartItem!=null && $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : [];
+
+
+
+	$rootScope.deleteCart = function(index){
+		$window.alert(index+1 +' No Product Already deleted!');
+		$rootScope.cart=[];
+		$rootScope.cart=$.parseJSON(localStorage.getItem('products'));
+		$rootScope.cart.splice(index,1);
+		$rootScope.getTotal();
+		localStorage.setItem('products', JSON.stringify($rootScope.cart));
+
+		$rootScope.cartItem=localStorage.getItem('products');
+		$rootScope.cartItem = $rootScope.cartItem.length ? $.parseJSON($rootScope.cartItem) : $rootScope.cartItem;
+		$window.location.reload("/product");
+
+	}
+
+	$rootScope.category = function(){
+
+		$http({
+			method:'get',
+			url: 'api/categoryInfo'
+		}).then(function(response) {
+			$rootScope.categoryInfo = response.data.data;               
+		}, function(response) {
+			console.log(response);
+		});
+	}
+
+	$rootScope.subCategory = function(){
+
+		$http({
+			method:'get',
+			url: 'api/subCategoryInfo'
+		}).then(function(response) {
+			$rootScope.subCategoryInfo = response.data.data;  
+			console.log($rootScope.subCategoryInfo);             
+		}, function(response) {
+			console.log(response);
+		});
+	}
+	////
+
+	$rootScope.nameuser = function(){
+
+		$http({
+			method:'get',
+			url: 'api/nameuser/'+$rootScope.idUser
+		}).then(function(response) {
+			$rootScope.nameuser = response.data.data;  
+			console.log($rootScope.nameuser);             
+		}, function(response) {
+			console.log(response);
+		});
+	}
+	$rootScope.nameuser();
+
+	///
+
+	$rootScope.getTotal = function(){
+		$rootScope.total = 0;
+		$.each($rootScope.cartItem, function(index,val){
+			$rootScope.total += val.quantity*val.productCost;
+		});
+	}
+
+	$rootScope.category();
+	$rootScope.subCategory();
+	$rootScope.getTotal();
+	$rootScope.getSubCategories = function (idCategory) {
+		return $filter('filter')($rootScope.subCategoryInfo, function (elm) {
+			if (elm.id_categories == idCategory) 
+				return elm;
+		} )
+	}
+
 	$rootScope.logout = function(){
-        /* var redirectUrl = $rootScope.;
-        redirectUrl = window.btoa(redirectUrl);
-        redirectUrl = encodeURIComponent(redirectUrl);*/
-        window.location.href = 'login/logout/';
-    }
-}]);
+
+		window.location.href = 'login/logout/';
+	}
+
+	$rootScope.createorder ={
+		address:null,
+		phoneNumber:null
+	}
+
+
+	$rootScope.orderCreate = function(){
+
+		if($rootScope.cartItem.length==0){
+			toastr.error("No items in your cart")
+			exit;
+		}
+
+		if($rootScope.idUserRole== 0 && $rootScope.cartItem.length!=0){
+			// $rootScope.result = angular.extend($rootScope.createorder ,($rootScope.cartItem))
+			$rootScope.finalData = {
+				"FirstScopeVariable" : $rootScope.createorder,
+				"SecondScopeVariable" : $rootScope.cartItem
+			}
+					//var postdata =$rootScope.createorder
+					$http({
+						method:'post',					
+						url: 'api/product/addcart',
+						data:$rootScope.finalData
+
+					}).then(function (response) {
+
+						swal({
+							title: 'Success!',
+							text: 'Order Created Successfuly.',
+							type: 'success'
+						}, function () {
+							localStorage.removeItem("products");
+							$rootScope.cartItem=[];
+                //Charge model data initialize
+                
+                if($rootScope.idUserRole== 0){
+                	$window.location.reload("/userOrderList");
+                }
+                
+                if (!$rootScope.$$phase)
+                	$rootScope.$apply();
+            });
+
+					}, function (response) {
+					//hide_all_toastr();
+					swal({
+						title: response.data.heading,
+						text: response.data.message,
+						html: true,
+						type: 'error'
+					});
+				});
+				}
+
+				else
+				{
+					toastr.error("Login First")
+
+				}
+
+			}
+		}]);
 /*
     $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$settings = settings; // state to be accessed from view

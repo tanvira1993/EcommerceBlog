@@ -28,6 +28,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 |
 */
 Route::post('createUser', 'UserController@saveUser');
+Route::get('categoryInfo', 'categoryController@getAllCategory');
+Route::get('subCategoryInfo', 'categoryController@getAllSubCategory');
+
+Route::get('searchCategoryInfo/{id}', 'categoryController@getSearchedCategoryList');
+
 Route::post('login', 'UserController@login');
 Route::group(['middleware' => 'auth:api'], function(){
 
@@ -59,8 +64,26 @@ Route::group(['middleware' => 'superAdmin'], function()
 {
 	Route::post('createAdmin', 'UserController@saveAdmin');
 	Route::delete('product/delete/{id}', 'addProductController@deleteFile');
-	Route::post('product/update/{id}', 'addProductController@update');	
+	Route::post('product/update/{id}', 'addProductController@update');
+	Route::post('createCategory', 'categoryController@categoryStore');
+	Route::post('subCreateCategory', 'categoryController@subCategoryStore');
+	Route::get('categoryList', 'categoryController@getAllCategory');
+	Route::get('subCategoryList', 'categoryController@getAllSubCategory');
+	Route::delete('category/delete/{id}', 'categoryController@deleteCategory');
+	Route::delete('subcategory/delete/{id}', 'categoryController@deleteSubCategory');
 	
+	Route::get('editCategory/{id}', 'categoryController@getCategoryById');
+	Route::post('editCategoryasve/{id}', 'categoryController@updateCategory');
+	
+	Route::get('editsubCategory/{id}', 'categoryController@getsubCategoryById');
+	Route::post('editsubCategoryasve/{id}', 'categoryController@updateSubCategory');
+
+	
+
+	Route::get('allproductInfo/manage', 'addProductController@getFileInfo');
+
+
+
 });
 
 // for admin and super admin
@@ -74,7 +97,8 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 	Route::get('delivery/done', 'addProductController@getdeliveryDoneInfo');
 	Route::get('productdetailById/{id}', 'addProductController@getProductInfo');
 	Route::get('delivery/pending', 'addProductController@getdeliveryPendingInfo');
-	Route::get('productInfo/details/manage', 'addProductController@getFileInfoForManages');
+	Route::get('productInfo/details/manage', 'addProductController@getFileInfoForManages');	
+	Route::get('subCategoryInfo/{id}', 'categoryController@getSelectedSubCategoryList');
 
 });
 
@@ -82,6 +106,8 @@ Route::group(['middleware' => 'CommonMiddleware'], function()
 Route::group(['middleware' => 'UserCommonMiddleware'], function()
 {
 	
+	Route::get('nameuser/{id}', 'UserController@getuserInfoByloggedIn');
+
 });
 
 //for user and super admin

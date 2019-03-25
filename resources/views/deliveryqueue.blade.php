@@ -17,7 +17,7 @@
 			<td>@{{value.name}}</td>
 			<td>@{{value.user_address}}</td>
 			<td>@{{value.user_phone_no}}</td>			
-			<td> <a href="/order/billSlip/@{{value.id_order_list}}" class="btn btn-primary"> Bill Slip</a><a ng-click="deliveryDone(value.id_order_list)" class="btn btn-info"> Delivery Done</a></td>
+			<td> <a target="_blank" href="/order/billSlip/@{{value.id_order_list}}" class="btn btn-primary"> Bill Slip</a><a ng-click="deliveryDone(value.id_order_list)" class="btn btn-info"> Delivery Done</a></td>
 
 
 

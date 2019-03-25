@@ -1,6 +1,7 @@
 /* Setup blank page controller */
-angular.module('EcommerceApp').controller('LoginController', ['$scope', '$rootScope', '$location', '$timeout', '$http', function($scope, $rootScope, $location, $timeout, $http) {
-	$scope.$on('$viewContentLoaded', function() {
+angular.module('EcommerceApp').controller('LoginController', ['$scope', '$rootScope', '$location', '$timeout', '$http', '$window',
+	function($scope, $rootScope, $location, $timeout, $http,$window) {
+		$scope.$on('$viewContentLoaded', function() {
 
 
         //Create User Account
@@ -32,9 +33,9 @@ angular.module('EcommerceApp').controller('LoginController', ['$scope', '$rootSc
         				text: 'LoggedIn Successfully.',
         				type: 'success'
         			}, function () {
-
-        				$location.path("/product");
-
+        				
+        				window.location.href = '#!/product'
+        				$window.location.reload();
         				if (!$scope.$$phase)
         					$scope.$apply();
         			});
@@ -51,4 +52,4 @@ angular.module('EcommerceApp').controller('LoginController', ['$scope', '$rootSc
         	}
         }
     });
-}]);
+	}]);

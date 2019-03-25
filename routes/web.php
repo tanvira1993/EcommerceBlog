@@ -31,6 +31,10 @@ Route::get('/login', function () {
 	return view('login');
 });
 
+Route::get('/searchProduct', function () {
+	return view('searchProduct');
+});
+
 Route::get('/userreg', function () {
 	return view('userRegistration');
 });
@@ -66,6 +70,31 @@ Route::group(['middleware' => 'superAdmin'], function()
 		return view('edit');
 	});
 	
+	Route::get('/categories', function () {
+		return view('categories');
+	});
+	Route::get('/subCategories', function () {
+		return view('subCategories');
+	});
+	Route::get('/manageCategory', function () {
+		return view('manageCategory');
+	});
+	
+	Route::get('/manageSubCategory', function () {
+		return view('manageSubCategory');
+	});
+	
+	Route::get('/subcategory/edit', function () {
+		return view('editSubCategory');
+	});
+	
+	Route::get('/category/edit', function () {
+		return view('editCategory');
+	});
+	
+	Route::get('/manageallProduct', function () {
+		return view('manageProduct');
+	});
 
 });
 

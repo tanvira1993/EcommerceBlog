@@ -152,6 +152,13 @@ class UserController extends Controller
 		}	
 	}
 	
+	public function getuserInfoByloggedIn ($id){
+		$user =User::select('users.*')
+		->where('id_users',$id)
+		->first();
+		return Response::json(['success' => true, 'data' => $user], 200);
+	}
+	
 
 	
 }

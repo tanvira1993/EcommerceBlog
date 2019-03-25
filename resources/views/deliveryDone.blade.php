@@ -17,7 +17,7 @@
 			<td>@{{value.name}}</td>
 			<td>@{{value.user_address}}</td>
 			<td>@{{value.user_phone_no}}</td>			
-			<td> <a href="/order/billSlip/@{{value.id_order_list}}" class="btn btn-primary"> Bill Slip </a> <span class="btn btn-info" disabled>Delivered</span></td>
+			<td> <a target="_blank" href="/order/billSlip/@{{value.id_order_list}}" class="btn btn-primary"> Bill Slip </a> <span class="btn btn-info" disabled>Delivered</span></td>
 
 
 

@@ -169,7 +169,14 @@ foreach($result['item_list'] as $item) {
 </td>
 <td width=397 colspan=4 style='width:297.55pt;border-top:none;border-left:
 none;border-bottom:solid 1.0pt;border-right:solid black 1.0pt;
-padding:0in 5.4pt 0in 5.4pt;height:24.0pt'><?php echo numberTowords($item['product']['product_cost']*$item['item_quantity']) ?>	 TAKA ONLY</td>
+padding:0in 5.4pt 0in 5.4pt;height:24.0pt'><?php
+
+$fnalAmount= 0;
+foreach($result['item_list'] as $item) {
+	
+	$fnalAmount= $fnalAmount+($item['product']['product_cost']*$item['item_quantity']);
+}
+echo numberTowords($fnalAmount) ?>	 TAKA ONLY</td>
 <td width=77 style='width:57.55pt;border-top:none;border-left:none;
 border-bottom:solid 1.0pt;border-right:solid 1.0pt;
 padding:0in 5.4pt 0in 5.4pt;height:24.0pt'>
@@ -177,8 +184,16 @@ padding:0in 5.4pt 0in 5.4pt;height:24.0pt'>
 text-align:center;line-height:normal'><b><span style='font-size:14.0pt'>TOTAL BDT</span></b></p>
 </td>
 <td width=103 nowrap style='width:76.9pt;border-top:none;border-left:none;
-border-bottom:solid 1.0pt;border-right:solid 1.0pt;
-padding:0in 5.4pt 0in 5.4pt;height:24.0pt'></td>
+border-bottom:solid 1.0pt;border-right:solid 1.0pt;text-align:right;
+padding:0in 5.4pt 0in 5.4pt;height:24.0pt'><?php 
+$finalAmount= 0;
+foreach($result['item_list'] as $item) {
+	
+	$finalAmount= $finalAmount+($item['product']['product_cost']*$item['item_quantity']);
+}
+echo $finalAmount;
+?>	
+</td>
 <td style='height:24.0pt;border:none' width=0 height=32></td>
 </tr>
 

@@ -1,97 +1,6 @@
-<!-- HOME -->
-<div id="home">
-	<!-- container -->
-	<div class="container">
-		<!-- home wrap -->
-		<div class="home-wrap">
-			<!-- home slick -->
-			<div id="home-slick">
-				<!-- banner -->
-				<div class="banner banner-1">
-					<img src="./img/banner01.jpg" alt="">
-					<div class="banner-caption text-center">
-						<h1>Bags sale</h1>
-						<h3 class="white-color font-weak">Up to 50% Discount</h3>
-						<button class="primary-btn">Shop Now</button>
-					</div>
-				</div>
-				<!-- /banner -->
+<center><h1>Your Searched...</h1></center>
 
-				<!-- banner -->
-				<div class="banner banner-1">
-					<img src="./img/banner02.jpg" alt="">
-					<div class="banner-caption">
-						<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
-						<button class="primary-btn">Shop Now</button>
-					</div>
-				</div>
-				<!-- /banner -->
 
-				<!-- banner -->
-				<div class="banner banner-1">
-					<img src="./img/banner03.jpg" alt="">
-					<div class="banner-caption">
-						<h1 class="white-color">New Product <span>Collection</span></h1>
-						<button class="primary-btn">Shop Now</button>
-					</div>
-				</div>
-				<!-- /banner -->
-			</div>
-			<!-- /home slick -->
-		</div>
-		<!-- /home wrap -->
-	</div>
-	<!-- /container -->
-</div>
-<!-- /HOME -->
-
-<!-- section -->
-<div class="section">
-	<!-- container -->
-	<div class="container">
-		<!-- row -->
-		<div class="row">
-			<!-- banner -->
-			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="#">
-					<img src="./img/banner10.jpg" alt="">
-					<div class="banner-caption text-center">
-						<h2 class="white-color">NEW COLLECTION</h2>
-					</div>
-				</a>
-			</div>
-			<!-- /banner -->
-
-			<!-- banner -->
-			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="#">
-					<img src="./img/banner11.jpg" alt="">
-					<div class="banner-caption text-center">
-						<h2 class="white-color">NEW COLLECTION</h2>
-					</div>
-				</a>
-			</div>
-			<!-- /banner -->
-
-			<!-- banner -->
-			<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
-				<a class="banner banner-1" href="#">
-					<img src="./img/banner12.jpg" alt="">
-					<div class="banner-caption text-center">
-						<h2 class="white-color">NEW COLLECTION</h2>
-					</div>
-				</a>
-			</div>
-			<!-- /banner -->
-
-		</div>
-		<!-- /row -->
-	</div>
-	<!-- /container -->
-</div>
-<!-- /section -->
-
-<!-- section -->
 <div class="section">
 	<!-- container -->
 	<div class="container">
@@ -106,7 +15,7 @@
 			<!-- section title -->
 
 			<!-- Product Single -->
-			<div class="col-md-3 col-sm-6 col-xs-6" ng-repeat="(key, value) in fileInfo">
+			<div class="col-md-3 col-sm-6 col-xs-6" ng-repeat="(key, value) in searchCategories">
 				<div class="product product-single">
 					<div class="product-thumb">
 						<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
@@ -141,15 +50,14 @@
 	</div>
 	<!-- /container -->
 </div>
-<!-- /section -->
 
-<!-- Button trigger modal -->
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Product Add Your List</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -174,7 +82,7 @@
 						<label data-error="wrong" data-success="right" for="defaultForm-pass">quantity</label>
 						<input type="text" ng-minlength="1" ng-maxlength="100" ng-model="productCart.item_quantity" id="defaultForm-pass"  class="form-control validate">	
 					</div>
-
+					
 				</div>
 			</div>
 			<!-- <pre>
@@ -182,9 +90,8 @@
 			</pre> -->
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="addToCart()" data-dismiss="modal">Add To cart</button>
+				<button type="button" class="btn btn-primary" ng-click="addToCart()" data-dismiss="modal">Order Create</button>
 			</div>
 		</div>
 	</div>
 </div>
-

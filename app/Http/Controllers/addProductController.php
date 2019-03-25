@@ -26,7 +26,9 @@ class addProductController extends Controller
 			'image' => 'required |max:51200|mimes:jpg,jpeg,png,gif',
 			'name' => 'required',
 			'unit' => 'required',
-			'cost' => 'required'
+			'cost' => 'required',
+			'category'=> 'required',
+			'idSubCategory'=> 'required'
 
 
 
@@ -38,6 +40,8 @@ class addProductController extends Controller
 			'name.required' => 'Name is required',
 			'unit.required' => 'Unit Name is required',
 			'cost.required' => 'Cost is required',
+			'category.required' => 'Select Category',
+			'idSubCategory.required' => 'Select Sub Category',
 
 
 		];
@@ -69,6 +73,8 @@ class addProductController extends Controller
 		$document->product_unit_name = $request->unit;
 		$document->product_file = !empty($fileName) ? $fileName : null;
 		$document->product_name = $request->name;
+		$document->id_categories = $request->category;
+		$document->id_sub_categories = $request->idSubCategory;
 		$document->id_users = $request->header('iduser');
 
 		
@@ -118,11 +124,13 @@ class addProductController extends Controller
 	
 	public function getProductInfo($id){
 
-		$docTypes = addproduct::where('id_products', $id)->first();
+		$docTypes = addproduct::with('category','subcategory')
+		->where('id_products', $id)->first();
 
 		return Response::json(['success' => true, 'data' => $docTypes], 200);
 
 	}
+	
 
 	public function getFileInfoForManages(Request $request)
 	{
@@ -147,7 +155,9 @@ class addProductController extends Controller
 		$rules = [
 			'name' => 'required',
 			'unit' => 'required',
-			'cost' => 'required'
+			'cost' => 'required',
+			'idcategories'=> 'required',
+			'idSubCategories'=> 'required'
 		];
 
 		if(!empty($request->file('image'))){
@@ -159,6 +169,8 @@ class addProductController extends Controller
 			'name.required' => 'Name is required',
 			'unit.required' => 'Unit Name is required',
 			'cost.required' => 'Cost is required',
+			'idcategories.required' => 'Select Category',
+			'idSubCategories.required' => 'Select Sub Category',
 
 		];
 
@@ -200,6 +212,8 @@ class addProductController extends Controller
 		$document->product_cost = $request->cost;
 		$document->product_unit_name = $request->unit; 
 		$document->product_name = $request->name;
+		$document->id_categories = $request->idcategories;
+		$document->id_sub_categories = $request->idSubCategories;
 
 		if(!empty($request->file('image'))){
 			$document->product_file = $fileName;
@@ -230,12 +244,14 @@ class addProductController extends Controller
 		$dq=0;
 		$dd=0;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$order = orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
-		->leftJoin('users','users.id_users','=','order_lists.id_users')
-		
+		$order =orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
 		->where('delivery_queue', $dq)
-		->where('delivery_done', $dq)
-		->where('item_lists.id_users',$request->header('iduser'))
+		->where('delivery_done', $dd)
+		->where('item_lists.id_users', $request->header('iduser'))
+		->distinct('id_order_list')	
+		->select('order_lists.*')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+		->select('users.name','order_lists.*')	
 		->get();
 		return Response::json(['success' => true, 'data' => $order], 200);
 
@@ -248,12 +264,14 @@ class addProductController extends Controller
 		$dq=1;
 		$dd=0;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$queue = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
-		->leftJoin('users','users.id_users','=','order_lists.id_users')
-
+		$queue =orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dd)
-		->where('item_lists.id_users',$request->header('iduser'))
+		->where('item_lists.id_users', $request->header('iduser'))
+		->distinct('id_order_list')	
+		->select('order_lists.*')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+		->select('users.name','order_lists.*')	
 		->get();
 		return Response::json(['success' => true, 'data' => $queue], 200);
 
@@ -263,13 +281,15 @@ class addProductController extends Controller
 	public function getdeliveryDoneInfo(Request $request){
 		$dq=1;
 		$dd=1;
-		//$docTypes = addproduct::select('product_lists.*')->get();
-		$done = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
-		->leftJoin('users','users.id_users','=','order_lists.id_users')
-
+		
+		$done =orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
 		->where('delivery_queue', $dq)
-		->where('delivery_done', $dq)
-		->where('item_lists.id_users',$request->header('iduser'))		
+		->where('delivery_done', $dd)
+		->where('item_lists.id_users', $request->header('iduser'))
+		->distinct('id_order_list')	
+		->select('order_lists.*')
+		->leftJoin('users','users.id_users','=','order_lists.id_users')
+		->select('users.name','order_lists.*')	
 		->get();
 		return Response::json(['success' => true, 'data' => $done], 200);
 
@@ -283,9 +303,7 @@ class addProductController extends Controller
 		$dq=0;
 		$dd=0;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$order = orderlist::leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
-		->leftJoin('users','users.id_users','=','order_lists.id_users')
-		// ->select('order_lists.*')
+		$order = orderlist::leftJoin('users','users.id_users','=','order_lists.id_users')
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dq)
 		->where('order_lists.id_users',$request->header('iduser'))
@@ -301,9 +319,7 @@ class addProductController extends Controller
 		$dq=1;
 		$dd=0;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$queue = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
-		->leftJoin('users','users.id_users','=','order_lists.id_users')
-
+		$queue = orderlist::leftJoin('users','users.id_users','=','order_lists.id_users')
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dd)
 		->where('order_lists.id_users',$request->header('iduser'))
@@ -318,9 +334,7 @@ class addProductController extends Controller
 		$dq=1;
 		$dd=1;
 		//$docTypes = addproduct::select('product_lists.*')->get();
-		$done = orderlist:: leftJoin('item_lists','item_lists.id_order_list','=','order_lists.id_order_list')
-		->leftJoin('users','users.id_users','=','order_lists.id_users')
-
+		$done = orderlist::leftJoin('users','users.id_users','=','order_lists.id_users')
 		->where('delivery_queue', $dq)
 		->where('delivery_done', $dq)
 		->where('order_lists.id_users',$request->header('iduser'))		
@@ -332,12 +346,17 @@ class addProductController extends Controller
 
 	public function savecart(Request $request)
 	{
-		
+
 		// if(($request->header('idUserRole'))!=0){
 		// 	return Response::json(array('success' => false, 'heading' => 'User Not Found!', 'message' => 'Please login first'), 400);
 		// }
+		// echo '<pre>';
+		// print_r(($request->all()));						
+		// echo '</pre>';
+		// var_dump(json_encode($request->all()));
+		//exit;
 
-		$rules = [
+		/*$rules = [
 
 			'item_quantity' => 'required | numeric',	
 			'address' => 'required',			
@@ -361,14 +380,14 @@ class addProductController extends Controller
 			$errorMsgString = implode("<br/>",$validation->messages()->all());
             // change below as required
 			return Response::json(array('success' => false, 'heading' => 'Validation Error', 'message' => $errorMsgString), 400);
-		}
+		}*/
 
 		$orderlist = new orderlist;
 
 		$orderlist->delivery_queue = 0;
 		$orderlist->delivery_done = 0;
-		$orderlist->user_address = $request->address;
-		$orderlist->user_phone_no = $request->phone;		
+		$orderlist->user_address = $request->FirstScopeVariable['address'];
+		$orderlist->user_phone_no = $request->FirstScopeVariable['phoneNumber'];		
 		$orderlist->id_users = $request->header('iduser');
 			// echo '<pre>';
 			// print_r($request->header('idUserRole'));						
@@ -376,19 +395,21 @@ class addProductController extends Controller
 			// exit;
 		$orderlist->save();
 
+		$itemList = [];
+		foreach ($request->SecondScopeVariable as $key => $item){
+			//$itemList = new itemList;
 
-		$itemList = new itemList;
-		$itemList->id_order_list = $orderlist->id_order_list;		
-		$itemList->item_quantity = $request->item_quantity;
-		$itemList ->id_products= $request->id_products;
-		$itemList ->id_users= $request->id_users;
-
-		$itemList->save();
-		
-
+			$itemList[$key]['id_order_list'] = $orderlist->id_order_list;		
+			$itemList[$key]['item_quantity'] = $item['quantity'];
+			$itemList [$key]['id_products']= $item['idProduct'];
+			$itemList [$key]['id_users']= $item['adminId'];
+		}
+		// $itemList->save();
+		$result = itemList::insert($itemList);
 
 
-		if($itemList && $orderlist){
+
+		if($result && $orderlist){
 			DB::commit();
 			return Response::json(array('success' => TRUE, 'data' => 'order created successfully'), 200);
 		}else{
@@ -443,6 +464,6 @@ class addProductController extends Controller
 	} 
 
 
-	
-	
+
+
 }

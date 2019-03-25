@@ -250,4 +250,148 @@ EcommerceApp.config(['$stateProvider', '$urlRouterProvider', function($stateProv
         }
     })
 
+    .state('categories', {
+        url: "/categories",
+        templateUrl: "/categories",
+        data: {pageTitle: 'Categories List'},
+        controller: "categoriesSetController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/categoriesSetController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('subCategories', {
+        url: "/subCategories",
+        templateUrl: "/subCategories",
+        data: {pageTitle: 'Sub Categories List'},
+        controller: "setCategoriesSetController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/setCategoriesSetController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    
+    .state('searchProduct', {
+        url: "/searchProduct/{id}",
+        templateUrl: "/searchProduct",
+        data: {pageTitle: 'Searched Categories'},
+        controller: "searchcategoryController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/searchcategoryController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('manageCategory', {
+        url: "/manageCategory",
+        templateUrl: "/manageCategory",
+        data: {pageTitle: 'Manage Categories'},
+        controller: "managecategoryController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/managecategoryController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('manageSubCategory', {
+        url: "/manageSubCategory",
+        templateUrl: "/manageSubCategory",
+        data: {pageTitle: 'Manage Sub Categories'},
+        controller: "managesubcategoryController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/managesubcategoryController.js'
+                    ]
+                });
+            }]
+        }
+    })
+    
+    .state('editCategory', {
+        url: "/category/edit/{id}",
+        templateUrl: "/category/edit",
+        data: {pageTitle: 'Edit Categories'},
+        controller: "editcategoryController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/editcategoryController.js'
+                    ]
+                });
+            }]
+        }
+    })
+
+    .state('editSubCategory', {
+        url: "/subcategory/edit/{id}",
+        templateUrl: "/subcategory/edit",
+        data: {pageTitle: 'Edit Sub Categories'},
+        controller: "editsubcategoryController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/editsubcategoryController.js'
+                    ]
+                });
+            }]
+        }
+    })
+    
+    .state('manageallProduct', {
+        url: "/manageallProduct",
+        templateUrl: "/manageallProduct",
+        data: {pageTitle: 'Amanage All Product'},
+        controller: "manageAllproductController",
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'EcommerceApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                    files: [
+                    'ng-assets/js/controllers/manageAllproductController.js'
+                    ]
+                });
+            }]
+        }
+    })
 }]);
